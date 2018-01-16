@@ -1,0 +1,44 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java conditional statements
+// >MetaDescription: 'java conditional statements, if else, switch case statement, ternary operator'
+// >MetaKeywords: 'java conditional statements, if else, switch case statement, ternary operator, example code, tutorials'
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: conditional-statements
+// >---
+
+// >#Java Conditional Statements
+// >* Conditional Statements are a feature of java language, which guide the 
+// >  control or flow of program execution of a statement(s), depending on 
+// >  a specified condition that evaluates to true ( executes statement) or 
+// >  false( doesnt execute statement).
+// >* In simple terms:
+// >    * IF [CONDITION IS TRUE] EXECUTE (THIS OPERATION) ELSE EXECUTE (THAT OPERATION)
+// >>
+
+
+// >## [if else Statement](if-else-statement.html)
+// >* **if-then** statement, controls program execution of a code section only if the 
+// >  "IF" condition is evaluated to be true.
+// >* **if-then-else** statement, controls program execution of a code section only if the 
+// >  "IF" condition is evaluated to be true and "ELSE" condition is evaluated 
+// >  if the "IF" condition to be false.
+// >* **Nested if-then-else**  Embedding an "if or else" statement inside another 
+// >  "if or else if".
+// >>
+
+
+// >## [Switch Statement](switch-statement.html)
+// >* Unlike the if-then-else statements, the switch statement can have a number of 
+// >  possible execution paths in a single check of conditions.
+// >* Switch statement checks for matching value of the given "switch variable" against 
+// >  a set of case-values. And for each case being true the condition is executed.
+// >>
+
+
+// >## [Ternary Operator](ternary-operator.html)
+// >* Ternary Operator is similar to the **if then else** condition, the syntax explained:
+// >* (IF-CONDITION) **?** (EXECUTE-THIS-IF-TRUE) **:** (EXECUTE-THIS-IF-FALSE)
+// >* Consider the Get lower of the TWO values:
+// >  * LowerValue = (val1 < val2) ? val1 : val2;
+// >>

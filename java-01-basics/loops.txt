@@ -1,0 +1,70 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java loops
+// >MetaDescription: java loops, for loop, for each loop, while loop, do while loop, break continue statement
+// >MetaKeywords: java loops, for loop, for each loop, while loop, do while loop, break continue statement example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: loops
+// >---
+
+// ># Java Loops
+// >* Loops are programming constructs that enable repetitive execution of 
+// >  a code statement(s).
+// >* Java supports TWO kinds of loops; **for loop** and **while loop**.
+// >>
+
+// >## [Java For Loop](for-loop.html)
+// >* Iterate of code-statements over a range of values.
+// >* There are three basic values that are required for perform the **FOR LOOP**
+// >* Each iteration is increased by the count of **increment**
+// >* **initialization**
+// >    * Start with value, where the increment counter starts.
+// >* **termination**
+// >    * End at value, where the increment counter stops.
+// >* **increment**
+// >    * Value of increment of the increment counter, this is invoked after an iteration.
+// >*
+// >* **JAVA FOR LOOP** syntax
+// >  * for (initialization; termination; increment) {
+// >  * code-statements
+// >  * }
+// >* The code-statements execute until the "termination" value encounters
+// >>
+
+// >## [Java For Each Loop](for-each-loop.html)
+// >* The foreach loop, added in Java 5, also called as "enhanced for loop
+// >* It is used with java arrays or collections, where the loop reads each element,
+// >   one after the other.
+// >>
+
+// >## [Java while loop](while-loop.html)
+// >* The while statement iterates block of code-statements **only when** 
+// >  the condition in the while statement is true.
+// >* **JAVA WHILE LOOP** syntax
+// >    * while(condition is true) 
+// >    * { block of code-statements }
+// >>
+
+// >## [Java do while loop](do-while-loop.html)
+// >* The **do while loop** iterates block of code-statements and further iterations
+// >  **only when** the condition in the while statement is true.
+// >* So the **do while** loop executes atleast once before exiting the loop.
+// >* The condition to proceed with the iteration is **AFTER** the code iteration.
+// >* **JAVA DO WHILE LOOP** syntax
+// >    * do { block of code-statements }
+// >    * while(condition is true);
+// >>
+
+// >## [Java loop break statement](break-statement.html)
+// >* **BREAK** statement is a loop control mechanism, when encountered in a 
+// >  loop the "break" exits the loop.
+// >* The **Break** is also used in the switch statement to exit the **switch clause**
+// >>
+
+// >## [Java loop continue statement](continue-statement.html)
+// >* The **CONTINUE** statement exits the current iteration, when encountered in a 
+// >  loop.
+// >* The difference between **BREAK** and **CONTINUE** is 
+// >    * **BREAK** exit the loop.
+// >    * **CONTINUE** exit only the current iteration.
+// >>

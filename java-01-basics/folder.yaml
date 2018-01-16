@@ -1,0 +1,31 @@
+---
+YamlDesc: FOLDER-YAML
+Slug: java
+GenerateTemplateFlag: false
+GenerateFolderNavURLNamesJS: false
+ProcessFilePathList:
+    - intro.txt
+    - CommentsAndPrinting.java
+    - VariablesDataTypes.java
+    - operators.txt
+    - ArithmeticOperators.java
+    - AssignmentOperators.java
+    - LogicalOperators.java
+    - RelationalOperators.java
+    - BitwiseOperators.java
+    - arrays.txt
+    - ArrayDeclaration.java
+    - ArrayDataTypes.java
+    - ArrayOperations.java    
+    - conditional-statements.txt
+    - ConditionalIfElse.java
+    - ConditionalSwtich.java
+    - ConditionalTernary.java
+    - loops.txt
+    - LoopsFor.java
+    - LoopsForEach.java
+    - LoopsWhile.java
+    - LoopsDoWhile.java
+    - LoopsBreak.java
+    - LoopsContinue.java
+---

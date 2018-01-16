@@ -1,0 +1,32 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java operators
+// >MetaDescription: 'java Arithmetic Operators, Relational Operators, Bitwise Operators, Logical Operators, Assignment Operators, Misc Operators'
+// >MetaKeywords: 'java Arithmetic Operators, Relational Operators, Bitwise Operators, Logical Operators, Assignment Operators, Misc Operators example code, tutorials'
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: operators
+// >---
+
+// ># Java Operators
+// >Operators are special symbols that perform specific operations among operands(variables).
+// >Common operators are mathematical operations such as ADD SUBTRACT .. or comparision operators such as GREATER THAN LESS THAN.
+
+// >* [Arithmetic Operators](arithmetic-operators.html)
+// >    * **Arithmetic operators** are basic mathematical operations which 
+// >      can be performed on variables.
+// >>
+// >* [Relational Operators](relational-operators.html)
+// >    * **Relational Operators** retrun TRUE or FALSE based on the result 
+// >      of the relational condition.
+// >>      
+// >* [Assignment Operators](assignment-operators.html)
+// >    * **Assignment Operators** Simplest assignment operators is EQUAL TO **=** 
+// >      it assigns the value of the operand on its right to the operand on its left.
+// >>
+// >* [Logical Operators](logical-operators.html)
+// >    * **Logical Operators** Perform AND OR and COMPLIMENT on given data. 
+// >>
+// >* [Bitwise Operators](bitwise-operators.html)
+// >    * **Bitwise Operators** Perform AND OR XOR and COMPLIMENT on binary 
+// >      of given data.
+// >>

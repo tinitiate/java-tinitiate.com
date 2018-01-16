@@ -1,0 +1,45 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java arrays
+// >MetaDescription: java arrays
+// >MetaKeywords: java arrays declaration, array-operations example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: arrays
+// >---
+
+// ># Java Arrays
+// >* An array is a special variable that holds a fixed number of 
+// >  values of same datatype. 
+// >* The array size or length is set at the time of its creation.
+// >* Array elements are refered by the position or array index.
+// >* Array index or the position of the first element starts with zero.
+
+
+// >## [Java Array Declaration](array-declaration.html)
+// >* Demonstration of Declaration and Initialization.
+// >* Demonstration of Uninitialized Array.
+// >* Demonstration of Null Reference array.
+// >>
+
+// >## [Java Array various data types ](array-datatypes.html)
+// >* Demonstration of java array with boolean, int, foat, double, char datatypes.
+// >* Demonstration of java array of a class.
+// >* Demonstration of java method retrurning an array.
+// >>
+
+// >## [Java Array Operations](array-operations.html)
+// >* Here are demonstrations for a few Array Operations
+// >  * Cloning an Array, using the built-in **clone()** method 
+// >  * Copying a subset of an array using built-in, **System.arraycopy**
+// >    System.arraycopy ( SourceArrayName
+// >                      ,[Index Start position of Source Array]
+// >                      ,TargetArrayName
+// >                      ,[Index Start position of Target Array to copy to]
+// >                      ,[Index End position of Source Array] );
+// >  * Comparing an Array
+// >    Using the **equals()** built-in method. 
+// >  * Looping through Array elements
+// >    Using the "for loop" to loop through array elements.
+// >  * Sorting an Array
+// >    using the Arrays.sort built-in.
+// >>
