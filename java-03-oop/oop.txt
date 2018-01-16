@@ -1,0 +1,142 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming
+// >MetaDescription: java object oriented programming
+// >MetaKeywords: java object oriented programming example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop
+// >---
+
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+
+// ># Java object oriented programming
+// >* Object Oriented Programming is a programming methodology.
+// >* Apart from Java there are many programming languages that support, Object
+// >  Oriented Programming; Such as PYTHON, PHP, C++, C# ...
+// >* Strictly speaking in coding terms, the primary goal of object oriented programming
+// >  is to logically group data and code which acts using this data into a logical
+// >  groups called **CLASS**.
+// >>
+
+
+// >## Class
+// >* A **CLASS** is a programming construct or a structure that holds data and 
+// >  code that performs some operations on that data.
+// >* The data in the **CLASS** are called as `CLASS VARIABLES` and code statements 
+// >  called as **METHODS** or FUNCTIONS.
+// >* In Brief `CLASS = DATA + METHODS`
+// >* In Java it is required to have the class name as the file name of the code.
+// >* There can be more than one CLASS in the code file.
+// >>
+// >![alt text](oop-java-class.png "Java Class structure")
+// >>
+
+
+// >## Object
+// >* In order to RUN or EXECUTE the program [or a class file], it is required to 
+// >  create an instance of the class.
+// >* Instance is a occurrence of class where data is assigned to the class 
+// >  variables and the class methods are called upon to execute or run.
+// >>
+// >![alt text](oop-java-object.png "Java Object structure")
+// >>
+// >```
+// Class Calculator
+public class Calculator {
+
+   // Data of Class Calculator
+   int num1;
+   int num2;
+   
+   // Methods of Class Calculator
+   int Add() {
+      return num1+num2;
+   }
+   
+   // Methods of Class Calculator
+   int Subtract() {
+      return num1-num2;
+   }
+
+   // Methods of Class Calculator
+   int Multiply() {
+      return num1*num2;
+   }
+
+   int Divide() {
+      return num1/num2;
+   }
+
+   
+   // Main Method is a special method
+   // This is used as an entry point 
+   // into the program 
+   public static void main(String[] args) {
+      
+      // Create an Object of the Class Calculator
+      // ========================================
+      Calculator Obj_1 = new Calculator();
+      
+      // Assign values to Class Variables
+      Obj_1.num1 = 100;
+      Obj_1.num2 = 50;
+      
+      // Call the Methods of the Class Calculator using the Object Obj_1 
+      Obj_1.Add();
+      Obj_1.Subtract();
+      Obj_1.Multiply();
+      Obj_1.Divide();
+
+
+      // Create an Object of the Class Calculator
+      // ========================================
+      Calculator Obj_2 = new Calculator();
+      
+      // Assign values to Class Variables
+      Obj_2.num1 = 100;
+      Obj_2.num2 = 50;
+      
+      // Call the Methods of the Class Calculator using the Object Obj_1 
+      Obj_2.Add();
+      Obj_2.Subtract();
+      Obj_2.Multiply();
+      Obj_2.Divide();
+   }
+}
+// >```
+// >>
+
+// >## Advantages of Object Oriented Programming
+// >* **Code Reusability** A class [code and variables] in one file can be used multiple
+// >  times as objects in other programs.
+// >* **Encapsulation** bundling of data with the methods that operate on that data
+// >    * Certain parts of the code (methods/functions) can be hidden in the class.
+// >    * Certain parts of the data (class variable) can be hidden in the class.
+// >* **Design Benefits** Given the **Code Reusability** aspect, large IT projects 
+// >  can be easily managed by breaking down functionality into **CLASSES**, and using 
+// >  various design patterns that are associated with Object Oriented Programming.
+// >>
+
+// >## Disadvantages of Object Oriented Programming
+// >* Usually Object Oriented programs are larger than functional programs.
+// >* More planning is required to design and develop solutions in Object Oriented 
+// >  programming this takes time and may impact time to market timelines.
+// >* Performance of Object Oriented Programs can be fast or slow depending the 
+// >  complexity and purpose, it also requires more system resources in CPU and memory.
+// >>

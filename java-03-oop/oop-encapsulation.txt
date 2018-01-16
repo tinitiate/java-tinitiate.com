@@ -1,0 +1,99 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming encapsulation
+// >MetaDescription: java object oriented programming encapsulation
+// >MetaKeywords: java object oriented programming encapsulation example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-encapsulation
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Java Encapsulation
+// >* Encapsulation is a mechanism of combining variables (data) and methods(code)
+// >  operating on that data, as a single unit.
+// >* Encapsulation is acheived by declaring `CLASS VARIABLES` and `TWO CLASS METHODS`
+// >  for each of the CLASS VARIABLES. Class Members for Encapsulation:
+// >  * Create a CLASS VARIABLE
+// >  * Create a CLASS-VARIABLE SETTER-METHOD
+// >  * Create a CLASS-VARIABLE GETTER-METHOD
+// >* `Advantages of Encapsulation`
+// >  * Scalability:
+// >    * The standard to add or remove Variables(Data) is add the declare the
+// >      variable itself, Add GETTER-METHOD and a SETTER-METHOD, Easy to implement
+// >      and is standardized.
+// >  * Ease of Maintainence and Reusability:
+// >    * Due to the standard and consistant nature of adding newer Variable, Getter,
+// >      Setter, This makes the maintenance very easy and helps in resuability.
+
+// >* 1) The idea behind "Encapsulation" [of a class] is to prevent other
+// >     classes from needing to know what a class is doing behind the scenes.
+// >* 2) Making use of private class members (Methods, Variables) to access
+// >     them only inside the declaring class and not their instances.
+// >     All other classes can only access, Data (variables) of the Encapsulated
+// >     class, through the provided "get" and "set" methods.
+// >     This way data access can be restricted and data acquisition hidden.
+// >* 3) The Get / Set methods are a standard convention to access private data.
+// >```
+package tinitiate.oop;
+
+public class JavaEncapsulation {
+
+    // ENCAPSULATION
+    // This is a PRIVATE CLASS VARIABLE and cannot be accessed directly outside 
+    // the CLASS, To access this Variable we need to Create PUBLIC methods
+    // that read and write data to this variable. 
+	private String ClassVariable;
+
+    // SETTER METHOD
+	// =============
+	// This method is a PUBLIC method that assigns value to the PRIVATE CLASS
+	// VARIABLE by accepting an input parameter that is of the same datatype as
+	// the PRIVATE CLASS VARIABLE.
+	public void setClassVariable(String pClassVariable) {
+	   ClassVariable   = pClassVariable;
+	}
+
+	// GETTER METHOD
+    // =============
+    // This method is a PUBLIC method that returns value of the PRIVATE CLASS
+    // VARIABLE by using a return type that is same datatype as the
+	// PRIVATE CLASS VARIABLE.
+	public String getClassVariable() {
+		return ClassVariable;
+	}
+
+	public static void main(String[] args) {
+
+	    // USING ENCAPSULATED DATA
+	    // =======================
+	    // Step 1.
+	    // Create an Object of the class JavaEncapsulation
+		JavaEncapsulation ObjJE = new JavaEncapsulation();
+
+		// Step 2.
+		// Assign Value to the variable using the SETTER-METHOD
+		ObjJE.setClassVariable("TINITIATE");
+
+        // Step 3.
+        // Retrieve the Value to the variable using the GETTER-METHOD
+        System.out.println(ObjJE.getClassVariable());
+	}
+}
+// >```

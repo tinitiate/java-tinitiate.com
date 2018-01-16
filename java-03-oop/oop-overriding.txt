@@ -1,0 +1,64 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming overriding polymorphism
+// >MetaDescription: java object oriented programming overriding polymorphism
+// >MetaKeywords: java object oriented programming overriding polymorphism example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-overriding-polymorphism
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Overriding in java (polymorphism)
+// >* Overriding or `METHOD OVERRIDING` is a concept in `Class Inheritance` ,
+// >  where the CHILD CLASS or SUB CLASS can have a METHOD name that is same as a
+// >  METHOD name in the PARENT CLASS or SUPER CLASS.
+// >* To clearly distinguish between the Method from Super Class and Sub class, We
+// >  need to "OverRide" the method.
+// >* `METHOD OVERRIDING` enables the CHILD CLASS or SUBCLASS can have its own 
+// >  implementation of the inherited method without affecting the `PARENT CLASS` METHOD.
+// >* `POLYMORPHISM` : Same name different functionality, In context with Java, 
+// >  same Method Name different functionality.
+// >* `OVERRIDING` : override the functionality of any existing method 
+// >* Method overriding only occurs when the names and signatures of the two 
+// >  methods are identical. If not, they are simply overloaded.
+// >* The `DIFFERENTIATION` between Same Method Names between The one in SuperClass and SubClass
+// >  can be made by using the `SUPER KEYWORD`
+// > ```
+package tinitiate.oop;
+
+class ParentClassOR
+{
+	public void MethodA() {
+	    System.out.println("This is || Class: ParentClassOR || Method: MethodA ||");
+	}
+}
+
+public class ChildClassOR extends ParentClassOR
+{
+   public void MethodA() {
+      System.out.println("This is OverRidden || Class: ChildClassOR || Method: MethodA ||");
+   }
+
+   public void SuperMethodsCall(String CountryName, String population, String LandAreaSize)	{
+
+      super.MethodA(); // This executes the ParentClassOR.MethodA()
+	}
+}
+// > ```

@@ -1,0 +1,64 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming packages,namespace
+// >MetaDescription: java object oriented programming packages namespace
+// >MetaKeywords: java, object oriented programming, packages, namespace example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-packages
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+
+// ># Java Packages
+// >* Packages are containers for classes, interfaces, enumerations and annotation
+// >  types related to a project or more commonly to a specific functionality.
+// >* `Purposes of using packages`
+// >  * Every package creates a new namespace, which prevents any name conflicts, 
+// >    with members in other packages.(Class created in different packages, Could have same name.)
+// >    and is convenient to locate related classes. For example a fileWriter package could have
+// >    all the classes that are related to the fileWriting Process. And a GraphGenerator could
+// >    have its own package, to bundle all its classes.
+// >  * Easier to provide access control to access classes across projects and functionality.
+
+// >>
+// >![java packages](oop-java-packages.png "java packages")
+// >>
+// >## Package creation and usage
+// >* To create a package, Add keyword "package" followed by a package-name in
+// >  the Java source file. All classes declared in that file will belong to the 
+// >  specified package.
+// >* If no package name is mentioned, the class belongs to the default package.
+// >  Its Nameless package.
+// >* A Class can directly access other class in the same package.
+// >* A class to access classes from other packages, the keyword import 
+// >  <Package-Name> must be used., It can be used with the combination of 
+// >  Asterix(*), To select all classes in that package, or particular classes
+// >  Example: import java.util.zip.* (or) import java.util.zip.ZipFile;
+// >* Directory name of bytecode (.CLASS files), must be the same as the package name.
+// >* Access Control of Class members (Variables and Methods) using packages
+
+// >```
+package tinitiate;     // Package Name
+
+public class Class2 {  // Class Name inside the package
+
+}
+
+// >```

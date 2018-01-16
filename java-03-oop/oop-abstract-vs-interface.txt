@@ -1,0 +1,60 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming interface
+// >MetaDescription: java object oriented programming interface
+// >MetaKeywords: java object oriented programming interface example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-interface
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Differences between Abstract class and Interface
+// >* Mostly features of both Abstract class and Interface are similar,
+// >  here are the differences between them
+// >>
+// >![alt text](oop-java-abstract-class.png "Abstract Class")
+// >>
+// >![alt text](oop-java-interface.png "Interface")
+// >>
+
+// >### Abstract class
+// >* It only has Method specification and Field Names.
+// >* Abstract class supports final, static and normal variables, any access specifier.
+// >* Abstract class supports both abstract and implemented methods.
+// >* The keyword **abstract** is required when declaring a method in abstract class.
+// >* Abstract class do not support multiple inheritance.
+
+// >### Interface
+// >* It only has Method specification and Field Names.
+// >* Interface has only static and final variables.
+// >* Fields and Methods of interface are public by default.
+// >* Interface supports only abstract methods.
+// >* Interface in JAVA 8 supports static and default implemented methods.
+// >* Interface supports mulitple inheritance can extend more than one interfaces.
+// >* Interface only supports extending another interface.
+
+// >### What should I use Abstract Class or an Interface?
+// >* At a highlevel both Interface and Abstract Class look the same,
+// >  but the difference would be how to use them in implementation
+// >* `Abstract Class` is a code template that is ideal to use common code among
+// >   classes that are part of a common problem (or soltion) set.
+// >* `Interface` is also a code template and the ideal usage scenario would be
+// >  in unrelated classes which are only interested for a common behavior or features.
+

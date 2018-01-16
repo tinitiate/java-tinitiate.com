@@ -1,0 +1,70 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming this keyword
+// >MetaDescription: java object oriented programming this keyword
+// >MetaKeywords: java object oriented programming this keyword example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-this-keyword
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Java this Keyword
+// >* To access Class Variables or Member Fields from other METHODS or the CONSTRUCTOR
+// >  of the same CLASS, `this keyword` is used.
+// >* `this` **KEYWORD** is used as an alias to refer to current class instance,
+// >  with-in the instance itself.
+// >* The `this keyword` differentiates between the **CLASS VARIABLES** from 
+// >  **METHOD VARIABLES**
+// >* `this` **KEYWORD** is also used to invoke constructor overloads
+// >* `this` **KEYWORD** is also used to perform `Explicit Constructor Invocation` 
+// >   it is to invoke a constructor, from inside another constructor of the same Class.
+// >```
+package tinitiate.oop;
+
+public class ThisKeyword {
+
+	// CLASS MEMBER FIELDS
+	int A;
+	int B;
+	
+	// CLASS METHOD
+	// 1. The parameters int A and int B are the METHOD parameters, 
+	//    they are not the same as the CLASS MEMBER FIELDS above.
+	// 2. To refer the CLASS MEMBER FIELDS, we have to use the "this"
+	//    keyword.
+	public void Method(int A, int B) {
+		this.A = A;
+		this.B = B;
+	}
+	
+	// Constructor 1
+	public ThisKeyword(int X) {
+		System.out.println(X);
+	}
+	
+	// Constructor 2
+	// Demonstration of the Explicit Constructor Invocation
+	public ThisKeyword() {
+		// This will invoke the "Constructor 1", as the parameter passed 
+		// to "this()", is same as the parameter used by "Constructor 1". 
+		this(2);
+	}
+}
+// >```

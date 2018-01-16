@@ -1,0 +1,172 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming abstract class
+// >MetaDescription: java object oriented programming abstract class
+// >MetaKeywords: java object oriented programming abstract class example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-abstract-class
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Java Abstract Class
+// >* An abstract class has abstract method(s), Its methods are declared, but
+// >  not implemented, Meaning no code, only name and parameters if any.
+// >* To implement an Abstract class, It must need to be extended first and its 
+// >  abstract methods implemented.
+// >* Also an abstract class, cannot be instantiated.
+// >* `Abstract Class` usage
+// >* It can have declaration of fields, methods and constructors.
+// >  But not implementations.
+// >* The Abstract Class is extended by a subclass (the class that inherits) 
+// >* The SubClass implements the methods and constructors, Fields are used as needed.
+// >* `Abstract Methods`
+// >* Abstract methods have only a method signature, but no method body.
+// >* The abstract keyword is also used to declare a method as abstract.
+// >* Useful in situations where the actual implementation of that method, 
+// >  is determined by child classes.
+// >* If a class contains an abstract method, the class must be abstract as well.
+// >* Any child class must either override, using the "@override" annotation, 
+// >  the abstract method or declare itself abstract.
+// >* To summarize, Abstract classes are used for Implementing Inheritance, 
+// >  where the behavior of super/parent class must be extended/changed,
+// >   Without having impacts to the child classes.
+// >* `When to use Abstract Class?`
+// >* When code must be shared among several closely related classes.
+// >* When child classes that are extended have many common methods or fields.
+
+// >```
+package tinitiate.oop;
+
+// Abstract Class
+// ==============
+// 1. Create the CLASS using the keyword ABSTRACT
+abstract class VideoPlayer {
+    
+    // Field of class "VideoPlayer"
+    String playerType;
+
+    // Constructor for the Abstract Class
+    // ==================================
+    public VideoPlayer(String i_playerType) {
+        playerType = i_playerType;
+    }
+
+    // Non Abstract Method
+    // ===================
+    // 1. This is a NON ABSTRACT METHOD, as this is implemented
+    // 2. There is code in the method "public void PlayerInfo()"
+    // 3.
+    public void PlayerInfo() {
+        System.out.println("Player Type  "  + playerType);
+    }
+
+    // Create abstract methods
+    // =======================
+    // 1. Key word "ABSTRACT" is preceding the method name.
+    // 2. Only Method Name and no implementation
+    // 3. Only desc no body(Code Functionality)
+    abstract void play();
+    abstract void pause();
+    abstract void stop();
+}
+
+
+// Implementation of Abstract Class
+// ================================
+// A CLASS extended from the VideoPlayer Abstract Class
+// Create a CLASS which extends the Abstract Class
+class BluRayPlayer extends VideoPlayer {
+
+    // Constructor for the Child Class BluRayPlayer
+    BluRayPlayer(String v_playerType) {
+        super(v_playerType);
+    }
+
+    // Must create OverRides for the abstract methods
+    @Override
+    public void play() {
+        System.out.println("Playing BluRay disk ....");
+    }
+    
+    // OverRide the Abstract method
+    @Override
+    public void pause() {
+        System.out.println("Pause BluRay disk ....");
+    }
+    
+    // OverRide the Abstract method
+    @Override
+    public void stop() {
+        System.out.println("Stop BluRay disk....");
+    }
+}
+
+//Implementation of Abstract Class
+//================================
+// Another CLASS extended from the VideoPlayer Abstract Class
+// Create a CLASS which extends the Abstract Class
+class DVDPlayer extends VideoPlayer {
+    // Constructor for the Child Class DVDPlayer
+    DVDPlayer(String v_playerType) {
+        super(v_playerType);
+    }
+
+    // Must create OverRides for the abstract methods
+    @Override
+    public void play() {
+       System.out.println("Playing DVD disk ....");
+    }
+    
+    @Override
+    public void pause() {
+       System.out.println("Pause DVD disk ....");
+    }
+    
+    @Override
+    public void stop() {
+        System.out.println("Stop DVD disk....");
+    }
+}
+
+
+public class JavaAbstractClass {
+
+    public static void main(String[] args) {
+
+    	// Calling the DVDPlayer class
+        DVDPlayer objDVDPlayer = new DVDPlayer("RCA DVD PLAYER");
+        // Call the implemented Non Abstract Class
+        objDVDPlayer.PlayerInfo();
+        // Call the implemented Abstract Class
+        objDVDPlayer.play();
+        objDVDPlayer.pause();
+        objDVDPlayer.stop();
+
+        // Calling the BluRayPlayer class
+        BluRayPlayer objBluRayPlayer = new BluRayPlayer("HDMI BluRay PLAYER");
+        // Call the implemented Non Abstract Class
+        objBluRayPlayer.PlayerInfo();
+        // Call the implemented Abstract Class
+        objBluRayPlayer.play();
+        objBluRayPlayer.pause();
+        objBluRayPlayer.stop();
+    }
+}
+// >```

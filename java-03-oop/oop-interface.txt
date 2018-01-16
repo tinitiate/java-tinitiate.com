@@ -1,0 +1,285 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming interface
+// >MetaDescription: java object oriented programming interface
+// >MetaKeywords: java object oriented programming interface example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-interface
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+
+// ># Java Interface
+// >* Interface is collection of abstract methods. Which means methods are 
+// >  declared without any body.
+// >  The class that is implementing the interface will have the body of 
+// >  the method (Abstract methods concept).
+// >* A class can implement an one or more interfaces, inheriting the abstract 
+// >  methods of the interface.
+// >* Interfaces and its implementing class must be in a package, and the .CLASS
+// >  file must be in the package directory.
+// >* If a class implements ONLY SOME MEHTODS of an interface, then that class 
+// >  must be declared as abstract class.
+// >* Interface Properties:
+// >  * Interfaces cannot be instantiated. 
+// >  * Interfaces cannot have any constructors.
+// >  * All interface methods are abstract.
+// >  * All interface fields(Variables) are both static and final.
+// >    and will be used as constants in the implementing class.
+// >  * Interfaces cannot not extended by a class, But are implemented by class.
+// >  * Interface can extend multiple interfaces, Using "extends" keyword 
+// >    and comma (,) for more than one interface.
+
+// >## Java Interface Example   
+// >* Here we demonstrate with an Interface of a training Service
+// >* `Methods of the interface **Training**`
+// >  * public void Course();
+// >  * public void Instructor();
+// >  * public void Fees();
+// >* `Fields of the interface fields(Variables)`
+// >  * int CourseCredits = 3;
+// >  * String ProviderName  = "TINITIATE.COM";
+// >```
+package tinitiate.oop;
+
+// Interface
+// 1. Interface is a template of the class
+// 2. All methods of the Template must be implemented by a Class
+// 3. All Fields or Variables in the Interface Must are Static or Final
+
+// The TrainingInterface have (3) Methods and (2) Fields  
+public interface TrainingInterface {
+
+    // Methods of the interface "Training"
+    public void Course(String CourseName);
+    public void Instructor(String InstructorName);
+    public void Fees(String Fees);
+
+    // Fields of the interface fields(Variables)
+    int CourseCredits = 3;
+    String ProviderName  = "TINITIATE.COM";
+}
+// >```
+
+// > * Class implementing the TrainingInterface
+// > * Steps to implement the "TrainingInterface"
+// > * 1. Create a class, with **implements** keyword to use the interface
+// >   "TrainingInterface"
+// > * 2. Implement all the methods of the Interface
+// >```
+package tinitiate.oop;
+
+public class TrainingImplementation implements TrainingInterface {
+
+    // Implement the methods of the interface TrainingInterface
+    public void Course(String CourseName) {
+        System.out.println(CourseName);
+    }
+
+    public void Instructor(String InstructorName){
+        System.out.println(InstructorName);
+    }
+
+    public void Fees(String Fees){
+        System.out.println(Fees);
+    }
+}
+// >```
+
+
+// >## Java Class Implementing multiple Interfaces Example
+// >* A single class can implement multiple interfaces
+// >* Another Interface StudentInterface
+// >```
+package tinitiate.oop;
+
+public interface StudentInterface {
+    
+    // Interface Methods 
+    public void StudentName(String StudentName);
+    public void CoursesOpted(String CourseList);
+}
+// >```
+// >>
+// > * Steps to implement the **TrainingInterface** and **StudentInterface**
+// > * 1. Create a class, with **implements** keyword to use the interface
+// >   "TrainingInterface"
+// > * 2. Implement all the methods of the Interface
+// >```
+package tinitiate.oop;
+
+// Steps to implement multiple interfaces,
+// 1. Use a (,) Comma to include Multiple Interfaces in a class implementation
+public class MultipleInterfaceImplementation implements TrainingInterface, StudentInterface {
+
+    // Implement the methods of the interface TrainingInterface
+    // ========================================================
+    public void Course(String CourseName) {
+        System.out.println(CourseName);
+    }
+
+    public void Instructor(String InstructorName){
+        System.out.println(InstructorName);
+    }
+
+    public void Fees(String Fees){
+        System.out.println(Fees);
+    }
+
+    // Implement the methods of the interface StudentInterface
+    // ========================================================
+    public void StudentName(String StudentName) {
+        System.out.println(StudentName);
+    }
+
+    public void CoursesOpted(String CourseList) {
+        System.out.println(CourseList);
+    }
+}
+// >```
+
+// >## Extending Interfaces or inheritance in interface
+// >* One interface's methods can be Extended to another interface
+// >* Much like inheritance, java enables Extending Interfaces
+// >`Create another interface extending the **TrainingInterface**`
+// >```
+package tinitiate.oop;
+
+public interface InstructorInterface extends TrainingInterface{
+
+    // Interface Methods 
+    public void InsructorName(String InsructorName);
+    public void TeachingCourses(String CourseList);
+}
+// >```
+// >>
+// >* Implement the Extended Interface
+// >```
+package tinitiate.oop;
+
+public class InstructorImplementation implements InstructorInterface {
+    
+    // Implement interface TrainingInterface methods 
+    // =============================================
+    public void Course(String CourseName) {
+        System.out.println(CourseName);
+    }
+
+    public void Instructor(String InstructorName){
+        System.out.println(InstructorName);
+    }
+
+    public void Fees(String Fees){
+        System.out.println(Fees);
+    }
+    
+    // Implement interface TrainingInterface methods
+    // =============================================
+    public void InsructorName(String InsructorName) {
+        System.out.println(InsructorName);
+    }
+    
+    public void TeachingCourses(String CourseList) {
+        System.out.println(CourseList);
+    }
+}
+// >```
+
+// >>
+// >## Java 8, default method in Interface
+// >* java 8 supports having default methods to Interfaces,
+// >* These are implementations of the methods
+// >* To access them, use them from the object of the implementing class
+// >* No class implementation is required.
+// >```
+package tinitiate.oop;
+
+interface Adder {
+
+    // Interface method
+    void add2nums(int num1, int num2);
+    
+    // Interface Default Method
+    default void display() {
+        System.out.println("This is an Adder!");
+    }
+}
+
+class AddTest implements Adder {
+
+    public void add2nums(int num1, int num2) {
+        System.out.println("add2nums: " + num1 + num2);
+    }
+}
+
+public class Java8InterfaceDefaultTest {
+    
+    public static void main(String args[]) {
+        // Create Object of the class that implemented the Adder interface
+        AddTest Obj = new AddTest();
+        // Call the Interface implemented method
+        Obj.add2nums(1,2);
+        
+        // Call the Interface default method
+        Obj.display();  
+    }
+}  
+// >```
+
+// >>
+// >## Java 8, static method in Interface
+// >* java 8 supports having static methods to Interfaces,
+// >* These are implementations of the methods
+// >* To access them, use them from the interface directly without using the class
+// >* No class implementation is required.
+// ```
+package tinitiate.oop;
+
+interface Multiply {
+
+    // Interface method
+    void mul2nums(int num1, int num2);
+    
+    // Interface Default Method
+    static void display() {
+        System.out.println("This is Multiply interface static method!");
+    }
+}
+
+class MulTest implements Multiply {
+
+    public void mul2nums(int num1, int num2) {
+        System.out.println("mul2nums: " + (num1 * num2));
+    }
+}
+
+public class Java8InterfaceStaticTest {
+    
+    public static void main(String args[]) {
+        // Create Object of the class that implemented the Adder interface
+        MulTest Obj = new MulTest();
+        // Call the Interface implemented method
+        Obj.mul2nums(1,2);
+        
+        // Call the Interface default method
+        Multiply.display();  
+    }
+}  
+// >```

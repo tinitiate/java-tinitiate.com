@@ -1,0 +1,258 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented inheritance
+// >MetaDescription: java object oriented inheritance
+// >MetaKeywords: java object oriented programming Inheritance, single-inheritance, multilevel-inheritance, inheritance-super-keyword example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-inheritance
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Inheritance
+// >* A **CLASS** can be inherit (or) derive fields(variables) and methods, from 
+// >  other classes, this feature is called **Inheritance**
+// >* The **CLASS** that inherits is called the subclass or derived class or extended
+// >  class or child class, And the class from which the subclass is inherits is 
+// >  called the superclass or base class or parent class.
+// >* **Inheritance** enhances code reusabilty, methods and variables in parent/super/base 
+// >  class can be reused in the child/sub/derived classes.
+// >* The main disadvantage of **Inheritance** is the parent and child classes are 
+// >  tightly coupled, which is any changes to the parent class, will have impacts 
+// >  to all the child classes inheriting it.
+// >* **EXTENDS** keyword is used to inherit the properties of a base class in 
+// >  a child class.
+// >>
+// >![Java Inheritance](oop-java-inheritance.png "Java Inheritance")
+
+
+// >### Single Inheritance
+// >* Single Inheritance, One parent One Child
+// >* The class that is inherited (Parent) is superclass. 
+// >* The class that does the inheriting (Child) is subclass.
+// >* A subclass is specialized version of superclass. 
+// >* Subclass inherits all the instance variables and methods 
+// >  of the superclass and could have its own variables and methods.  
+// >* SubClass cannot access PRIVATE members of SuperClass.
+
+// >```
+package tinitiate.oop;
+// Parent Class
+// This class that is one that gets inherited (Parent),
+// the class that does the inheriting (Child) is subclass.
+class ParentClass {
+   
+   // Parent Class Fields
+	int ParentData1;
+	int ParentData2;
+
+	// Parent Class Method
+	void parentSum() {
+		System.out.println(ParentData1 + ParentData2);
+	}
+}
+
+// Child Class
+// The class that does the inheriting (Child) is subclass. It 
+// Inherits from SuperClass SuperClass by extending class
+public class ChildClass extends ParentClass {
+
+   // Child Class Fields
+   int ChildData1;
+
+   // Child Class Method
+   void PrintChildData() {
+		System.out.println(ChildData1);
+	}
+   
+   // Use Parent Class Fields
+	void PrintParentData() {
+		System.out.println(ParentData1);
+	}
+	
+	// Create the Object in the Main method
+	public static void main(String[] args)
+	{
+	   // Create an Object of Child Class
+	   ChildClass Object_child = new ChildClass();
+
+	   // Call CHILD CLASS Members using the CHILD CLASS OBJECT
+	   Object_child.ChildData1 = 10;
+	   Object_child.PrintChildData();
+	   
+   	// Call PARENT CLASS FIELDS using the CHILD CLASS OBJECT
+	   Object_child.ParentData1 = 35;
+	   Object_child.ParentData2 = 30;
+
+	   // Call PARENT CLASS METHOD using the CHILD CLASS OBJECT
+	   Object_child.parentSum();
+	   
+	}
+}
+// >```
+
+
+// >### Multilevel Inheritance
+// >* Class order, Grand-Parent Parent Child
+// >* A Grand-Parent class members can be inherited by a Parent class,
+// >  and inturn the parent class members can be inherited in the child class,
+// >  This makes the Child class access the Grand parent class'es member 
+// >  fields and methods.
+// >>
+// >* Program to demonstrate Multilevel Hierarchy, with inheritance
+// >* CountryClass, is the level-1 Parent
+// >* StateClass, is the level-2 Parent that inherits from CountryClass
+// >* CityClass, is the Child that inherits from StateClass
+// >>
+// >```
+package tinitiate.oop;
+
+// Grand Parent (Parent's Parent) Level Class
+class Country
+{
+   String CountryName;
+	public void PrintCountryName()
+    {
+	    System.out.println("CountryClass Message, Country Name: "+ CountryName);
+    }
+}
+
+// Parent Class
+class State extends Country
+{
+    String StateName;
+    public void PrinStateName()
+    {
+        System.out.println("StateClass Message, State Name: "+ StateName);
+    }
+}
+
+// Child Class
+public class City extends State
+{
+	String CityName;
+	public void PrintCityName()
+	{
+		System.out.println("CityClass Message, City Name: "+ CityName);
+	}
+	public static void main(String[] args) 
+	{
+	   // Create Child Class Object
+	   // City Class Object
+		City ObjCity = new City();
+
+		// Assign value to Country Class Member 
+		ObjCity.CountryName   = "USA";
+		// Assign value to State Class Member
+		ObjCity.StateName     = "New York";
+  	   // Assign value to City Class Member
+		ObjCity.CityName      = "New York City";
+
+		// Country Class Method
+		ObjCity.PrintCountryName();
+   	// State Class Method
+		ObjCity.PrinStateName();
+	   // City Class Method
+		ObjCity.PrintCityName();
+	}
+}
+// >```
+
+
+// >### Inheritance SUPER Keyword
+// >* There could be situations where the Parent Class could have the same 
+// >  member names as the Child Class.  
+// >* In such situations the keyword "super" is used to refer to a 
+// >  Parent Class fields and methods.
+// >* These same name "name conflicts" is usually common with Methods, 
+// >  called as method overriding.
+// >* 1) The class that is inherited (Parent) is superclass. 
+// >* 2) The class that does the inheriting (Child) is subclass.
+// >* 3) "super" Keyword Operates in TWO modes,
+// >  * (3.a) Calls the superclass constructor. 
+// >  * (3.b) Can be used to access hidden by a member of the superclass in subclass.
+// >>
+
+// >```
+package tinitiate.oop;
+
+// SuperClass - The Parent Class
+class SuperClass {
+   
+   // SuperClass Member Field and Method
+   int SuperClassVar;
+
+   void SC_Message() {
+      System.out.println("Have a Great Day !");
+   }
+
+   // SuperClass Constructor
+   public SuperClass() {
+      System.out.println("Message from SuperClass Constructor!");
+   }
+}
+
+
+// SubClass - The Child Class
+// Inherit the SuperClass
+class SubClass extends SuperClass {
+
+   // SubClass Member Field and Method 
+   int VarSubClass;
+   public void SubClassMethod(int x) {
+
+      // ===========================================
+      // Call the SuperClass using the SUPER keyword
+      // ===========================================
+      // Call the SuperClass Member Field
+      super.SuperClassVar = x;
+      // SuperClass Member Method
+      super.SC_Message();
+
+   }
+}
+
+
+// The CLASS with the MAIN method to call the SubClass Object
+public class SuperKeyword {
+
+   public static void main(String[] args) {
+
+      // SubClass Object    
+      SubClass subObj = new SubClass();
+
+      // Call the SubClass Variable using the SubClass Object 
+      subObj.VarSubClass = 100;
+      // Call the SubClass Method using the SubClass Object
+      subObj.SubClassMethod(20);
+
+      // Call the SuperClass Variable using the SubClass Object 
+      subObj.SuperClassVar = 100;
+      // Call the SuperClass Method using the SubClass Object
+      subObj.SC_Message();
+   }
+}
+// >```
+
+
+// >### Inheritance
+// >* Types of Inheritance supported by JAVA
+// >>
+// >![Java inheritance infographic](oop-infographic-inheritance.png "Java inheritance infographic")
+// >>

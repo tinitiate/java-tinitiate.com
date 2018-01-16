@@ -1,0 +1,389 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming access modifiers
+// >MetaDescription: java object oriented programming access modifiers, public, private, Protected
+// >MetaKeywords: java object oriented programming access modifiers, public, private, Protected example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-access-modifiers
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Access Modifiers Introduction
+// >* **Access Modifiers** are java programming constructs that enable restriction of
+// >   access and scope of a class, class method, class variable or constructors.
+// >* **Access Modifiers** are Prefix Keyowrds, there are *FOUR* of them, `PUBLIC`
+// >   `PRIVATE` `PROTECTED` and `DEFAULT [NO PREFIX KEYWORD NEEDED]`
+// >>
+// >* `PUBLIC`
+// >  * When any of the **CLASS MEMBER NAMEs** [class,method,class variable,constructors] 
+// >    are prefixed with `PUBLIC` declaration, they are accessible from every where 
+// >    in the program, Without any restriction on the scope.
+// >  * Public CLASS MEMBERS can be accessed from any class across java packages as well.
+// >  * Public CLASS MEMBERS are accessible in subclasses, by inheritation.
+// >  * **HOW TO USE** Prefix any `CLASS`  `CLASS-METHODS`  `CLASS-VARIABLE`
+// >    `CONSTRUCTORS` with **PUBLIC**.
+// >>
+// >* `DEFAULT`
+// >  * Default access modifier doesnt require any prefix to any class member.
+// >  * Any `DEFAULT` variable or method can be accessed in the any class of the 
+// >    same package, But not accessible in other packages.
+// >  *  If you don't use any modifier, it is treated as `default` by default.
+// >  * **HOW TO USE** NO Prefix to any `CLASS`  `CLASS-METHODS`  `CLASS-VARIABLE`
+// >    `CONSTRUCTORS`.
+// >>
+// >* `PRIVATE`
+// >  * When any of the **CLASS MEMBER NAMEs** [method,class variable,constructors] 
+// >    are prefixed with `PRIVATE` declaration, they can only be accessed from within
+// >    the class in which they are declared.
+// >  * Class Variables declared as `PRIVATE` can be accessed from another class,
+// >    through `GETTER METHODS` are present in the same class.
+// >  * Any data (Variables) that needs to be hidden such as passwords but needs to 
+// >    be used are ideal candidates for `PRIVATE` declaration.
+// >  * **HOW TO USE** Prefix any `CLASS-METHODS`  `CLASS-VARIABLE`
+// >    `CONSTRUCTORS` with **PRIVATE**.
+// >  * `THERE CANNOT BE PRIVATE CLASS`
+// >>
+// >* `PROTECTED`
+// >  * When any of the **CLASS MEMBER NAMEs** [method,class variable,constructors] 
+// >    are prefixed with `PROTECTED` declaration, they can only be accessed from 
+// >    within the package in which they are declared.
+// >  * The protected access modifier are accessible outside the package, only 
+// >    through inheritance.
+// >  * It can be applied to CLASS-VARIABLE, CLASS-METHODS and CONSTRUCTORS but 
+// >    NOT ON A  CLASS.
+// >  * `THERE CANNOT BE PROTECTED CLASS`
+// >  * **HOW TO USE** Prefix any `CLASS`  `CLASS-METHODS`  `CLASS-VARIABLE`
+// >    `CONSTRUCTORS` with **PROTECTED**.
+// >>
+// >>
+// >![java access modifiers](oop-java-access-modifiers.png "Java Access Modifiers Quick Reference")
+// >>
+// >### Demonstration of Default Access Modifier Class
+// >* Here we demonstrate various Class Members and Constructor of various
+// >  Access Modifier Types: PUBLIC PRIVATE PROTECTED and DEFAULT.
+// >* Here we demonstrate calling these Class Members, from with in the same class.
+// >```
+// This is the package where the AccessSpecifier Class is declared.
+// Along with all is CLASS MEMBERs
+package tinitiate.oop;
+
+//========================================
+//            DEFAULT CLASS
+//========================================
+// ACCESS MODIFIER DEFAULT CLASS
+// This class has PUBLIC, PRIVATE, PROTECTED, DEFAULT Members
+class AccessModifierDefaultClass {
+
+    // ===============
+    // DEFAULT MEMBERS
+    // ===============
+    // Default Variable
+    int varDEFAULT_1;
+    // Default Method
+    void MethodDEFAULT_1() {
+       System.out.println("Message from Default Class AccessModifier Default Method 1");
+    }
+    // * Code cannot define a "DEFAULT CONSTRUCTOR", This is automatically 
+    //   generated by the compiler if no constructors are defined in a class.
+    // * The default constructor is implicitly called to then execute, 
+    //   when no explicit constructor is created.
+
+    // =================
+    // PRIVATE MEMBERS
+    // =================
+    // Private Variable
+    private int varPRIVATE_1;
+    // Private Method
+    private void MethodPRIVATE_1() {
+       System.out.println("Message from Default Class AccessModifier Private Method 1");
+    }
+    // Private Constructor
+    private AccessModifierDefaultClass(String s) {
+       System.out.println("Message from Default Class AccessModifier Private Constructor");
+    }
+
+    // =================
+    // PROTECTED MEMBERS
+    // =================
+    // Protected  Variable
+    protected int varPROTECTED_1;
+    // Protected  Method
+    protected void MethodPROTECTED_1() {
+       System.out.println("Message from Default Class AccessModifier Protected Method 1");
+    }
+    // Protected Constructor
+    protected AccessModifierDefaultClass() {
+       System.out.println("Message from Default Class AccessModifier Protected Constructor");
+    }
+
+    // ==============
+    // PUBLIC MEMBERS
+    // ==============
+    // Public Variable
+    public int varPUBLIC_1;
+    // Public Method
+    public void MethodPUBLIC_1() {
+       System.out.println("Message from Default Class AccessModifier Public Method 1");
+    }
+    // Public Constructor
+    public AccessModifierDefaultClass(int a) {
+       System.out.println("Message from Default Class AccessModifier Public Constructor");
+    }
+
+
+    // SAME CLASS USAGE DEMONSTRATION
+    // ==============================
+    // * METHOD to demonstrates using the  PUBLIC, PRIVATE, PROTECTED,
+    //   DEFAULT Members of the same class.
+    // * This Demonstrates use of all Constructors (PUBLIC, PRIVATE, PROTECTED) 
+    //   in the same class.
+    // * This Demonstrates use of all Variables (DEFAULT, PUBLIC, PRIVATE, PROTECTED)
+    //  in the same class.
+    // * This Demonstrates use of all Methods (DEFAULT, PUBLIC, PRIVATE, PROTECTED)
+    //  in the same class.
+    void UsageDemo() {
+       // 1. Create an Object of the CLASS AccessModifier using the 
+       //    Public Constructor
+       AccessModifierDefaultClass ObjPublicConsturctor = new AccessModifierDefaultClass(1);
+
+       // 2. Create an Object of the CLASS AccessModifier using the 
+       //    Private Constructor
+       AccessModifierDefaultClass ObjPrivateConsturctor = new AccessModifierDefaultClass("Test");
+
+       // 3. Create an Object of the CLASS AccessModifier using the 
+       //    Protected Constructor.
+       AccessModifierDefaultClass ObjProtectedConsturctor = new AccessModifierDefaultClass();
+       // Access All Public, Private, Protected and Default members in the Same Class
+       // Access Both Variables and Methods for all the Four Access modifiers.
+       ObjProtectedConsturctor.varDEFAULT_1 = 1;
+       ObjProtectedConsturctor.MethodDEFAULT_1();
+       ObjProtectedConsturctor.varPRIVATE_1 = 1;
+       ObjProtectedConsturctor.MethodPRIVATE_1();
+       ObjProtectedConsturctor.varPROTECTED_1 = 1;
+       ObjProtectedConsturctor.MethodPROTECTED_1();
+       ObjProtectedConsturctor.varPUBLIC_1 = 1;
+       ObjProtectedConsturctor.MethodPUBLIC_1();
+    }
+}
+// >```
+
+
+// >### Demonstration of Public Access Modifier Class
+// >* Here we demonstrate various Class Members and Constructor of various
+// >  Access Modifier Types: PUBLIC PRIVATE PROTECTED and DEFAULT.
+// >* Here we demonstrate calling these Class Members, from with in the same class.
+// >```
+// This is the package where the AccessSpecifierPublicClass Class is declared.
+// Along with all is CLASS MEMBERs
+package tinitiate.oop;
+
+//========================================
+//            PUBLIC CLASS
+//========================================
+// ACCESS MODIFIER PUBLIC CLASS
+// This class has PUBLIC, PRIVATE, PROTECTED, DEFAULT Members
+public class AccessModifierPublicClass {
+
+    // ===============
+    // DEFAULT MEMBERS
+    // ===============
+    // Default Variable
+    int varDEFAULT_2;
+    // Default Method
+    void MethodDEFAULT_2() {
+       System.out.println("Message from Default Class AccessModifierPublicClass Default Method 2");
+    }
+    // * Code cannot define a "DEFAULT CONSTRUCTOR", This is automatically 
+    //   generated by the compiler if no constructors are defined in a class.
+    // * The default constructor is implicitly called to then execute, 
+    //   when no explicit constructor is created.
+
+    // =================
+    // PRIVATE MEMBERS
+    // =================
+    // Private Variable
+    private int varPRIVATE_2;
+    // Private Method
+    private void MethodPRIVATE_2() {
+       System.out.println("Message from Default Class AccessModifierPublicClass Private Method 2");
+    }
+    // Private Constructor
+    private AccessModifierPublicClass(String s) {
+       System.out.println("Message from Default Class AccessModifierPublicClass Private Constructor");
+    }
+
+    // =================
+    // PROTECTED MEMBERS
+    // =================
+    // Protected  Variable
+    protected int varPROTECTED_2;
+    // Protected  Method
+    protected void MethodPROTECTED_2() {
+       System.out.println("Message from Default Class AccessModifierPublicClass Protected Method 2");
+    }
+    // Protected Constructor
+    protected AccessModifierPublicClass() {
+       System.out.println("Message from Default Class AccessModifierPublicClass Protected Constructor");
+    }
+
+    // ==============
+    // PUBLIC MEMBERS
+    // ==============
+    // Public Variable
+    public int varPUBLIC_2;
+    // Public Method
+    public void MethodPUBLIC_2() {
+       System.out.println("Message from Default Class AccessModifierPublicClass Public Method 2");
+    }
+    // Public Constructor
+    public AccessModifierPublicClass(int a) {
+       System.out.println("Message from Default Class AccessModifierPublicClass Public Constructor");
+    }
+
+
+    // SAME CLASS USAGE DEMONSTRATION
+    // ==============================
+    // * METHOD to demonstrates using the  PUBLIC, PRIVATE, PROTECTED,
+    //   DEFAULT Members of the same class.
+    // * This Demonstrates use of all Constructors (PUBLIC, PRIVATE, PROTECTED) 
+    //   in the same class.
+    // * This Demonstrates use of all Variables (DEFAULT, PUBLIC, PRIVATE, PROTECTED)
+    //  in the same class.
+    // * This Demonstrates use of all Methods (DEFAULT, PUBLIC, PRIVATE, PROTECTED)
+    //  in the same class.
+    void UsageDemo() {
+       // 1. Create an Object of the CLASS AccessModifier using the 
+       //    Public Constructor
+       AccessModifierPublicClass ObjPublicConsturctor = new AccessModifierPublicClass(1);
+
+       // 2. Create an Object of the CLASS AccessModifier using the 
+       //    Private Constructor
+       AccessModifierPublicClass ObjPrivateConsturctor = new AccessModifierPublicClass("Test");
+
+       // 3. Create an Object of the CLASS AccessModifier using the 
+       //    Protected Constructor.
+       AccessModifierPublicClass ObjProtectedConsturctor = new AccessModifierPublicClass();
+       // Access All Public, Private, Protected and Default members in the Same Class
+       // Access Both Variables and Methods for all the Four Access modifiers.
+       ObjProtectedConsturctor.varDEFAULT_2 = 1;
+       ObjProtectedConsturctor.MethodDEFAULT_2();
+       ObjProtectedConsturctor.varPRIVATE_2 = 1;
+       ObjProtectedConsturctor.MethodPRIVATE_2();
+       ObjProtectedConsturctor.varPROTECTED_2 = 1;
+       ObjProtectedConsturctor.MethodPROTECTED_2();
+       ObjProtectedConsturctor.varPUBLIC_2 = 1;
+       ObjProtectedConsturctor.MethodPUBLIC_2();
+    }
+}
+// >```
+
+
+// >###  Demonstration of Inheritance of Public and Default Access Modifier Class
+// >* Here we demonstrate various Class Members and Constructor of various
+// >  Access Modifier Types: PUBLIC PRIVATE PROTECTED and DEFAULT.
+// >* Here we demonstrate calling these Class Members, from another class, by `inheritance`
+// >```
+// * This is the package where the AccessSpecifierPublicClass and the 
+//   AccessModifierDefaultClass Class are Inherited Along with all is CLASS MEMBERs
+package tinitiate.oop;
+
+// This CLASS inherits the DEFAULT CLASS
+class AccessModifierInheritanceTest extends AccessModifierDefaultClass {
+
+   public void CallDefaultClassMembers() {
+
+      // 1. Inheritance and access of DEFAULT MEMBERS 
+      varDEFAULT_1 = 1;
+      MethodDEFAULT_1();
+
+      // 2. Inheritance and access of PROTECTED MEMBERS
+      varPROTECTED_1 = 1;
+      MethodPROTECTED_1();
+
+      // 3. Inheritance and access of PUBLIC MEMBERS
+      varPUBLIC_1 = 1;
+      MethodPUBLIC_1();
+
+      // 4. Inheritance and access of PRIVATE MEMBERS is NOT ALLOWED 
+      // varPRIVATE_1 = 1;
+      // MethodPRIVATE_1();
+   }
+}
+
+//This CLASS inherits the PUBLIC CLASS
+public class AccessModifierInheritance extends AccessModifierPublicClass {
+
+   public void CallDefaultClassMembers() {
+
+      // 1. Inheritance and access of DEFAULT MEMBERS 
+      varDEFAULT_2 = 1;
+      MethodDEFAULT_2();
+
+      // 2. Inheritance and access of PROTECTED MEMBERS
+      varPROTECTED_2 = 1;
+      MethodPROTECTED_2();
+
+      // 3. Inheritance and access of PUBLIC MEMBERS
+      varPUBLIC_2 = 1;
+      MethodPUBLIC_2();
+
+      // 4. Inheritance and access of PRIVATE MEMBERS is NOT ALLOWED 
+      // varPRIVATE_1 = 1;
+      // MethodPRIVATE_1();
+   }
+}
+// >```
+
+
+// >###  Demonstration of Access from another package of Public Access Modifier Class
+// >* Here we demonstrate various Class Members and Constructor of various
+// >  Access Modifier Types: PUBLIC PRIVATE PROTECTED and DEFAULT.
+// >* Here we demonstrate calling these Class Members, from another clas, from anoher `package`
+// >```
+// This is the package where the Default and Public from another package
+// are called from.
+package tinitiate.access.user;
+
+// Import Classes with Default and Public from another package
+import tinitiate.oop.AccessModifierPublicClass;
+
+// Cannot import a Class Declared as Default
+//import tinitiate.oop.AccessModifierDefaultClass;
+
+// 1. This Class creates objects of the classes AccessModifierInheritance
+//    and AccessModifierPublicClass from the Package "tinitiate.oop"
+// 2. The Main method will access ONLY the Public constructor.
+public class AccessModifierPackage {
+
+   // This is the main function that starts the program to execute the process
+   public static void main(String[] args) {
+    
+      // 1. creates objects of the classes AccessModifierInheritance, 
+      //    Using ONLY the Public Constructor.
+      AccessModifierPublicClass ObjPub = new AccessModifierPublicClass(1);
+
+      // 2. Different package cannot use Private and Protected Constructor.
+      //    Commenting the below lines will result in error.
+      // AccessModifierPublicClass ObjPro = new AccessModifierPublicClass(); 
+      // AccessModifierInheritance ObjPrv = new AccessModifierInheritance("test");
+
+   }
+}
+// >```

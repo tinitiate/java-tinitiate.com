@@ -1,0 +1,159 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming simple constructor, overloaded constructor, Parameterized constructor, Copy Constructor, clone()
+// >MetaDescription: java object oriented programming overloaded constructor, Parameterized constructor, Copy Constructor vs clone()
+// >MetaKeywords: java object oriented programming overloaded constructor, Parameterized constructor, Copy Constructor, example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-constructor
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Java Constructor
+// >* `CONSTRUCTOR` is a special construct, like a METHOD that executes as soon
+// >  as an OBJECT of a CLASS is created.
+// >* CONSTRUCTOR is a METHOD, with:
+// >  * `CONSTRUCTOR` **MUST HAVE THE SAME NAME AS THE CLASS NAME**
+// >  * `CONSTRUCTOR` **MUST NOT HAVE A RETURN TYPE**
+// >  * A CLASS can HAVE ZERO or ONE or MORE `CONSTRUCTORS`, But if there 
+// >    are more than one **CONSTRUCTOR** then parameter list must be different
+// >    for each of the CONSTRUCTORS.  
+// >>
+
+
+// >### TYPES OF CONSTRUCTORS
+// >  * `SIMPLE CONSTRUCTOR`
+// >  * This is a `CONSTRUCTOR` without any parameters
+// >>
+// >  * `PARAMETERIZED CONSTRUCTOR`
+// >  * This is a `CONSTRUCTOR` with parameters.
+// >>
+// >  * `OVERLOADED CONSTRUCTOR`
+// >  * This is a `CONSTRUCTOR` with parameters.
+// >  * A CLASS can HAVE ZERO or ONE or MORE `CONSTRUCTORS`, But if there 
+// >    are more than one **CONSTRUCTOR** then parameter list must be different
+// >    for each of the CONSTRUCTORS.
+// >>
+// >```
+package tinitiate.oop;
+
+class AddStuff {
+
+   // Output is stored in this variable
+   int Result;
+
+   // SIMPLE CONSTRUCTOR
+   // ==================
+   public AddStuff()
+   { System.out.println("Hello from AddStuff Simple Constructor!"); }
+
+   // PARAMETERIZED CONSTRUCTOR
+   // =========================
+   // This Constructor Adds TWO numbers
+   public AddStuff(int num1, int num2)
+   { Result = num1 + num2; }
+
+   // PARAMETERIZED CONSTRUCTOR and OVERLOADED CONSTRUCTOR
+   // ====================================================
+   // This Constructor Adds THREE numbers
+   public AddStuff(int num1, int num2, int num3) 
+   { Result = num1 + num2 + num3; }
+
+}
+
+public class ConstructorTest {
+
+   // Object using SIMPLE CONSTRUCTOR
+   // ===============================
+   // 1. Create an Object of CLASS AddStuff using the simple constructor.
+   // 2. This Constructor does not accept any parameters.
+   AddStuff ObjSC_AddStuff = new AddStuff();
+
+   // Object using PARAMETERIZED CONSTRUCTOR
+   // ======================================
+   // 1. Create Object of CLASS AddStuff using the parameterized constructor.
+   // 2. This Constructor accepts TWO parameters.
+   AddStuff ObjPC_AddStuff = new AddStuff(10, 20);
+
+   // Object using PARAMETERIZED / OVERLOADED CONSTRUCTOR
+   // ===================================================
+   // 1. Create Object of CLASS AddStuff using the overloaded constructor.
+   // 2. This Constructor accepts THREE parameters.
+   AddStuff ObjOC_AddStuff = new AddStuff(10, 20, 30);
+
+}
+// >```
+
+
+// >### COPY CONSTRUCTOR
+// >* This is a **CONSTRUCTOR** that is used to make a copy of the 
+// >  `CURRENT CLASS OBJECT`.
+// >* Copying an Object is all about copying the Class Field Members 
+// >  or Class variables, As the Class methods do not store any values. 
+// >* Copy constructor MUST have only one parameter, And must be the type of 
+// >  its class.
+// >* Making a copy of an Object using copy constructor works well only, if the 
+// >  class mostly consists of mutable objects.
+// >* Making copies of an Object is get complicated when there are Other 
+// >  Objects, in the Class, Collections and non immutable member fields. 
+// >>
+// >```
+package tinitiate.oop;
+
+public class CopyConstructorTest {
+
+   // Class Member Fields
+   int a;
+   int b;
+
+   // NORMAL CONSTRUCTOR
+   public CopyConstructorTest(int a, int b) {
+      this.a = a;
+      this.b = b;
+   }
+
+   // COPY CONSTRUCTOR
+   public CopyConstructorTest(CopyConstructorTest c) {
+      // Assign the current object values of the Input Object "c" 's 
+      // to the Member fields
+      a = c.a;
+      b = c.b;
+   }
+
+
+   public static void main(String[] args) {
+
+      // Creating an Object Copy using COPY CONSTRUCTOR
+      // ==============================================
+      // Create an Object C1
+      CopyConstructorTest C1 = new CopyConstructorTest(10, 20);
+      
+      // Current Member field values of Object C1
+      System.out.println("C1 Object Member Field Values: " + C1.a + " " + C1.b);
+      
+      // Call the COPY CONSTRUCTOR to make an Object Copy
+      // The following will copy Object C1 to object C2
+      CopyConstructorTest C2 = new CopyConstructorTest(C1);
+      
+      // Current Member field values of Object C2
+      System.out.println("C2 Object Member Field Values: " + C2.a + " " + C2.b);
+
+   }
+}
+// >```

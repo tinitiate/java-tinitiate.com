@@ -1,0 +1,143 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java object oriented programming class fields class methods
+// >MetaDescription: java object oriented programming class fields class methods
+// >MetaKeywords: java object oriented programming class fields class methods example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-class-fields-class-methods
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Java Class Fields and Methods
+// >* `FIELDS`
+// >* Fields are Variables declared inside the class.
+// >* They are usually declared not initialized.
+// >* `METHODS`
+// >* Methods are *Named Code Blocks* that are part of a Class
+// >* They can be called by using the Method Name
+// >* Modifiers?uch as public, private, and others you will learn about later.
+// >* The return type?he data type of the value returned by the method, or void if the method does not return a value.
+// >* The method name?he rules for field names apply to method names as well, but the convention is a little different.
+// >* The parameter list in parenthesis? comma-delimited list of input parameters, preceded by their data types, enclosed
+// >  by parentheses, (). If there are no parameters, you must use empty parentheses.
+// >* An exception list?o be discussed later.
+// >* The method body, enclosed between braces?he method's code, including the declaration of local variables, goes here.
+
+// >## Methods Example
+// >* Example for Member Fields
+// >* Demonstration of Class Methods or Methods
+// >* Demonstration of Class Methods returning a value
+// >* Demonstration of Class Methods with Parameters
+// >* Demonstration of Overloaded Methods
+// >* Executing Methods
+// >```
+package tinitiate.oop;
+
+// * Class to that has all the types of methods
+ public class JavaFieldsMethods
+{
+    // Member Fields
+    // =============
+    // 1. These are the variables of the Class "JavaFieldsMethods"
+    // 2. Usually they are Declared and NOT INITIALIZED
+    int A;
+    int B;
+    // 3. Initialized Member Fields or Variables
+    int C = 100;
+
+    // Demonstration of Class Methods or Methods
+    // ========================================
+    // 1. This is a Simple method
+    // 2. Method is a code block or one or more code statements
+    // 3. The "void" indicates that the method does not return any value
+    public void method1() {
+       // Some Operations, In this case Add 2 Variables A and B
+       // and Print the output
+       System.out.println(A + B);
+    }
+
+    // Demonstration of Class Methods returning a value
+    // ================================================
+    // 1. The Method is specified with a RETURN DATATYPE,
+    //     Instead of VOID which DOESNT return anything.
+    // 2. This is a method that returns a String
+    public String methodReturn() {
+       // Some Operations, In this case Add 2 Variables A and B
+       // and Print the output
+       return "Tinitiate";
+    }
+
+    // Demonstration of Class Methods with Parameters
+    // ===============================================
+    // 1. This is a method that accepts TWO input parameters
+    //    int Param1, int Param2
+    // 2. This Method also returns SUM of the parameters that are accepted.
+    public int methodParams(int Param1, int Param2) {
+       // Some Operations, In this case Add 2 Variables A and B
+       // and Print the output
+       return Param1+Param2;
+    }
+
+    // Demonstration of Overloaded Methods
+    // ===================================
+    // 1. OverLoaded methods are method with same method name but different
+    //    input parameters.
+    // 2. Here we have TWO methods with same name "overLoadedMethod"
+    // 3. Both the times the Parameters are different
+
+    // The overloaded method overLoadedMethod, This time accepts String X as
+    // input parameter.
+    public void overLoadedMethod(int X) {
+       System.out.println(X);
+    }
+
+    // The overloaded method overLoadedMethod, This time accepts String X as
+    // input parameter.
+    public void overLoadedMethod(String X) {
+       System.out.println(X);
+    }
+
+    // Executing a Method
+    // ===================
+    public static void main(String[] args) {
+
+       // Step 1
+       // ======
+       // Create an Object of the class
+       JavaFieldsMethods Obj = new JavaFieldsMethods();
+
+       // Step 2
+       // ======
+       // Use the Object (DOT) and use the METHOD NAME
+       Obj.overLoadedMethod(1);
+       Obj.overLoadedMethod("Hello");
+
+       // Step 3
+       // ======
+       // Executing a Method with a RETURN, Assign the OBJECT.METHOD
+       // to a variable, to capture the Returned Value,
+       // Make sure the variable has the same data type as the RETURN
+       // datatype of the method returning value
+       int SUM = Obj.methodParams(1,2);
+
+    }
+}
+// >```
+

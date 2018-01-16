@@ -1,0 +1,130 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java pass by value pass by reference
+// >MetaDescription: java pass by value pass by reference example code, tutorials
+// >MetaKeywords: java pass by value pass by reference example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: oop-passby-value-passby-reference
+// >---
+
+// >>
+// >* **[Java Object Oriented Programming](oop.html)**
+// >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+// >* **[Java Objects](oop-objects.html)**
+// >* **[Java Constructor](oop-constructor.html)**
+// >* **[Java Inheritance](oop-inheritance.html)**
+// >* **[Java Overriding](oop-overriding.html)**
+// >* **[Java Access Modifiers](oop-access-modifiers.html)**
+// >* **[Java Encapsulation](oop-encapsulation.html)**
+// >* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >* **[Java Abstract Class](oop-abstract-class.html)**
+// >* **[Java Interface](oop-interface.html)**
+// >* **[Java Packages](oop-packages.html)**
+// >* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+// >* **[Java this Keyword](oop-this-keyword.html)**
+// >>
+
+// ># Pass by Value and Pass by Reference
+// >* In programming when data is passed to a Method as an `ARGUMENTs` or
+// >  `PARAMETERs` it is either **PASSED by VALUE** or **PASSED by REFERENCE**
+// >>
+
+// >### **PASSED by VALUE**
+// >* A straight forward mechanism, A `VALUE` is assigned to a Calling Method
+// >  parameter the value passed is used within the method.
+// >* The calling method cannot change the value, it can assume a new value but
+// >  the value originally passed cannot be changed.
+// >>
+// >![Java Pass by Value](oop-java-pass-by-value.png "Java Pass by Value")
+// >>
+
+// >### **PASSED by REFERENCE**
+// >* Rather than a value a memory address reference is passed as a parameter
+// >  to a calling method.
+// >* If the value in the memory address changes, then the calling method's
+// >  parameter value where ever used within the method will also reflect the
+// >  change.
+// >>
+// >![Java Pass by Reference](oop-java-pass-by-reference.png "Java Pass by Reference")
+// >>
+
+// >```
+package tinitiate.oop;
+
+// Class PassByVal [This is used to demonstrate Pass by Value]
+// This is a class with a Method ByVal and Parameter TestVarByVal
+class PassByVal {
+
+	void ByVal(int TestVarByVal) {
+	   // The value of the parameter TestVarByVal is changed inside the function.
+		TestVarByVal = TestVarByVal*100;
+	}
+}
+
+
+// Class PassByRef [This is used to demonstrate Pass by Reference]
+// This is a class with a Method ByRef and Parameter TestVarByRef
+// It also has a Class field TestVarByRef
+class PassByRef {
+
+	// Variable with the same name as the main method call
+	int TestVarByRef;
+
+	void ByRef() {
+	   // Here we change the value of variable inside the Method TestVarByRef
+		TestVarByRef = TestVarByRef*200;
+	}
+}
+
+
+class  Pass_ByValue_Pass_ByReference {
+
+	public static void main(String args[]) {
+
+	   // Demonstration of Call of Value
+	   // ==============================
+
+	   // 1. Create a Variable with a value assigned, int TestVarByVal = 3;
+		int TestVarByVal = 3;
+
+		// 2. Create an Object of the Class PassByVal();
+		PassByVal Obj_ByVal = new PassByVal();
+
+		// 3. Check Value of the variable "TestVarByVal"
+		//    before passing the value to the Method: "ByVal"
+	   System.out.println("TestVarByVal before Method Call: " + TestVarByVal);
+
+	   // 4. Call the method with the value
+	   Obj_ByVal.ByVal(TestVarByVal);
+
+	   // 5. Check Value of the variable "TestVarByVal"
+      //    after passing the value to the Method: "ByVal"
+	   // 6. There wont be any change to the value passed.
+	   System.out.println("TestVarByVal after Method Call: " + TestVarByVal);
+
+
+      // Demonstration of Call of Reference
+      // ==================================
+
+	  // 1. Create an Object of the Class PassByRef();
+      PassByRef oByRef = new PassByRef();
+
+      // 2. Assign the CLASS field with a value, As this is a reference
+      oByRef.TestVarByRef = 10;
+
+      // 3. Check Value of the member field "TestVarByRef"
+      //    before passing the value to the Method: "ByRef"
+      System.out.println("TestVarByRef before Method Call: " + oByRef.TestVarByRef);
+
+      // 4. Call the method, the reference or is used inside the this method
+      //    This does not accept any parameters.
+      oByRef.ByRef();
+
+      // 5. Check Value of the member field "TestVarByRef"
+      //    after passing the value to the Method: "ByRef"
+      // 6. This will be changed.
+      System.out.println("TestVarByRef after Method Call: " + oByRef.TestVarByRef);
+	}
+}
+// >```
