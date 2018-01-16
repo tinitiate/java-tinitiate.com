@@ -1,0 +1,243 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Target Annotations
+// >MetaDescription: java target annotations annotation_type constructor field local_variable method package parameter type
+// >MetaKeywords: java target annotations,annotation_type,constructor,field,local_variable,method,package,parameter annotation example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: target-custom-annotation
+// >---
+
+// ># Target Annotation
+// >* Target Type annotations provides enhanced analysis of Java programs with type checking.
+// >* Target Type annotations can be applied to many elements of a Java Class
+// >* **ANNOTATION_TYPE** Annotation type declaration
+// >* **CONSTRUCTOR** Constructor declaration
+// >* **FIELD** Field declaration (includes enum constants)
+// >* **LOCAL_VARIABLE** Local variable declaration
+// >* **METHOD** Method declaration
+// >* **PACKAGE** Package declaration
+// >* **PARAMETER** Parameter declaration
+// >* **TYPE** Class, interface (including annotation type), enum
+
+// >## Demonstration of Target Annotation
+// >* Here we create annotations for 
+// >  * **TYPE(CLASS)**
+// >  * Applies for Class, Interface, Enumeration and Annotation
+// >  * Using the construct @Target(ElementType.TYPE)
+// >  * **FIELD**
+// >  * Applies for Fields
+// >  * Using the construct @Target(ElementType.FIELD)
+// >  * **METHOD**
+// >  * Applies for methods
+// >  * Using the construct @Target(ElementType.METHOD)
+// >  * **PARAMETER**
+// >  * Applies for method parameters
+// >  * Using the construct @Target(ElementType.PARAMETER)
+// >  * **CONSTRUCTOR**
+// >  * Applies for constructors
+// >  * Using the construct @Target(ElementType.CONSTRUCTOR)
+// >  * **LOCAL_VARIABLE**
+// >  * Applies for local variables
+// >  * Using the construct @Target(ElementType.LOCAL_VARIABLE)
+
+// >### Create Target Annotations and Class using the Target Annotations
+// >* Define the Retention as RunTime so that they can be accessed by the JVM 
+// >  at Runtime.
+// >```
+package tinitiate.java.annotations;
+
+// Imports to Create the Target Annotation
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+
+// TARGET ANNOTATIONS
+// Create range of Target Annotations
+// ==================================
+
+// TYPE
+// Applies for Class, Interface, Enumeration and Annotation
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@interface TargetType { String data(); }
+
+// FIELD
+// Applies for Fields
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+@interface TargetField { String data(); }
+
+// METHOD
+// Applies for methods
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@interface TargetMethod { String data(); }pls re
+
+// PARAMETER
+// Applies for method parameters
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.PARAMETER)
+@interface TargetParameter { String data(); }
+
+// CONSTRUCTOR
+// Applies for constructors
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.CONSTRUCTOR)
+@interface TargetConstructor { String data(); }
+
+// LOCAL_VARIABLE
+// Applies for local variables
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.LOCAL_VARIABLE)
+@interface TargetLocalVariable { String data(); }
+
+
+// START USING ANNOTATIONS
+// =======================
+
+//# Class Annotation
+@TargetType(data = "Target Type; class annotation")
+public class TargetAnnotation {
+
+    //#  Class Field Annotation
+    @TargetField(data = "Target Class field annotation")
+    String MyField;
+
+    //# Class Method Annotation
+    @TargetMethod(data = "Target method annotation")
+    public void MyMethod(@TargetParameter(data="Target Method Parameter annotation") int A) {
+
+        //# Method Local Variable
+        @TargetLocalVariable(data="Target Local variable") String Localvar;
+    }
+
+    //# Class Constructor Annotation
+    @TargetConstructor(data ="Target Constructor annotation")
+    public TargetAnnotation() {
+        
+    }
+}
+// >```
+
+
+// >### Using the Annotation Name read the Annotation Types, Annotation Names and Annotation Parameter Values
+// >* Read Annotation Names annotation attributes and annotation attribute values,
+// >  with the `Annotation name provided`.
+// >* `Method Local variables CANNOT BE READ using reflection`, as Local
+// >   variables are invoked only at runtime., To read variable Annotation,
+// >   we must use a CLASS DECOMPILER.
+// >* Below program does not demonstrate reading Local variable
+// >```
+package tinitiate.java.annotations;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.lang.reflect.Field;
+import java.lang.reflect.Constructor;
+
+public class ReadTargetAnnotations {
+
+    // READ THE ANNOTATIONS USING REFLECTION WITH ANNOTATION NAME PROVIDED
+    public static void main(String[] args) {
+
+        // STEP 1.
+        // READ Class Level Annotation using the annotation name
+        // =====================================================
+        // read the Class on which the Annotations are present
+        Class c = TargetAnnotation.class;
+
+        // read the Annotation Class Name (TargetType)
+        Annotation ClsAnno = c.getAnnotation(TargetType.class);
+
+        // Read the class annotation
+        TargetType TTAnno = (TargetType) ClsAnno;
+
+        // print the annotations fields
+        System.out.println("data: " + TTAnno.data());
+
+
+        // STEP 2.
+        // READ Class Field Level Annotation with the annotation name
+        // ==========================================================
+        // Get all fields of the Class
+        Field[] clsFields = TargetAnnotation.class.getDeclaredFields();
+
+        // For every Field Check if there is an annotation
+        for (Field f : clsFields) {
+            // read the Annotation Class Name (TargetField)
+            Annotation FldAnno = f.getAnnotation(TargetField.class);
+            
+            // Read the field annotation
+            TargetField TFAnno = (TargetField) FldAnno;
+
+            // print the annotations fields
+            System.out.println("data: " + TFAnno.data());
+        }
+
+        // STEP 3.
+        // READ Class Method Level Annotation with the annotation name
+        // ===========================================================
+        Method[] clsMetds = TargetAnnotation.class.getDeclaredMethods();
+ 
+        // For every Method Check if there is an annotation
+        for (Method m : clsMetds) {
+            System.out.println("CLASS METHOD NAME: " + m.getName());
+
+            // read the Annotation Class Name (TargetMethod)
+            Annotation MtdAnno = m.getAnnotation(TargetMethod.class);
+            
+            // Read the methods annotation
+            TargetMethod TMAnno = (TargetMethod) MtdAnno;
+
+            // print the annotations fields
+            System.out.println("data: " + TMAnno.data());            
+        }
+        
+        // STEP 4.
+        // READ Class Method Parameter  Level Annotation with
+        // the annotation name
+        // ==================================================
+        Method[] clsMds = TargetAnnotation.class.getDeclaredMethods();
+        // For every Method Check if there is an annotation
+        for (Method m : clsMetds) {
+
+            for (Parameter p : m.getParameters()) {
+                
+                // NOTE In Java parameter names are not available via reflection 
+                // Only argument by position is displayed via getName()
+                System.out.println("CLASS METHOD " + m.getName() + " PARAMETER NAME: " + p.getName());
+                
+                // read the Annotation Class Name (TargetParameter)
+                Annotation MtdParamAnno = p.getAnnotation(TargetParameter.class);
+
+                // Read the methods parameter annotation
+                TargetParameter TMPAnno = (TargetParameter) MtdParamAnno;
+
+                // print the annotations fields
+                System.out.println("data: " + TMPAnno.data());
+            }
+        }
+
+
+        // STEP 5.
+        // READ Class c Level Annotation with the annotation name
+        // ======================================================
+        Constructor[] clsCons = TargetAnnotation.class.getDeclaredConstructors();
+        // For every Method Check if there is an annotation
+        for (Constructor con : clsCons) {
+            System.out.println("CLASS CONSTRUCTOR NAME: " + c.getName());
+
+            // read the Annotation Class Name (TargetConstructor)
+            Annotation MtdConAnno = con.getAnnotation(TargetConstructor.class);
+
+            // Read the Constructors annotation
+            TargetConstructor TMPAnno = (TargetConstructor) MtdConAnno;
+
+            // print the annotations fields
+            System.out.println("data: " + TMPAnno.data());
+        }
+    }
+}
+// >```

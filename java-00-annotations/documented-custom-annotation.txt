@@ -1,0 +1,59 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java @Documented Annotation
+// >MetaDescription: java annotations @Documented
+// >MetaKeywords: java annotations @Documented example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: documented-custom-annotation
+// >---
+
+// ># Java @Documented Annotation
+// >* `@Documented` is a meta-annotation. Which has a String Field.
+// >* This is useful, to display annotation string data in the generated JavaDoc.
+// >* Below are the steps to create JavaDoc friendly Documentation Annotations
+
+// >## Create @Documented Custom Annotation
+// >* Create a custom annotation using the **@Documented**
+// >```
+package tinitiate.java.annotations;
+
+// Import the Annotation Documented
+import java.lang.annotation.Documented;
+
+@Documented
+public @interface DocumentedDemo {
+    String MyDocument();
+}
+// >```
+// >>
+
+// >* **Create a Class to use the Custom Annotation
+// >```
+package tinitiate.java.annotations;
+
+public class TestDocumentedAnno {
+
+    @DocumentedDemo(MyDocument = "This is class TestDocumentedAnno")
+    public static void main(String[] args) {
+           System.out.printf("Testing annotation 'Documented'");
+    }
+}
+// >```
+// >>
+
+// >* Generate the JavaDoc, In this case I used eclipse:
+// > * click `project` >
+// > * Click `Generate javadoc` >
+// > * Enter the Location of the javadoc.exe from JavaSDK
+// >   `Set the path to the javadoc.exe` >
+// > * `Enter Destination` folder where the JavaDoc HTML files will be generated >
+// > * Click `Finish`
+// >* This will use the String data from the annotation and display in the JavaDoc
+// >>
+// >* javaDoc output
+// >![alt text](TestDocumentedAnno-JavaDoc.png "@Documented Annotation JavaDoc output")
+
+
+
+
+

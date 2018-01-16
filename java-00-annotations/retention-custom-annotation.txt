@@ -1,0 +1,218 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java @Retention Annotation
+// >MetaDescription: java annotations @Retention RetentionPolicy.RUNTIME RetentionPolicy.CLASS RetentionPolicy.SOURCE
+// >MetaKeywords: java annotations,@Retention,RetentionPolicy.RUNTIME,RetentionPolicy.CLASS,RetentionPolicy.SOURCE example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: retention-custom-annotation
+// >---
+
+// ># Java @Retention Annotation
+// >* Retention policy Annotation is a enumerated type of set of constants 
+// >* These `Constant values` can be of primitive types, String, Class or other Annotations
+// >* The `Constant values` mentioned in the Annotation can be used by the calling programs
+// >* There are **THREE** types of Retention Annotations
+// >* `RetentionPolicy.SOURCE`, `RetentionPolicy.CLASS`, `RetentionPolicy.RUNTIME`
+
+
+// >### RetentionPolicy.SOURCE
+// >* RetentionPolicy.SOURCE Annotations are discarded by the compiler.
+// >  They are useful for annotating the Source and only possible usage of these
+// >  could be by the Java IDE tool, that displays information about a class or
+// >  other Class member.
+// >* This is ignored by the Java Compiler and its usage is limited to the 
+// >  Source code file.
+// >* The usage for this could be documentation of your source files.
+// > **Demonstration of RetentionPolicy.SOURCE**
+// >* `STEP 1.` Create the Annotation
+// >```
+package tinitiate.java.annotations;
+
+import java.lang.annotation.*;
+
+@Retention(RetentionPolicy.SOURCE)  
+public @interface RetentionPolicySource {
+    String name();
+    String about();
+    String author();
+}
+// >```
+// >*
+// >* `STEP 2.` Create the Class using the Annotation
+// >```
+package tinitiate.java.annotations;
+
+@RetentionPolicySource( name="JavaRetentionPolicyTest"
+                       ,about="Test for Retention Policy Anotations"
+                       ,author="Tinitiate.com")
+public class RetentionPolicySourceTest {
+
+    public void Message() {
+        System.out.print("This a method");
+    }
+}
+// >```
+// >*
+// >* `STEP 3.` Validate the use of @Retention(RetentionPolicy.SOURCE) annotation
+// >* For this check the IDE, in my case Iam using Eclipse, Hover over the class
+// >  and we see the annotation details,
+// >* Any caller of this class will be able to see the Class Annotation of SOURCE
+// >* And its usage is limited to the Code Source.
+// >* **How useful is this Annotation?**
+// >* `RetentionPolicy.SOURCE is **Not** very useful for normal development`,
+// >   as this is for SOURCE ONLY, JavaDoc can serve the purpose better.
+// >![alt text](retention-source-annotation.png "@Retention(RetentionPolicy.SOURCE)")
+// >>
+
+
+// >### RetentionPolicy.CLASS
+// >* RetentionPolicy.CLASS Annotations are considered by the compiler, but are 
+// >  not retained by the JVM at run time.
+// >* This is Useful Only when doing bytecode-level post-processing.
+// >* To Access the Java Byte Code or the ".CLASS" file, a Byte Code Analyzer 
+// >  is needed.
+// >* To programtically read the Annotation, i.e. the RetentionPolicy.CLASS
+// >  We use the Apache BCEL or the Byte Code Engineering Library
+// >* [Apache BCEL Byte Code Engineering Library](https://commons.apache.org/proper/commons-bcel/)
+// >* Add the Apache BCEL jar to the project.
+// >>
+// > *Example and Usage of the **RetentionPolicy.CLASS**
+// >* `STEP 1.` Create the annotation
+// >```
+package tinitiate.java.annotations;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.CLASS)
+public @interface RetentionPolicyClass {
+    String name();
+    String about();
+    String author();
+}
+// >```
+// >>
+
+// >* `STEP 2.` Create the Class Using the Annotation
+// >* The Class RetentionPolicyClassTest, uses the @RetentionPolicyClass Annotation
+// >* To read the CLASS annotations, we need to analyze the Class ByteCode
+// >* Using the **org.apache.bcel** Class ByteCode can be analyzed.
+// >* Make sure to import and add the `BCEL JAR` to the project.
+// >```
+package tinitiate.java.annotations;
+
+import java.io.IOException;
+
+// Import the bcel Classes
+import org.apache.bcel.classfile.ClassFormatException;
+import org.apache.bcel.classfile.ClassParser;
+import org.apache.bcel.classfile.JavaClass;
+import org.apache.bcel.classfile.AnnotationEntry;
+
+// Apply the RetentionPolicy.CLASS Annotation
+@RetentionPolicyClass( name="JavaRetentionPolicyTest"
+                      ,about="Test for Retention Policy Anotations"
+                      ,author="Tinitiate.com")
+public class RetentionPolicyClassTest {
+    
+  // Main Method
+  public static void main(String[] args) throws ClassFormatException, IOException {
+
+  // Step 1.
+  // Use the Current Class, The ".Class path" to read the current class ByteCode
+  String lCurrClassPath = "/tinitiate/java/annotations/RetentionPolicyClassTest.class";
+        
+  // Step 2.
+  // Create a ClassParser Object, to get the ByteCode data
+  ClassParser parser = new ClassParser(RetentionPolicyClassTest.class.getResourceAsStream(lCurrClassPath)
+                                            ,"RetentionPolicyClassTest.class");
+  // Step 3.
+  // Parse the java Class
+  JavaClass javaClass = parser.parse();
+
+  // Step 4.
+  // Loop Through the Annotation Entries
+  // print all the contents of the Annotations
+  for(AnnotationEntry annotation:javaClass.getAnnotationEntries()){
+      System.out.println(annotation.toString());
+  }
+
+  }
+}
+// >```
+// >>
+
+// >### RetentionPolicy.RUNTIME
+// >* RUNTIME annotation are recorded in the class file by the compiler and 
+// >  retained by the VM at run time.
+// >* The RUNTIME annotations can be queried at runtime using java reflection.
+// >* This is useful and possibly the most widely used annotations,
+// >* `STEP 1.` Create the annotation
+// >```
+package tinitiate.java.annotations;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
+public @interface RetentionPolicyRunTime {
+    String name();
+    String about();
+    String author();
+}
+// >```
+
+// >* `STEP 2.` Create a class to read the @Retention(RetentionPolicy.RUNTIME)
+// >  Using the Reflection
+// >* Steps mentioned in the code below
+// >```
+package tinitiate.java.annotations;
+
+import java.lang.reflect.Method;
+
+public class RetentionPolicyRunTimeTest {
+
+    // Create a method "MyMethod" with the Annotation
+    // pass values to the annotation
+    @RetentionPolicyRunTime( name = "MyMethod"
+                            ,about ="This is a test mehthod with annotation"
+                            ,author = "tinitiate.com")
+    public static void MyMethod() {
+        
+        // Using Reflection to read the RUNTIME Annotation fields
+        // Step 1.
+        // Create the current class object 
+        RetentionPolicyRunTimeTest obj = new RetentionPolicyRunTimeTest();
+        try {
+        
+        // Step 2.
+        // Create a Class Object
+            Class cls = obj.getClass();
+        
+        // Step 3.
+        // Create a method object of the Class's method "MyMethod" from Step 2.
+            Method mtd = cls.getMethod("MyMethod");
+
+        // Step 4.
+        // Create an Annotation Object from the method Class from Step 3.
+            RetentionPolicyRunTime anno = mtd.getAnnotation(RetentionPolicyRunTime.class);
+        
+        // Step 5.
+        // Access the RUNTIME Annotation FIELDS from the Annotation Class
+            System.out.println(anno.name() + " " + anno.about() + " " + anno.author());
+        } catch (NoSuchMethodException exc) {
+          
+            System.out.println("Method: MyMethod not found!");
+        }
+    }
+
+
+    // Main method of the Class
+    public static void main(String[] args) {
+        // Call the static method
+        // no need to create an object
+        MyMethod();
+    }
+
+}
+// >```

@@ -1,0 +1,98 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Inherited Annotations
+// >MetaDescription: java inherited annotations superclass, child class
+// >MetaKeywords: java inherited annotations superclass, child class example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: inherited-custom-annotation
+// >---
+
+// ># Java @Inherited Custom Annotation
+// >* @Inherited Annotation is applied to a parent class/super class to make sure 
+// >  the subclasses or child class inherits the annotations.
+// >* This annotation works only for superclasses, the @Inherited annotations 
+// >  cannot be implemented on interfaces.
+// >* Also @Inherited annotated is applicable only on a parent class and not
+// >  its methods, constructors, fields etc.
+
+// >```
+package tinitiate.java.annotations;
+
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+
+// Create Interfaces
+// =================
+
+// This Annotation has the @Inherited
+// hence this is accessible by the Child Class 
+@Inherited
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface InheritableAnno {
+
+}
+
+
+// This Annotation Does not have the @Inherited
+// hence this is not accessible by the Child Class
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface UnInheritableAnno {
+
+}
+
+// Parent Class that use the Annotations
+// =====================================
+
+// Create a Parent Class (Parent Class Inheritable Annotation)
+@InheritableAnno
+class PIAnno { }
+
+//Create a Parent Class (Parent Class UnInheritable Annotation)
+@UnInheritableAnno
+class PUIAnno { }
+
+
+// Child Class that inherits the Parent 
+// Classes with Annotations
+// ====================================
+
+// Child Class inheriting the parent Class with the 
+// Inheritable Annotation 
+class C1 extends PIAnno { }
+
+// Child Class inheriting the parent Class with the 
+// UnInheritable Annotation
+class C2 extends PUIAnno { }
+
+
+// Public class to test the Demo
+public class InheritedAnnotation {
+    
+    public static void main(String[] args) {
+
+        // Test the Inheritable Annotation
+        // ===============================
+        // Read the Annotation of the parent Class of Inheritable Annotation
+        System.out.println(new PIAnno().getClass().getAnnotation(InheritableAnno.class));
+
+        // Read the Annotation of the child Class 
+        System.out.println(new C1().getClass().getAnnotation(InheritableAnno.class));
+
+
+        // Test the UnInheritable Annotation
+        // =================================
+        // Read the Annotation of the parent Class of UnInheritable Annotation
+        System.out.println(new PUIAnno().getClass().getAnnotation(UnInheritableAnno.class));
+        
+        // This will result in a Null to indicate that the Annotation cannot be 
+        // called from the Child Class
+        System.out.println(new C2().getClass().getAnnotation(UnInheritableAnno.class));
+    }
+}
+// >```

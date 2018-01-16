@@ -1,0 +1,100 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Annotations
+// >MetaDescription: java annotations @Suppresswarnings @Override @Deprecated Custom Annotation
+// >MetaKeywords: java annotations @Suppresswarnings @Override @Deprecated Custom Annotation example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: annotations
+// >---
+
+// ># Java Annotations
+// >* Annotations can be seen as work shortcuts, less code to perform a task,
+// >  this makes the program code more readable.
+// >* Java annotations are meta data for Java code, And can be used within 
+// >  packages, classes, methods and variables, Java annotations may directly 
+// >  affect the code execution, they are instructions to the compiler,
+// >  to act differently at build time or run time.
+// >* **Annotations** are used by the calling code, making use of the annotated 
+// >  code, executes by taking different actions depending on the annotated data.
+// >* MetaData includes, Comments, Parameter Types, if the method is OverRidden or Inherited..
+// >  and many more properties, Annotation tags are checked by the compiler and this helps 
+// >  to provide meaningful and more precise warnings at compile time, these can also be used 
+// >  by build tools to, make the build fail if some unexpected code is present.
+// >* Annotations can be used as a information source about the code to the compiler;
+// >  made available for compile-time or deployment-time processing
+// >* **Advantages of Annotations**
+// >* Its useful in indicating method dependencies
+// >* Indicates class dependencies
+// >* Enforcing to use interdependent code as needed.
+// >* There are TWO types of Annotation implementations, Built-In and Custom Annotations.
+
+// >## Java Built-in Annotations
+// >* There are THREE commonly used Built-In Java Annotations
+// >* @Override
+// >* @SuppressWarnings
+// >* @Deprecated
+// >* There are more Built-In annotations, but are provided from non standard libraries.
+// >>
+// >* **[Deprecated Annotation ->](deprecated-annotation.html)**
+// >* **[Override Annotation ->](override-annotation.html)**
+// >* **[SuppressWarnings Annotation ->](suppresswarnings-annotation.html)**
+// >>
+
+// >## Java Custom Annotations
+// >* Java enables you to define your custom annotations
+// >* There are **FOUR** types of Annotations
+// >  * **DOCUMENTED**
+// >  * **RETENTION**
+// >  * **TARGET**
+// >  * **INHERITED**
+// >>
+
+// >### [Documented Custom Annotation ->](documented-custom-annotation.html)
+// >* `@Documented` is a meta-annotation. Which has a String Field.
+// >* This is useful, to display annotation string data in the generated JavaDoc.
+// >* [Documented Custom Annotation Example ->](documented-custom-annotation.html)
+// >>
+
+// >### [Retention Custom Annotation ->](retention-custom-annotation.html)
+// >* The retention annotation the duration and scope of the annotations retention
+// >* The Retention Policy is defined by Three values
+// > * RetentionPolicy.SOURCE
+// > * Annotations values in this case will be retained only in the source file
+// >   and will be ignored by the compiler.
+// > * RetentionPolicy.CLASS
+// > * Annotations values in this case considered at compile time, and will be 
+// >   included in the CLASS file.
+// > * RetentionPolicy.RUNTIME
+// > * Annotations values in this case will be available to the JVM at run-time.
+// >* [Retention Custom Annotation Example ->](retention-annotation.html)
+// >>
+
+// >### [Target Custom Annotation Example ->](target-custom-annotation.html)
+// >* Target Type annotations provides enhanced analysis of Java programs with type checking.
+// >* Target Type annotations can be applied to many elements of a Java Class
+// >* **ANNOTATION_TYPE** Annotation type declaration
+// >* **CONSTRUCTOR** Constructor declaration
+// >* **FIELD** Field declaration (includes enum constants)
+// >* **LOCAL_VARIABLE** Local variable declaration
+// >* **METHOD** Method declaration
+// >* **PACKAGE** Package declaration
+// >* **PARAMETER** Parameter declaration
+// >* **TYPE** Class, interface (including annotation type), enum
+// >* [Target Custom Annotation Example ->](target-custom-annotation.html)
+// >>
+
+// >### [Reading Custom Target Annotations Dynamically Example ->](target-custom-annotation-dynamic.html)
+// >* This example demonstrates reading Target Type annotations 
+// >  when no annotation name is provided.
+// >* [Target Custom Annotation Dynamic Example ->](target-custom-annotation-dynamic.html)
+// >>
+
+// >### [Inherited Custom Annotation ->](inherited-custom-annotation.html)
+// >* @Inherited Annotation is applied to a parent class/super class to make sure 
+// >  the subclasses or child class inherits the annotations.
+// >* This annotation works only for superclasses, the @Inherited annotations 
+// >  cannot be implemented on interfaces.
+// >* Also @Inherited annotated is applicable only on a parent class and not
+// >  its methods, constructors, fields etc.
+// >* [Inherited Custom Annotation Example ->](inherited-custom-annotation.html)
+// >>
