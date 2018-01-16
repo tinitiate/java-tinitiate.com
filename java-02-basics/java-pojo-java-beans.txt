@@ -1,0 +1,95 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Beans and Java POJOs
+// >MetaDescription: Java Beans and Java POJOs
+// >MetaKeywords: Java Beans and Java POJOs Plain Old Java Objects example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: beans-pojos
+// >---
+
+// ># JAVA POJOs and JAVA BEANs
+// >* **JAVA BEAN**
+// >* JavaBeans are Java classes which adhere to an extremely simple coding 
+// >  convention. All you have to do is to
+// >* Implement java.io.Serializable interface - To save the state of an object
+// >* use a public empty argument constructor - To instantiate the object
+// >* And provide public getter and setter methods - To get and set the values
+// >   of private variables (properties).
+// >* POJO stands for Plain Old Java Object. It is not bound by any Java 
+// >  Language Specification, i.e., a POJO should not have to Extend any classes
+// >  or Implement any interfaces
+// >* POJOs are easy to read and write, And this appeal has made them to be the 
+// >  choice of implementation.
+// >>
+
+// >## JAVA POJO Example
+// >```
+package tinitiate.java.basics;
+
+public class JavaPOJO {
+
+    // Class Fields
+    int A;
+    String B;
+
+    // Constructor
+    // Use Constructor to SET or INITIALIZE values of A and B
+    public JavaPOJO (int A, String B) {
+        this.A = A;
+        this.B = B;
+    }
+
+    // Getters
+    // Get Values of A and B using the Getters
+    public int getA() {
+        return A;
+    }
+
+    public String getB() {
+        return B;
+    }
+}
+// >```
+// >>
+
+// >## JAVA BEAN Example
+// >```
+package tinitiate.java.basics;
+
+import java.io.Serializable;
+
+// The JavaBean class must implement Serializable
+// The JavaBean class must have a no-argument constructor
+// All JavaBean properties must have public setter and getter methods
+// All JavaBean instance variables should be private
+public class JavaBEAN implements Serializable {
+
+    // Class Fields
+    private int A;
+    private String B;
+
+    // Getters
+    public int getA() {
+        return A;
+    }
+    
+    public String getB() {
+        return B;
+    }
+
+    // Setters
+    public void setA(int a) {
+        A = a;
+    }
+
+    public void setB(String b) {
+        B = b;
+    }
+
+    // No Parameter Constructor
+    public JavaBEAN() {
+        
+    }
+}
+// >```
+// >>
