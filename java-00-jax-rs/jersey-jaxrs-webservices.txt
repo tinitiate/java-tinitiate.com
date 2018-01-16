@@ -1,0 +1,48 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Jersey JAX RS RESTful Web Services
+// >MetaDescription: Java Jersey JAX RS RESTful Web Services
+// >MetaKeywords: Java Jersey JAX RS RESTful Web Services example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: jersey-jaxrs-webservices
+// >---
+
+// >>
+// ># Jersey JAX RS RESTful Web Services
+// >* `A web service is a function that can be accessed by other programs over 
+// >   the web (HTTP)`, The function can be written in any language and the 
+// >   client, that reads the function can also be written in any language.
+// >* There are TWO types of webservices Simple Object Access Protocol (SOAP) 
+// >  and Representational state transfer (REST/RESTful)
+// >>
+
+
+// >* **The Jersey JAX RS RESTful Web Services**
+// >* This is a RESTful web service creator, heavily relying on HTTP,
+// >  It uses various HTTP methods to for client communication of response data 
+// >* The JAX-RS is a Java EE6 library which enables developers to create REST 
+// >  web applications.
+// >>
+
+
+// >## Pre-Development Steps
+// >* The following are used to create and test the RESTFul Web Service
+// >* **JERSEY JAX-RS** `Version 2.26`
+// >* **JDK** `version 1.8`
+// >* Java supported Webserver, in this case **TOMCAT** `Version 9`
+// >* **Eclipse IDE**
+// >* Add TOMCAT to the Eclipse IDE as a Server.
+// >>
+
+
+// >### Java Jersey JAX RS Tutorials
+// >* **[Java Jersey JAX RS Project Setup and Example ->](jersey-jaxrs-project-setup.html)**
+// >* **[Java Jersey JAX RS Annotations ->](jersey-jaxrs-annotations.html)**
+// >* **[Java Jersey JAX RS Response Types TEXT,XML,JSON ->](jersey-jaxrs-response-formats.html)**
+// >* **[Java Jersey JAX RS HTTP Methods ->](jersey-jaxrs-http-methods.html)**
+// >* **[Java Jersey JAX RS HTML FORMS ->](jersey-jaxrs-html-forms.html)**
+// >* **[Java Jersey JAX RS DB CRUD Operations ->](jersey-jaxrs-db-crud.html)**
+// >* **[Java Jersey JAX RS Java Client ->](jersey-jaxrs-java-client.html)**
+// >* **[Java Jersey JAX RS File Upload ->](jersey-jaxrs-file-upload.html)**
+// >* **[Java Jersey JAX RS File Download ->](jersey-jaxrs-file-download.html)**
+// >>

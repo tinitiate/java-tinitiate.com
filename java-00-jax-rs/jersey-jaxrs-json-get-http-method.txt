@@ -1,0 +1,237 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Web Services jersey jaxrs json get http method
+// >MetaDescription: Java JAX RS GET HTTP Method from JSON file example for Web Services
+// >MetaKeywords: Java, JAX RS, GET, HTTP Method, HTTP GET, from JSON file example for Web Services, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: jersey-jaxrs-json-get-http-method
+// >---
+
+// ># GET HTTP METHOD Example
+// >* GET is a HTTP method is used to Read or retrieve data or resource from server
+// >* It is implemented using the `@GET` annotation from `import javax.ws.rs.GET`
+// >* GET requests can be cached, in browser history or can be book marked.
+// >* Its NOT advisable to use GET requests while working with sensitive data.
+// >* GET requests have length restrictions
+// >* Applicable Return HTTP Codes
+// >  * 200 (OK)
+// >  * 404 (Not Found)
+// >>
+
+// >## READ JSON FILE WITH JAVA JAX RS GET HTTP METHOD EXAMPLE STEPS
+// >>
+
+// >### STEP 1. The JSON Resource
+// >* For this demo, A common JSON file with the following contents is saved
+// >  in the following path "c:\personal\tidata.json"
+// >* Using the file name `tidata.json` save the following:
+// >```
+{
+"website": "tinitiate.com",
+"courses": {
+    "scripting" : "Python, Ruby",
+    "database" : "Oracle, MySQL"
+  },
+"social" : ["facebook", "twitter"]
+}
+// >```
+// >>
+
+
+// >### STEP 2. Add JSON Resource File path to the web.xml
+// >* The web.xml provides mechanism to add parameters, here we use the param
+// >  name `JSONResource`
+// >* To the `web.xml` of the project add the following:
+// >```
+  <context-param>
+    <param-name>JSONResource</param-name>
+    <param-value>c:\personal\tidata.json</param-value>
+  </context-param>
+// >```
+// * Reference Image:
+// > ![Java Jersey JAX RS web.xml config parameters](jersey-jaxrs-get-json-webxml.png "Java Jersey JAX RS web.xml config parameters")
+// * web.xml would look like this
+// >```
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+web.xml
+=======
+1. Servlet is a Java program that extends a web servers capability as they
+   directly talk to Java APIs, They are ideal for Java Web Development.
+2. The web.xml file is the deployment descriptor for a Servlet-based Java web
+   application.
+3. The web.xml handles two important roles,
+  3.1. Define a name of the handler (Servlet)
+  3.2. The handler maps a Java File to a HTML file.
+4. There are more advanced features of web.xml, which have config data, accepts
+   HTML page name patterns.
+-->
+<web-app
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  id="WebApp_ID" version="3.0">
+  <display-name>Tinitiate</display-name>
+  <context-param>
+    <param-name>JSONResource</param-name>
+    <param-value>C:/Personal/tidata.json</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Jersey RESTful Introduction</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>com.tinitiate.jersey.rs</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jersey RESTful Introduction</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+</web-app>
+// >```
+
+
+// >## STEP 3. The Java code to use HTTP GET to read data (resource) from JSON file
+// >```
+package com.tinitiate.jersey.rs;
+
+// Required Libraries
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.json.JsonValue;
+import javax.servlet.ServletContext;
+
+//NOTES:
+//1. The PATH(URL) to invoke this class, MAKE SURE to append the /rest/ from 
+// the **web.xml**
+//2. The "extends Application" enables JAX RS to read the web.xml parameters
+@Path("/http_get_json")
+public class JaxRSHTTPGetJSON extends Application {
+
+    // variable to store path of JSON File
+    String TmpFilePath;
+
+    // JSON Object
+    JsonObject TiObjJSON;
+    
+    
+    // 1. CONSTUCTOR
+    // 2. Parameter is the "@Context" of Type ServletContext
+    // 3. From the context get the context-param from the web.xml
+    // 4. We have used the "JSONResource" as context-name, that has the path 
+    //    to the resource "JSON" file 
+    public JaxRSHTTPGetJSON(@Context ServletContext context) {
+        
+        // Step 1.
+        // Read the JSON file path from web.xml
+        TmpFilePath = context.getInitParameter("JSONResource");
+        
+        // Step 2.
+        // Read the JSON file into the JSON Object 
+        try {
+            InputStream fis = new FileInputStream(TmpFilePath);
+
+            JsonReader reader = Json.createReader(fis);
+            TiObjJSON = reader.readObject();
+            reader.close();
+
+        } catch (Exception e) { e.printStackTrace(); }
+    }
+
+
+    // Retrieves Data from the JSON file
+    // Use the URL:
+    // http://localhost:8080/TinitiateJerseyRS/rest/http_get_json/get_all_json_data
+    @GET
+    @Path("/get_all_json_data")
+    public Response GetAllJSONData() {
+
+        String getData = "";
+        getData = TiObjJSON.toString();
+
+        // Return the result
+        return Response.status(200).entity(getData).build();
+    }
+
+
+    // Retrieves PARTIAL Data from the TiJSON, for the element website
+    // Use the URL (works in browser):
+    // http://localhost:8080/TinitiateJerseyRS/rest/http_get_json/get_ti_json_website
+    @GET
+    @Path("/get_ti_json_website")
+    public Response GetPartialJSONWebsite() {
+
+        String getData = "";
+        getData = TiObjJSON.getString("website");
+
+        // Return the result
+        return Response.status(200).entity(getData).build();
+    }
+
+
+    // Retrieves PARTIAL Data from the TiJSON, for the element "Courses"
+    // Use the URL (works in browser):
+    // http://localhost:8080/TinitiateJerseyRS/rest/http_get_json/get_ti_json_courses
+    @GET
+    @Path("/get_ti_json_courses")
+    public Response GetPartialJSONCourses() {
+
+        String getData = "";
+        JsonObject coursesObject = TiObjJSON.getJsonObject("courses");
+        getData = coursesObject.getString("scripting") + "\n" + 
+                  coursesObject.getString("database");
+
+        // Return the result
+        return Response.status(200).entity(getData).build();
+    }
+
+
+    // Retrieves PARTIAL Data from the TiJSON, for the element "social"
+    // Use the URL (works in browser):
+    // http://localhost:8080/TinitiateJerseyRS/rest/http_get_json/get_ti_json_social
+    @GET
+    @Path("/get_ti_json_social")
+    public Response GetPartialJSONSocial() {
+
+        String getData = "Social Media: ";
+        JsonArray SocialMediaArry = TiObjJSON.getJsonArray("social");
+
+        for (JsonValue SMjsonValue : SocialMediaArry) {
+            getData += SMjsonValue.toString() + " ";
+        }
+
+        // Return the result
+        return Response.status(200).entity(getData).build();
+    }
+}
+// >```
+
+
+// >## STEP 4. Reading the JSON file using GET HTTP Method
+// >* The JSON file has Elements, Nested Elements and Array Elements
+// >* The Resource "JSON" file is then;
+// >  * Using the **GET HTTP METHOD** the example retrieves **ENTIRE** JSON data.
+// >  * Also using the GET HTTP this example retrieves partial data from JSON data.
+// >* Run the program and check in Browser using the URLs:
+// >  * **GET FULL DATA**
+// >  * http://localhost:8080/TinitiateJerseyRS/rest/http_get_json/get_all_data
+// >  * **GET PARTIAL DATA**
+// >  * Get only "website" data from JSON
+// >  * http://localhost:8080/TinitiateJerseyRS/rest/http_get_json/get_ti_json_website
+// >  * Get only "courses" data from JSON
+// >  * http://localhost:8080/TinitiateJerseyRS/rest/http_get_json/get_ti_json_courses
+// >  * Get only "social" data from JSON
+// >  * http://localhost:8080/TinitiateJerseyRS/rest/http_get_json/get_ti_json_social
+// >* 4. PostMan Image for reference 
+// >  * ![jersey jaxrs get json postman test](jersey-jaxrs-get-json-postman-test.png "jersey jaxrs get json postman test")
+// >>

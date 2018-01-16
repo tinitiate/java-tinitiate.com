@@ -1,0 +1,242 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Web Services jersey jax rs json put http method
+// >MetaDescription: Java JAX RS PUT HTTP Method from JSON file example for Web Services
+// >MetaKeywords: Java, JAX RS, PUT, HTTP Method, HTTP PUT, from JSON file example for Web Services, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: jersey-jaxrs-json-put-http-method
+// >---
+
+// ># PUT HTTP METHOD
+// >* PUT is a HTTP method which is used to create / update data or resource
+// >  on the server.
+// >* It is implemented using the `@PUT` annotation from `import javax.ws.rs.PUT`
+// >* PUT is Used to create a resource, and Updates are at a low level are
+// >  resource overwrites.
+// >* PUT and POST are very similar, The main difference between them is;
+// >* PUT always replaces the resource in the server, If another PUT is issued
+// >  to the same URL then there is no change, Sending the same request more
+// >  than once has no effect, This concept is called idempotent.
+// >* PUTS are idempotent.
+// >* Applicable Return HTTP Codes
+// >  * 200 (OK)
+// >  * 204 (No Content)
+// >  * 404 (Not Found)
+// >  * 405 (Method Not Allowed)
+// >>
+
+
+// >### STEP 1. The JSON Resource
+// >* For this demo, A common JSON file with the following contents is saved
+// >  in the following path "c:\personal\tidata.json"
+// >* Using the file name `tidata.json` save the following:
+// >```
+{
+"website": "tinitiate.com",
+"courses": {
+    "scripting" : "Python, Ruby",
+    "database" : "Oracle, MySQL"
+  },
+"social" : ["facebook", "twitter"]
+}
+// >```
+// >>
+
+
+// >### STEP 2. Add JSON Resource File path to the web.xml
+// >* The web.xml provides mechanism to add parameters, here we use the param
+// >  name `JSONResource`
+// >* To the `web.xml` of the project add the following:
+// >```
+  <context-param>
+    <param-name>JSONResource</param-name>
+    <param-value>c:\personal\tidata.json</param-value>
+  </context-param>
+// >```
+// * Reference Image:
+// > ![Java Jersey JAX RS web.xml config parameters](jersey-jaxrs-get-json-webxml.png "Java Jersey JAX RS web.xml config parameters")
+// * web.xml would look like this
+// >```
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+web.xml
+=======
+1. Servlet is a Java program that extends a web servers capability as they
+   directly talk to Java APIs, They are ideal for Java Web Development.
+2. The web.xml file is the deployment descriptor for a Servlet-based Java web
+   application.
+3. The web.xml handles two important roles,
+  3.1. Define a name of the handler (Servlet)
+  3.2. The handler maps a Java File to a HTML file.
+4. There are more advanced features of web.xml, which have config data, accepts
+   HTML page name patterns.
+-->
+<web-app
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  id="WebApp_ID" version="3.0">
+  <display-name>Tinitiate</display-name>
+  <context-param>
+    <param-name>JSONResource</param-name>
+    <param-value>C:/Personal/tidata.json</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Jersey RESTful Introduction</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>com.tinitiate.jersey.rs</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jersey RESTful Introduction</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+</web-app>
+// >```
+// >>
+
+
+// >### STEP 3. Write to JSON file with JAVA JAX RS PUT HTTP method example
+// >* Download the `json-simple` search for **com.googlecode.json-simple** ,
+// >  for this demonstration we are using JAR from 
+// >  `https://code.google.com/archive/p/json-simple/`
+// >* Copy The JAR file to the location `<PROJECT-NAME>/WebContent/WEB-INF>lib`
+// >  folder of the project
+// >* ![Add org.json jar to the project](jersey-jaxrs-add-org-json.png "Add org.json jar to the project")
+// >>
+
+
+// >### STEP 4. The Java code to use HTTP PUT to write data (resource) from JSON file
+// >* The Java Code to demonstrate the PUT method
+// >```
+package com.tinitiate.jersey.rs;
+
+// Required Libraries
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import java.io.FileReader;
+import java.io.FileWriter;
+import javax.servlet.ServletContext;
+
+
+//NOTES:
+//1. The PATH(URL) to invoke this class, MAKE SURE to append the /rest/ from 
+//   the **web.xml**
+//2. The "extends Application" enables JAX RS to read the web.xml parameters
+@Path("/http_put_json")
+public class JaxRSHTTPPutJSON extends Application {
+
+    // variable to store path of JSON File
+    String TmpFilePath;
+
+    // JSON File Object
+    JSONObject TiJSONObj;
+
+    // JSON Root level Object
+    JSONObject CoursesJSONObj;
+
+
+    // 1. CONSTUCTOR
+    // 2. Parameter is the "@Context" of Type ServletContext
+    // 3. From the context get the context-param from the web.xml
+    // 4. We have used the "JSONResource" as context-name, that has the path 
+    //    to the resource "JSON" file 
+    public JaxRSHTTPPutJSON(@Context ServletContext context) {
+
+        // Step 1.
+        // Read the JSON file path from web.xml
+        TmpFilePath = context.getInitParameter("JSONResource");
+
+        // Step 2.
+        // Read the JSON file into the JSON Object into TiObjJSON
+        JSONParser parser = new JSONParser();
+        try {
+
+            Object object = parser.parse(new FileReader(TmpFilePath));
+            TiJSONObj = (JSONObject)object;
+           
+        } catch (Exception e) { e.printStackTrace(); }
+
+        // Step 3.
+        // Read the Scripting JSON element of TiObjJSON Object into CoursesObjJSON
+        CoursesJSONObj = (JSONObject)TiJSONObj.get("courses");
+    }
+
+
+    // This method writes to the JSON file
+    @PUT
+    @Path("/update_json/{ElementName}/{ElementValue}")
+    public Response UpdateJSONFile( @PathParam("ElementName") String ElementName
+                                   ,@PathParam("ElementValue") String ElementValue)
+    {
+        // Step 1.
+        // Check Input JSON outer/root level element
+        // Elements in JSON are courses, database, scripting, website, social
+        if (ElementName.equalsIgnoreCase("database")) {
+
+            CoursesJSONObj.put("database", ElementValue);
+        }
+        else if (ElementName.equals("scripting")) {
+
+            CoursesJSONObj.put("scripting", ElementValue);
+        }
+        else if (ElementName.equals("website")) {
+
+            TiJSONObj.put("website", ElementValue);
+        }
+        else if (ElementName.equals("social")) {
+
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(ElementValue);
+
+            TiJSONObj.put("social", ElementValue);
+        }
+
+
+        // Step 2.
+        // Read the JSON file into the JSON Object
+        try {
+            FileWriter fileWriter = new FileWriter(TmpFilePath);
+
+            fileWriter.write(TiJSONObj.toJSONString());
+            fileWriter.flush();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Return the result
+        return Response.status(200).entity(TmpFilePath + " file updated !").build();
+
+    }
+}
+// >```
+
+
+// >### STEP 5. Writing to the JSON file using PUT HTTP Method
+// >* USE A REST TEST TOOL LIKE POSTMAN , DO NOT TEST THE FOLLOWING IN A BROWSER
+// >* NOTE: 
+// >* 1. After First "http://localhost:8080/TinitiateJerseyRS/rest/http_put_json/update_json"
+// >     There are TWO parameters 
+// >     (1) JSON Element Name
+// >     (2) Element Value
+// >* 2. The below statements are used to update various elements
+// >     Use the URLs as PUT in the REST Test Tool PostMan
+// >  http://localhost:8080/TinitiateJerseyRS/rest/http_put_json/update_json/database/mysql
+// >  http://localhost:8080/TinitiateJerseyRS/rest/http_put_json/update_json/scripting/php
+// >  http://localhost:8080/TinitiateJerseyRS/rest/http_put_json/update_json/website/www.tinitiate.com
+// >  http://localhost:8080/TinitiateJerseyRS/rest/http_put_json/update_json/website/youtube
+// >* 3. Compare the JSON File Before and After running the URLs or change the 
+// >*    values to the Element Values to see the change in the JSON file  
+// >* 4. PostMan Image for reference 
+// >*  ![jersey jaxrs put json postman test](jersey-jaxrs-put-json-postman-test.png "jersey jaxrs put json postman test")
+// >>

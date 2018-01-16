@@ -1,0 +1,145 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Jersey HTML FORMS JAX RS RESTful Web Services
+// >MetaDescription: Java Jersey HTML FORMS TextBox,Text Area, ComboBox Radio Button Check Box JAX RS RESTful Web Services
+// >MetaKeywords: Java Jersey HTML FORMS TextBox, ComboBox Radio Button Check Box JAX RS RESTful Web Services
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: jersey-jaxrs-html-forms
+// >---
+
+// ># Java Jersey Jaxrs HTML Forms
+// >* RESTful webservice requests can be made with data provided from
+// >  html form elements.
+// >* This is done with the Annotation **@FormParam**
+
+// >## Example for reading HTML form data using POST with Java Jersey Jaxrs
+// >* Folder structure below
+// >* ![Folder Sctucture](jersey-jaxrs-forms-folder-structure.png "jersey jaxrs forms folder structure")
+// >* ![Forms HTML](jersey-jaxrs-forms-create-html.png "jersey jaxrs forms html file")
+// >>
+
+// >### STEP 1. Create the Form HTML file
+// >* Create a HTML file with FORM controls
+// >* Here we create a file `tinitate-form.html` and place it in the
+// >   **WebContent** folder
+// >```
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>tinitate jax rs form test</title>
+	</head>
+<body>
+	<!--  Form elements -->
+	<form action="rest/form-process/form-elements" method="post">
+	<h1>This form demonstrates multiple form elements</h1>
+    
+    <!--  JAX RS HTML Text Box -->
+    <p>Text Box</p>
+    <input type="text" name="textVal"><br>
+    
+    <!--  JAX RS HTML Radio Button -->
+    <p>Radio Button</p>
+	<input type="radio" name="country" value="USA" checked> USA <br>
+	<input type="radio" name="country" value="CHINA"> CHINA <br>
+	<input type="radio" name="country" value="INDIA"> INDIA <br>
+
+    <!--  JAX RS HTML Check Box -->
+    <p>Check Box</p>
+    <input type="checkbox" name="food" value="Pizza"> Pizza <br>
+    <input type="checkbox" name="food" value="Salad" checked> Salad<br>
+    
+    <!--  JAX RS HTML Drop down select -->
+	<select name="languages">
+	  <option value="java">java</option>
+	  <option value="python">python</option>
+	  <option value="php">php</option>
+	</select>
+    <br>
+ 
+    <!--  JAX RS HTML Multiple select -->
+	<select name="database" size="4" multiple>
+	  <option value="oracle">oracle</option>
+	  <option value="mysql">mysql</option>
+	  <option value="sqlsever">sqlsever</option>
+	  <option value="bigdata">bigdata</option>
+	</select>
+	<br>
+
+    <input type="submit" value="Submit" />
+
+	</form>
+	</body>
+</html>
+// >```
+// >>
+
+
+// >### STEP 2. Create the POST method handler
+// >* The next step is to create a handler for the FORM POST data
+// >* The java file is placed in the **<PROJECT-NAME>/src/<PACKAGE-NAME>**
+// >* 
+// >```
+package com.tinitiate.jersey.rs;
+
+import java.util.List;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
+
+
+@Path("/form-process")
+public class JaxRSFormProcess {
+
+    // 1. Read the Form Elements by name as they appear in tinitiate-form.html file
+    // 2. Print all form elements to the "form-elements" webpage, using the
+    //    @FormParam of this method
+    @POST
+    @Path("/form-elements")
+    public Response responseMsg(@FormParam("textVal") String textVal
+                               ,@FormParam("country") String country
+                               ,@FormParam("food") List<String> food
+                               ,@FormParam("languages") String languages
+                               ,@FormParam("database") List<String> database) {
+
+        // STEP 1.
+        // Read the List<String> or Multiple values to a Sting
+        String sFood = " ";
+        for(String s: food) {
+            sFood = sFood + " " + s;
+        }
+
+        String sDatabase = " ";
+        for(String s: database) {
+            sDatabase = sDatabase + " " + s;
+        }
+
+
+        // STEP 2.
+        // Append all varibles into a single string
+        String PageOutput = "Text Box value: " + textVal + "<br><hr>" +
+                            "Radio Button value: " + country + "<br><hr>" +
+                            "Check Box: " + sFood + "<br><hr>" +
+                            "Drop down select " + languages + "<br><hr>" +
+                            "Multiple select: " + sDatabase;
+
+        // STEP 3.
+        // Return output as Response Object
+        return Response.status(200).entity(PageOutput).build();
+
+    }
+}
+// >```
+// >>
+
+
+// >### STEP 3. Testing the HTML Forms with JAX RS with POST
+// >* In the browser `localhost:8080/TinitiateJerseyRS/tinitiate-form.html`
+// >  Enter form data
+// >* Click the `submit` button
+// >* This will invoke the `JaxRSFormProcess` and redirect to the URL
+// >  `localhost:8080/TinitiateJerseyRS/rest/form-process/form-elements`
+// >  with the data from the form.
+// >* This demonstrates the FORM elements with a single value and multiple 
+// >  values in Check Box and List box.
+// >>

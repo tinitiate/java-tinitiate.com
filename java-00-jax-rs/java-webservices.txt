@@ -1,0 +1,55 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Web Services
+// >MetaDescription: Java RESTful, SOAP Web Services
+// >MetaKeywords: Java RESTful, SOAP Web Services example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: java-webservices
+// >---
+
+// ># Web Services
+// >* A web service is a concept where a reqource can be accessed by a client
+// >  using standard HTTP methods or over the Web.
+// >* The resource could be a function call or data in a file or Database.
+// >* To access the resource the **CLIENT** [the program that wants to use the resource]
+// >  issues a `request`, and the **SERVER**
+// >>
+// >![alt text](webservice.png "webservice tinitiate.com")
+// >>
+// >* The main advantage of this concept is The resource and the caller can be
+// >  of different programming language or technology, The only commonality
+// >  that is need is they use the HTTP calls.
+// >* There are TWO types of webservices Simple Object Access Protocol (SOAP)
+// >  and Representational state transfer (REST/RESTful)
+
+// >## SOAP Web Services
+// >*
+
+// >### SOAP Web Services Implementation
+// >*
+
+// >## RESTful Web Services
+// >* RESTful follows simple design principles, All transactions must be 
+// >  independent, Dont have dependencies among requests between client 
+// >  and server, in the same session.
+// >* **STATELESS**
+// >* All `TRASACTIONS Must be stateless`, Meaning the server treats each request
+// >   as an independent transaction that is unrelated to any previous request.
+// >* **Have a URI Directory structure**
+// >* Make the URI Directory structure visible to the client
+// >* This means the access to a resource or service, must be in the format of URL:
+// >  `[PROTOCOL]://[HOSTNAME]/[DIRECTORY-PATH]/[FILE-NAME]`
+// >  Example 1. `[HTTP]://[TINITIATE.COM]/[COURSES]/[GET-COURSE-LIST.HTML]`
+// >  Example 2. `[FTP]://[TINITIATE.COM]/[COURSES]/[GET-COURSE-LIST.HTML]`
+// >* **Use HTTP Methods: PUT, GET, POST and DELETE**
+// >* RESTful Communication between Client and Server happen through HTTP
+// >  methods; PUT, GET, POST and DELETE.
+// >* GET: `Read data or resource from server`
+// >* PUT: `Creates Resource on server`
+// >* DELETE: `Removes Resource from server`
+// >* POST: `Updates or Changes or Adds data to server`
+// >* **Supported Responses Formats Plain Text,XML and JSON**
+// >* RESTful Responses are given in Plain Text, XML and JSON formats
+
+// >### RESTful Web Services Implementation
+// >*

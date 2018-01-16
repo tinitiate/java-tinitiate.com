@@ -1,0 +1,256 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Web Services jersey jax rs xml get http method
+// >MetaDescription: Java JAX RS GET HTTP Method from XML file example for Web Services
+// >MetaKeywords: Java, JAX RS, GET, HTTP Method, from XML file, HTTP GET example for Web Services, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: jersey-jaxrs-xml-get-http-method
+// >---
+
+// ># GET HTTP METHOD Example
+// >* GET is a HTTP method is used to Read or retrieve data or resource from server
+// >* It is implemented using the `@GET` annotation from `import javax.ws.rs.GET`
+// >* GET requests can be cached, in browser history or can be book marked.
+// >* Its NOT advisable to use GET requests while working with sensitive data.
+// >* GET requests have length restrictions
+// >* Applicable Return HTTP Codes
+// >  * 200 (OK)
+// >  * 404 (Not Found)
+// >>
+
+// >## READ XML FILE WITH JAVA JAX RS GET HTTP METHOD EXAMPLE STEPS
+
+// >### STEP 1. The XML Resource
+// >* For this demo, A common XML file with the following contents is saved
+// >  in the following path "c:\personal\tidata.xml"
+// >* Using the file name `tidata.xml` save the following:
+// >```
+<tiData>
+  <website>tinitiate.com</website>
+  <courses id="1">
+    <type>scripting</type>
+    <name>Python</name>
+  </courses>
+  <courses id="2">
+    <type>scripting</type>
+    <name>Ruby</name>
+  </courses>
+  <courses id="3">
+    <type>database</type>
+    <name>Oracle</name>
+  </courses>
+  <courses id="4">
+    <type>database</type>
+    <name>MySQL</name>
+  </courses>
+  <social id="1">facebook</social>
+  <social id="2">twitter</social>
+</tiData>
+// >```
+// >>
+
+
+// >### STEP 2. Add XML Resource File path to the web.xml
+// >* The web.xml provides mechanism to add parameters, here we use the param
+// >  name `XMLResource`
+// >* To the `web.xml` of the project add the following:
+// >```
+  <context-param>
+    <param-name>XMLResource</param-name>
+    <param-value>C:/Personal/tidata.xml</param-value>
+  </context-param>
+// >```
+// * Reference Image:
+// > ![Java Jersey JAX RS web.xml config parameters](jersey-jaxrs-get-xml-webxml.png "Java Jersey JAX RS web.xml config parameters")
+// * web.xml would look like this
+// >```
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+web.xml
+=======
+1. Servlet is a Java program that extends a web servers capability as they
+   directly talk to Java APIs, They are ideal for Java Web Development.
+2. The web.xml file is the deployment descriptor for a Servlet-based Java web
+   application.
+3. The web.xml handles two important roles,
+  3.1 Define a name of the handler (Servlet)
+  3.2 The handler maps a Java File to a HTML file.
+4. There are more advanced features of web.xml, which have config data, accepts
+   HTML page name patterns.
+-->
+<web-app
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  id="WebApp_ID" version="3.0">
+  <display-name>Tinitiate</display-name>
+  <context-param>
+    <param-name>JSONResource</param-name>
+    <param-value>C:/Personal/tidata.json</param-value>
+  </context-param>
+  <context-param>
+    <param-name>XMLResource</param-name>
+    <param-value>C:/Personal/tidata.xml</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Jersey RESTful Introduction</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>com.tinitiate.jersey.rs</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jersey RESTful Introduction</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+</web-app>
+// >```
+
+
+// >## STEP 4. The Java code to use HTTP GET to read data (resource) from XML file
+// >```
+package com.tinitiate.jersey.rs;
+
+import javax.servlet.ServletContext;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+
+import java.io.File;
+import javax.xml.bind.*;
+
+//NOTES:
+// 1. The PATH(URL) to invoke this class, MAKE SURE to append the /rest/ from
+//    the **web.xml**
+// 2. The "extends Application" enables JAX RS to read the web.xml parameters
+@Path("/http_get_xml")
+public class JaxRSHTTPGetXML extends Application {
+
+    // variable to store path of JSON File
+    String TmpFilePath = "";
+
+    // Create XML object
+    TiData XMLData = new TiData();
+    // XML Parts
+    String XMLwebsite = "";
+    String XMLcourse = "";
+    String XMLsocial = "";
+
+    // Constructor
+    // 1. Get resource XML file Path from web.xml
+    // 2. Read XML data using the "JAXBContext" and "Unmarshaller"
+    public JaxRSHTTPGetXML(@Context ServletContext context) throws JAXBException {
+
+        // Step 1.
+        // Read the XML file path from web.xml
+        TmpFilePath = context.getInitParameter("XMLResource");
+
+        // Step 2.
+        // Read XML data into Object "XMLData"
+        try {
+            // Read the XML file into the file object
+            File file = new File(TmpFilePath);
+
+            JAXBContext jaxbObj = JAXBContext.newInstance(TiData.class);
+            Unmarshaller jaxbUnmarshaller  = jaxbObj.createUnmarshaller();
+
+            //  Create an Elements
+            XMLData = (TiData) jaxbUnmarshaller.unmarshal(file);
+        } catch (JAXBException e) { e.printStackTrace(); }
+    }
+
+
+    // Retrieves entire XML data from the Tidata.xml file
+    // Use the URL (works in browser):
+    // http://localhost:8080/TinitiateJerseyRS/rest/http_get_xml/get_xml_website_data
+    @GET
+    @Path("/get_xml_website_data")
+    public Response GetXMLWebsiteData() {
+
+        String gXMLData = "";
+        gXMLData = gXMLData + "\n" + "XML DATA ELEMENT - website: " + "<br>";
+        gXMLData = gXMLData + XMLData.getWebsite();
+        XMLwebsite = gXMLData;
+
+        // Return the result
+        return Response.status(200).entity(gXMLData).build();
+    }
+
+
+    // Retrieves entire XML data from the Tidata.xml file
+    // Use the URL (works in browser):
+    // http://localhost:8080/TinitiateJerseyRS/rest/http_get_xml/get_xml_course_data
+    @GET
+    @Path("/get_xml_course_data")
+    public Response GetXMLCourseData() {
+
+        String gXMLData = "";
+        gXMLData = gXMLData + "\n" + "XML DATA ELEMENT - course: " + "<br>";
+        for(Courses course : XMLData.getCourses()) {
+
+            gXMLData = gXMLData + course.getId() + " ";
+            gXMLData = gXMLData + course.getType() + " ";
+            gXMLData = gXMLData + course.getName() + "<br>";
+        }
+        XMLcourse = gXMLData;
+
+        // Return the result
+        return Response.status(200).entity(gXMLData).build();
+    }
+
+
+    // Retrieves entire XML data from the Tidata.xml file
+    // Use the URL (works in browser):
+    // http://localhost:8080/TinitiateJerseyRS/rest/http_get_xml/get_xml_social_data
+    @GET
+    @Path("/get_xml_social_data")
+    public Response GetXMLSocialData() {
+
+        String gXMLData = "";
+        gXMLData = "XML DATA ELEMENT - social: " + "<br>";
+        for(Social social : XMLData.getSocial()) {
+            gXMLData = gXMLData + social.getId() + " ";
+            gXMLData = gXMLData + social.getSocial() + "<br>";
+        }
+        XMLsocial = gXMLData;
+
+        // Return the result
+        return Response.status(200).entity(gXMLData).build();
+    }
+
+
+    // Retrieves entire XML data from the Tidata.xml file
+    // Use the URL (works in browser):
+    // http://localhost:8080/TinitiateJerseyRS/rest/http_get_xml/get_all_xml_data
+    @GET
+    @Path("/get_all_xml_data")
+    public Response GetAllXMLData() {
+
+        String gXMLData = XMLwebsite + XMLcourse + XMLsocial;
+
+        // Return the result
+        return Response.status(200).entity(gXMLData).build();
+    }
+}
+// >```
+
+
+// >## STEP 5. Reading the XML file using GET HTTP Method
+// >* The XML file has Elements, Nested Elements and Array Elements
+// >* The Resource "XML" file is then;
+// >  * Using the **GET HTTP METHOD** the example retrieves **ENTIRE** XML data.
+// >  * Also using the GET HTTP this example retrieves partial data from XML data.
+// >* Run the program and check in Browser using the URLs:
+// >  * **GET FULL DATA**
+// >  * http://localhost:8080/TinitiateJerseyRS/rest/http_get_xml/get_all_xml_data
+// >  * **GET PARTIAL DATA**
+// >  * Get only "website" data from XML
+// >  * http://localhost:8080/TinitiateJerseyRS/rest/http_get_xml/get_xml_website_data
+// >  * Get only "courses" data from XML
+// >  * http://localhost:8080/TinitiateJerseyRS/rest/http_get_xml/get_xml_course_data
+// >  * Get only "social" data from XML
+// >  * http://localhost:8080/TinitiateJerseyRS/rest/http_get_xml/get_xml_social_data
+// >>

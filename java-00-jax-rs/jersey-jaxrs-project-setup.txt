@@ -1,0 +1,117 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Jersey JAX RS RESTful Web Services example
+// >MetaDescription: Java Jersey JAX RS RESTful Web Services sample project
+// >MetaKeywords: Java Jersey,JAX RS,RESTful,WebServices, sample project example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: jersey-jaxrs-project-setup
+// >---
+
+// ># Creating a project in eclipse
+// >* Select File > new > Project...
+// >* From the list select Web > Dynamic Web project
+// >* ![alt text](jersey-jaxrs-project-step1.png "Java Jersey JAX RS Project setup step 1")
+// >* Click "Next" , "Next"
+// >* ![alt text](jersey-jaxrs-project-step2.png "Java Jersey JAX RS Project setup step 2")
+// >* Configure the Web Server, In this case, We are using Tomcat 9.0 and added 
+// >  it to eclipse.
+// >>
+
+// >### Create a simple Java Jersey JAX RS Project
+// >* Step 1. `Create a dynamic web project` named **TinitiateJerseyRS**
+// >* Step 2. `Create java package` named **com.tinitiate.jersey.rs**
+// >* Step 3. `Create Java Source file`
+// >  * In the "Java Resources" > "src" folder create a new Java File
+// >  * Class Name: TinitiateJerseyTest
+// >```
+package com.tinitiate.jersey.rs;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Response;
+
+@Path("/data")  
+public class TinitiateJerseyTest {
+    @GET
+    @Path("/{data}")
+    public Response getParam(@PathParam("data") String data) {
+
+        String output = "Tinitiate Test Message : " + data;
+        return Response.status(200).entity(output).build();
+    }
+
+    @GET
+    @Path("/greeting")
+    public Response getGreeting() {
+
+        String output = "Welcome to Tinitiate REST DEMO";
+        return Response.status(200).entity(output).build();
+    }
+
+}
+// >```
+// >* Step 4. `Create the web.xml file`
+// > * In the **WEB-INF** folder add the following to a file named **web.xml**
+// >```
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+web.xml
+=======
+1. Servlet is a Java program that extends a web servers capability as they
+   directly talk to Java APIs, They are ideal for Java Web Development.
+2. The web.xml file is the deployment descriptor for a Servlet-based Java web 
+   application.
+3. The web.xml handles two important roles,
+  3.1 Define a name of the handler (Servlet)
+  3.2 The handler maps a Java File to a HTML file.
+4. There are more advanced features of web.xml, which have config data, accepts
+   HTML page name patterns.
+-->
+<web-app xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xmlns = "http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation = "http://java.sun.com/xml/ns/javaee
+                               http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id = "WebApp_ID"
+         version = "3.0">
+   <display-name>Tinitiate</display-name>
+   <!-- 
+   1. Create multiple servlets and servlet mappings.
+   2. The "<servlet>" and "<servlet-mapping>" elements have a common element
+      "<servlet-name>" value.
+   3. The common
+   -->
+   <servlet>
+   <!-- MAKE SURE servlet-name is same for "servlet" and "servlet-name" elements -->
+      <servlet-name>Jersey RESTful Introduction</servlet-name>
+      <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+      <init-param>
+         <param-name>jersey.config.server.provider.packages</param-name>
+         <param-value>com.tinitiate.jersey.rs</param-value>
+      </init-param>
+   </servlet>
+   <servlet-mapping>
+   <!-- MAKE SURE servlet-name is same for "servlet" and "servlet-name" elements -->
+      <servlet-name>Jersey RESTful Introduction</servlet-name>
+      <!--
+      1. The pattern "my-site/<project-name>/rest/*" will be handled by the
+         package specified in the <init-param>'s <param-value> element.
+      2. The Class that handles in the URL pattern depends on the @Path 
+         Annotation specified for the class.
+      -->
+      <url-pattern>/rest/*</url-pattern>
+   </servlet-mapping>
+</web-app>
+// >```
+// >* Step 6. `Add libraries` From the DOWNLOADED jax-ri ZIP file
+// >  * Copy all Libraries to the "WEB-INF > lib" folder of the project, from
+// >  * "jax-ri/api","jax-ri/ext" and "jax-ri/lib" folders
+// >* Step 7. `Run the project`
+// >* Step 8. `Open Browser` and type 
+// >  * "http://localhost:8080/TinitiateJerseyRS/rest/data/greeting"
+// >  * **OUTPUT:** Welcome to Tinitiate REST DEMO  
+// >  * "http://localhost:8080/TinitiateJerseyRS/rest/data/testing"
+// >  * The browser displays the word after 
+// >    * "http://localhost:8080/TinitiateJerseyRS/rest/hello/"
+// >    * welcome and testing in the above case
+// >  * **OUTPUT:** Tinitiate Test Message : testing

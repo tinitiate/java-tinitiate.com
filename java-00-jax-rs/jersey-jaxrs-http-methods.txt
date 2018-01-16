@@ -1,0 +1,112 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Web Services HTTP Methods
+// >MetaDescription: Java PUT, GET, PATCH, POST and DELETE HTTP Methods for Web Services
+// >MetaKeywords: Java PUT, GET, POST and DELETE HTTP Methods, Web Services example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: jersey-jaxrs-http-methods
+// >---
+
+// ># Java Jersey JAX RS HTTP Methods
+// >* RESTful Communication between Client and Server happen through HTTP
+// >  methods; PUT, GET, POST, PATCH and DELETE
+// >>
+
+// >## Demonstration of HTTP Methods
+// >* To understand the implementation and usage of HTTP methods, We need to
+// >  create a "RESOURCE" which could be a JSON File, an XML File or a Database Table.
+// >* The "RESOURCE" or "DATA" must be available to all requesting sessions.
+// >  The Request could be a GET, PUT, POST, PATCH and DELETE.
+// >* In order for the "RESOURCE" to be "INDEPENDENTLY AVAILABLE" for multiple
+// >  requesting sessions, We create Resource as a file of JSON data and
+// >  Another Resource as XML data.
+// >* A Resource java class will manage READ and WRITE operations into a
+// >  JSON and an XML file.
+// >* JAX RS code examples for GET, PUT, POST, PATCH and DELETE with JSON file.
+// >* JAX RS code examples for GET, PUT, POST, PATCH and DELETE with XML file.
+// >>
+
+
+// >## GET HTTP METHOD
+// >* GET is a HTTP method is used to Read or retrieve data or resource from server
+// >* It is implemented using the `@GET` annotation from `import javax.ws.rs.GET`
+// >* GET requests can be cached, in browser history or can be book marked.
+// >* Its NOT advisable to use GET requests while working with sensitive data.
+// >* GET requests have length restrictions
+// >* Applicable Return HTTP Codes
+// >  * 200 (OK)
+// >  * 404 (Not Found)
+// >>
+// >#### [GET HTTP method With JSON File ->](jersey-jaxrs-json-get-http-method.html)
+// >#### [GET HTTP method With XML File ->](jersey-jaxrs-xml-get-http-method.html)
+// >>
+
+
+// >## POST HTTP METHOD
+// >* POST is a HTTP method which is used to Add / Update / Change data
+// >  or resource on the server.
+// >* It is implemented using the `@POST` annotation from `import javax.ws.rs.POST`
+// >* POST requests are never cached and are not retained in the browser history.
+// >* POST requests cannot be bookmarked and have no data length restrictions.
+// >* Applicable Return HTTP Codes
+// >  * 201 (Created)
+// >  * 404 (Not Found)
+// >  * 409 (Conflict) resource already exists!
+// >>
+// >#### [POST HTTP method With JSON File ->](jersey-jaxrs-json-post-http-method.html)
+// >#### [POST HTTP method With XML File ->](jersey-jaxrs-xml-post-http-method.html)
+// >>
+
+
+// >## PUT HTTP METHOD
+// >* PUT is a HTTP method which is used to create / update data or resource
+// >  on the server.
+// >* It is implemented using the `@PUT` annotation from `import javax.ws.rs.PUT`
+// >* PUT is Used to create a resource, and Updates are at a low level are
+// >  resource overwrites.
+// >* PUT and POST are very similar, The main difference between them is;
+// >* PUT always replaces the resource in the server, If another PUT is issued
+// >  to the same URL then there is no change, Sending the same request more
+// >  than once has no effect, This concept is called idempotent.
+// >* PUTS are idempotent.
+// >* Applicable Return HTTP Codes
+// >  * 200 (OK)
+// >  * 204 (No Content)
+// >  * 404 (Not Found)
+// >  * 405 (Method Not Allowed)
+// >>
+// >#### [PUT HTTP method With JSON File ->](jersey-jaxrs-json-put-http-method.html)
+// >#### [PUT HTTP method With XML File ->](jersey-jaxrs-xml-put-http-method.html)
+// >>
+
+
+// >## PATCH HTTP METHOD
+// >* PATCH is a HTTP method, that is used to update partial resource,
+// >  Similar to PUT/POST. But PATCH is not idempotent. Meaning sending same
+// >  data at different times will update the previous updated data again.
+// >* It is implemented using the `@PATCH` annotation from `import javax.ws.rs.PATCH`
+// >* Since PATCH is not idempotent, It might not be safe to use.
+// >  PATCH must "patch data or resource" atomically.
+// >* Applicable Return HTTP Codes
+// >  * 200 (OK)
+// >  * 204 (No Content)
+// >  * 404 (Not Found)
+// >  * 405 (Method Not Allowed)
+// >>
+// >#### [PATCH HTTP method With JSON File ->](jersey-jaxrs-json-patch-http-method.html)
+// >#### [PATCH HTTP method With XML File ->](jersey-jaxrs-xml-patch-http-method.html)
+// >>
+
+
+// >## DELETE HTTP METHOD
+// >* DELETE HTTP method Removes Resource from server
+// >* It is implemented using the `@DELETE` annotation from `import javax.ws.rs.DELETE`
+// >* This method is used when a resource (data) on the server needs to be removed.
+// >* Applicable Return HTTP Codes
+// >  * 200 (OK)
+// >  * 404 (Not Found)
+// >  * 405 (Method Not Allowed)
+// >>
+// >#### [DELETE HTTP method With JSON File ->](jersey-jaxrs-json-delete-http-method.html)
+// >#### [DELETE HTTP method With XML File ->](jersey-jaxrs-xml-delete-http-method.html)
+// >>
