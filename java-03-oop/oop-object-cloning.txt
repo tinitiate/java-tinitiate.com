@@ -1,0 +1,212 @@
+---
+YamlDesc: CONTENT-ARTICLE
+Title: Java Object Cloning
+MetaDescription: Java Object Cloning, object copy, shallow cloning, deep cloning, using copy constructors, example code, tutorials
+MetaKeywords: Java Object Cloning, object copy, shallow cloning, deep cloning, using copy constructors, example code, tutorials
+Author: Venkata Bhattaram / tinitiate.com
+ContentName: object-cloning
+---
+
+* **[Java Object Oriented Programming](oop.html)**
+* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
+* **[Java Objects](oop-objects.html)**
+* **[Java Object Cloning](oop-object-clone.html)**
+* **[Java Constructor](oop-constructor.html)**
+* **[Java Inheritance](oop-inheritance.html)**
+* **[Java Overriding](oop-overriding.html)**
+* **[Java Access Modifiers](oop-access-modifiers.html)**
+* **[Java Encapsulation](oop-encapsulation.html)**
+* **[Java Pass By Value Pass By Reference](oop-passby-value-passby-reference.html)**
+* **[Java this Keyword](oop-this-keyword.html)**
+* **[Java Abstract Class](oop-abstract-class.html)**
+* **[Java Interface](oop-interface.html)**
+* **[Java Packages](oop-packages.html)**
+* **[Java PassBy Value PassBy Reference](oop-passby-value-passby-reference.html)**
+* **[Java this Keyword](oop-this-keyword.html)**
+
+# Object Cloning
+* Object Cloning is making an exact copy of an existing Object.
+* Objects are all about the data in the member fields, as methods 
+  themselves dont hold any data.
+* Cloning is simple words is copying an existing Object with its data assigned 
+  to the member fields into another Object.
+* There are many way to clone an object each methodology has its limitations
+
+## Shallow Clone or Object Copy By Assignment
+* Simplest form of java cloning is **field by field copy** of the or using the 
+  assignment operator to copy or clone one object to another.
+* The SHALLOW CLONE will copy the references so any changes to the main object
+  member fields data will be reflected to the copied object.
+* The simplest way is to use the **Assignment Operator**, `ObjNew = ObjOld` BUT..
+* Using **Assignment Operator** Object Copy will only create a **REFERENCE**
+  Which is Any changes to ObjOLD will reflect in ObjB as well.
+```
+package tinitiate.java.oop;
+
+// Class Capital
+class Capital {
+    public String CapitalName;
+    public Capital(String CapitalName) {
+        this.CapitalName = CapitalName;
+    }
+}
+
+// Class Nation
+class Nation {
+     public String CountryName;
+     public Capital CapitalDetails;
+
+     public Nation(String CountryName, Capital CapitalDetails) {
+        this.CountryName = CountryName;
+        this.CapitalDetails = CapitalDetails;
+    }
+}
+
+public class ObjectCloneByAssignment {
+
+    public static void main(String[] args) {
+
+    // Create New Object ObjA
+    Capital CPDetailsA = new Capital("W DC");
+    Nation ObjA = new Nation("USA", CPDetailsA);
+    
+    // Object A Field Data
+    System.out.println("Object A Data");
+    System.out.println(ObjA.CountryName);
+    System.out.println(ObjA.CapitalDetails.CapitalName);
+         
+    // Create a ObjB, Copy of ObjA
+    Nation ObjB = ObjA;
+    
+    // Change Values of ObjA After Copying to B
+    // ========================================
+    // Change Primitive Data
+    ObjA.CountryName = "U.S.A";
+    // Change Nested Object Data
+    ObjA.CapitalDetails.CapitalName = "Washington DC";
+
+    // Object B Field Data, Will also Change, as the ObjB Member fields 
+    // are a reference of Object A when we use a copy. And not a true Copy
+    System.out.println(ObjB.CountryName);
+    System.out.println(ObjB.CapitalDetails.CapitalName);
+    }
+}
+```
+
+
+## DEEP CLONING
+* **Deep Cloning** copies all member fields and any memory allocations fo an
+  object to another object.
+* Deep Cloning makes copies of any nested Objects and member fields by COPY BY VALUE 
+  and NOT COPY BY REFERENCE.
+
+### Object Deep Cloning by Clonable Interface
+* Deep Cloning by **OVERRIDING** the **CLONE METHOD** of the **CLONABLE INTERFACE**
+* Steps to Create Clone Method for Deep Cloning
+* **STEP 1** 
+* The class with Member Fields or the Data must implement Cloneable interface.
+* **STEP 2**
+* The Class must Override `clone()` public method.
+* *STEP 3**
+* In the **clone()** implementation, call the super.clone()
+* The clone method returns an Object, so cast the Object with the current CLASS 
+  type in the clone method.
+* make sure to add the checked exception (throws CloneNotSupportedException) on 
+ the Clone Override method
+```
+package tinitiate.java.oop;
+
+// Class Flowers
+class Flowers implements Cloneable {
+
+    public int FlowerID;
+    public String FlowerName;
+
+    public Flowers(int FlowerID, String FlowerName) {
+
+        this.FlowerID = FlowerID;
+        this.FlowerName = FlowerName;
+    }
+    
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        
+        // Assign the shallow copy to new reference variable t
+        Flowers f = (Flowers)super.clone();
+        return f;
+    }
+}
+
+public class ObjectCloneDeep {
+
+    public static void main(String args[]) throws CloneNotSupportedException {
+        
+        // Create Object F1
+        Flowers F1 = new Flowers(1,"ROSE");
+        
+        // Create New Object F2 using the Clone method
+        Flowers F2 = (Flowers) F1.clone();
+        
+        // Change F1
+        F1.FlowerName = "LOTUS";
+        
+        // Notice F2 Didnt Change
+        System.out.print(F2.FlowerName);
+    }
+}
+```
+
+
+## Object Deep Cloning By Copy Constructors
+* Copy Constructor is a Constructor that accepts the Current Class Object as 
+  input parameter.
+* The Constructor assigns values from the input Class Object to the new 
+  Instance created by the Constructor.
+* The advantage of using Copy Constructors is it doesnt use any interface or 
+  any cast operators.
+```
+package tinitiate.java.oop;
+
+class Cars {
+
+    // Not Using Native
+    String CarType;
+    int Price;
+
+    // Constructor
+    public Cars(String CarType, int Price) {
+
+        this.CarType = CarType;
+        this.Price = Price;
+    }
+
+    // Copy Constructor
+    public Cars(Cars car) {
+
+        // Convert to Integer Class, for a New Instance
+        Integer i = new Integer(car.Price);
+
+        this.CarType = new String(car.CarType);
+        this.Price = i.intValue();
+    }
+}
+
+
+public class ObjectCloneByCopyConstructor {
+
+    public static void main(String[] args) {
+
+        // Create an Object
+        Cars ObjA = new Cars("SUV", 40000);
+        
+        // Create Clone of Object 
+        Cars ObjB = new Cars(ObjA);
+        
+        // Change Values of ObjA
+        ObjA.CarType = "SEDAN";
+        
+        // This show "SUV" the Original value and NOT change to "SEDAN"
+        System.out.println(ObjB.CarType);
+    }
+}
+```

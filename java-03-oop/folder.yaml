@@ -1,0 +1,23 @@
+---
+YamlDesc: FOLDER-YAML
+Slug: java
+GenerateTemplateFlag: false
+GenerateFolderNavURLNamesJS: false
+ProcessFilePathList:
+    - oop.txt
+    - oop-class-fields-class-methods.txt
+    - oop-objects.txt
+    - oop-constructor.txt
+    - oop-inheritance.txt
+    - oop-overriding.txt
+    - oop-access-modifiers.txt
+    - oop-encapsulation.txt
+    - oop-this-keyword.txt
+    - oop-abstract-class.txt
+    - oop-interface.txt
+    - oop-abstract-vs-interface.txt
+    - oop-packages.txt
+    - oop-passby-value-passby-reference.txt
+    - oop-this-keyword.txt
+    - oop-object-cloning.txt
+---

@@ -11,6 +11,7 @@
 // >* **[Java Object Oriented Programming](oop.html)**
 // >* **[Java Class Fields and Methods](oop-class-fields-class-methods.html)**
 // >* **[Java Objects](oop-objects.html)**
+// >* **[Java Object Cloning](oop-object-clone.html)**
 // >* **[Java Constructor](oop-constructor.html)**
 // >* **[Java Inheritance](oop-inheritance.html)**
 // >* **[Java Overriding](oop-overriding.html)**
@@ -26,4 +27,75 @@
 // >>
 
 // ># Java Object
+// >* **OBJECT** In order to RUN or EXECUTE the program [or a class file], 
+// >  it is required to create an instance of the class. 
+// >* Object in simple terms is a Variable with a DataType of a Class, 
+// >  that needs to be run.
+// >* Instance is a occurrence of class where data is assigned to the class 
+// >  variables and the class methods are called upon to execute or run.
+// >* Every class in the Java system is a descendent (direct or indirect) of the Object class
+
+// >## Demonstration of Object
 // >*
+
+// >```
+package tinitiate.java.oop;
+
+public class TiObject {
+
+    // Class Member Fields
+    int A;
+    String B;
+
+    // Class Member Method
+    public TiObject(int A, String B) {
+        this.A = A;
+        this.B = B;
+    }
+
+
+    // Main Method
+    public static void main(String[] args) {
+
+        // Create Object
+        // =============
+        TiObject Obj = new TiObject(1,"ABC");
+
+
+        // Object Built-In Properties
+        // ==========================
+        // 1. GetClass
+        System.out.println(Obj.getClass());
+
+        // 2. toString
+        System.out.println(Obj.toString());
+
+
+        // Object Comparison
+        // =================
+        // 1. The "==" Operator is used to compare primitives such as int, char, boolean
+        // 2. The ".equals()" Method is used to compare objects
+        // 3. For String Comparison equals() must be used instead of  == operator.
+
+        // 1. Check if TWO Objects are Equal or Not
+        //    using the ".equal" method
+        TiObject NewObj1 = new TiObject(1,"ABC");
+
+        // Compare Objects Obj and NewObj1, Using the ".equal" Object Method
+        if ( Obj.equals(NewObj1) )  {
+            System.out.println("Ob1 and NewObj1 are Equal!"); }
+        else { System.out.println("Ob1 and NewObj1 are Equal!"); }
+
+
+        // 2. Check if TWO Objects are Equal or Not
+        //    using the "==" operator
+        TiObject NewObj2 = new TiObject(3,"PQR");
+
+        // Compare Objects Obj and NewObj1, Using the "==" Object Method
+        if ( Obj == NewObj2 )  {
+            System.out.println("Ob1 and NewObj2 are Equal!"); }
+        else { System.out.println("Ob1 and NewObj2 are Equal!"); }
+
+    }
+}
+// >```
