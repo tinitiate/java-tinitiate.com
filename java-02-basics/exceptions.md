@@ -1,0 +1,292 @@
+---
+YamlDesc: CONTENT-ARTICLE
+Title: java exceptions try catch, Multiple Catch blocks, Checked Errors, Runtime exception
+MetaDescription: java exceptions try catch, Multiple Catch blocks, Checked Errors, Runtime exception
+MetaKeywords: java exceptions try catch, Multiple Catch blocks, Checked Errors, Runtime exception example code, tutorials
+Author: Venkata Bhattaram / tinitiate.com
+ContentName: exceptions
+---
+
+# Exceptions
+* Exceptions are Runtime Errors, These errors show up when a successfuly
+  compiled code(code without errors) is run.
+* Failure of Code during execution are exceptions.
+* There could be many reasons why exceptions occurs, some of them:
+  * Invalid data, assignment to a datatype
+  * UnHandled operation
+  * Invalid Array Index
+
+## Exception Block Structure
+* `try { ..code .. } Block`
+* Place the code that might throw an exception within a try block.
+* `catch(Name-Of-Exception-To-Be-Handled) { ..Exception handling code.. }" Block`
+* A try block is associated with one or more catch blocks placed
+  directly after the try block.
+* No code can be between the end of the try block and the beginning
+  of the first catch block.
+* `finally`
+* The finally block always executes when the try block exits.
+* This ensures that the finally block is executed even if an unexpected
+  exception occurs.
+```
+package tinitiate.java.exceptions;
+
+public class ExceptionDemo {
+
+    // EXCEPTION TEST
+    // ==============
+    public static void main(String args[]) {
+
+        int[] numArray = new int[4];
+
+        // TRY BLOCK
+        // The code that MIGHT have an exception
+        try {
+            // Try to access an index that doesnt exist in the Array
+            System.out.println("Access element SIX :" + numArray[7]);
+
+            // This line will never be executed as the previous statement
+            // raises an exception
+            System.out.println("This line will never be executed");
+        }
+        // CATCH BLOCK
+        // If the CODE in the try block fails then this block ix executed
+        catch(ArrayIndexOutOfBoundsException e) {
+
+            // 1. Print a Custom Message in Catch block, This is optional
+            System.out.println("numArray only has "+ numArray.length +" elements.");
+
+            // 2. Print the error Message in Catch block
+            System.out.println(e.getMessage());
+        }
+        // FINALLY BLOCK
+        // The finally block is executed irrespective of whether
+        // an exception occurs or not.
+        finally {
+            System.out.println("Executing finally");
+        }
+            System.out.println("Code Block End");
+    }
+}
+```
+
+
+## Exception MultiCatch Block
+* Multiple Catch blocks for a single try
+* A **TRY BLOCK** could have different possible exceptions for in various statements.
+* To handle this, a SINGLE TRY block will have MULTIPLE CATCH BLOCKS
+* Each **CATCH** block will have its own ExceptionType without repetetion.
+* And a generic handler, defaults for all unhandled catch block or
+  "all-else" scenario.
+```
+package tinitiate.java.exceptions;
+
+public class ExceptionMultiCatch {
+
+    public static void main(String[] args) {
+
+        int a1;
+        int a2;
+        // TRY BLOCK
+        try {
+            a2 = 100;
+            a1=a2/0;
+        }
+        // CATCH BLOCK 1.
+        catch(ArithmeticException e) {
+            e.printStackTrace();
+        }
+        // CATCH BLOCK 2.
+        catch(Exception e1) {
+            e1.printStackTrace();
+        }
+        finally {
+            System.out.println("Executing finally");
+        }
+        System.out.println("Code Block End");
+    }
+}
+```
+
+
+## Custom Exceptions
+* Custom Exceptions are user defined,
+* There are TWO ways to create custom exceptions
+
+
+### Custom Checked Exception
+* **Step 1** Create the Custom Exception Class
+  * Create a **Custom Exception Class** with by inheriting the `Exception Class`.
+  * Create a constructor, which will be used to print messages or
+    call some code action.
+* **Step 2** Use the Custom Exception Class
+  * Create the Class that uses the **Custom Exception Class**
+  * For every `method` that wants to use the Custom Exception, Use the
+    keyword `throws`
+  * Using the `try catch`, Raise the exception using the `throw` inside the
+    method code, when and where ever as needed.
+```
+package tinitiate.java.exceptions;
+
+// STEP 1 Create the Custom Exception Class
+// ========================================
+// 1. Create a **Custom Exception Class** with by inheriting the Exception Class.
+// 2. Create a constructor, which will be used to print messages or
+//    call some code action.
+class MyCustomException extends RuntimeException {
+
+    // Constructor
+	public MyCustomException(String msg) {
+		System.out.println(msg);
+	}
+}
+
+// STEP 2 Use the Custom Exception Class
+// =====================================
+// 1. Create the Class that uses the **Custom Exception Class**
+// 2. For every `method` that wants to use the Custom Exception, Use the
+//    keyword `throws`
+// 3. Using the `try catch`, Raise the exception using the `throw` inside the
+//    method code, when and where ever as needed.
+public class CustomCheckedException {
+
+    // The METHOD THROWS keyword
+    public static void checkEmployeeBonus (double Salary, double Bonus) throws MyCustomException {
+        
+        // Check if Bonus is Greater than 50% of salary
+        if (Bonus > Salary/2) {
+            
+            // The THROW keyword will raise the exception when called.
+        	throw new MyCustomException("Too Much Bonus");
+        }
+	}
+
+
+    public static void main(String[] args) {
+
+        // There is NO NEED to USE the TRY and CATCH Block
+        System.out.println("Checking Employee Bonus, with SAL = 5000.00 and Bonus = 3000.00.");
+		checkEmployeeBonus (5000.00, 3000.00);
+	}
+}
+```
+
+
+### Custom Unchecked Exception
+* **Step 1**  Create the Custom Exception Class
+* Create a **Custom Exception Class** with by inheriting the `RuntimeException Class`.
+* Create a constructor, which will be used to print messages or
+  call some code action.
+* **Step 2** Use the Custom Exception Class
+* Create the Class that uses the **Custom Exception Class**.
+* For every `method` that wants to use the Custom Exception, Use the
+  keyword `throws`
+* Raise the exception using the `throw` inside the method code, when and
+  where ever as needed. `without try catch`.
+```
+package tinitiate.java.exceptions;
+
+// STEP 1 Create the Custom Exception Class
+// ========================================
+// 1. Create a **Custom Exception Class** with by inheriting the
+//    `RuntimeException Class`.
+// 2. Create a constructor, which will be used to print messages or
+//    call some code action.
+class MyCustomException extends RuntimeException {
+
+    // Constructor
+    public MyCustomException(String msg) {
+        System.out.println(msg);
+    }
+}
+
+// STEP 2 Use the Custom Exception Class
+// =====================================
+// 1. Create the Class that uses the **Custom Exception Class**.
+// 2. For every `method` that wants to use the Custom Exception, Use the
+//    keyword `throws`
+// 3. Raise the exception using the `throw` inside the method code,
+//    when and where ever as needed. `without try catch`.
+public class CustomCheckedException {
+
+    // The METHOD THROWS keyword
+    public static void checkEmployeeBonus (double Salary, double Bonus) throws MyCustomException {
+
+        // Check if Bonus is Greater than 50% of salary
+        if (Bonus > Salary/2) {
+
+            // The THROW keyword will raise the exception when called.
+            throw new MyCustomException("Too Much Bonus");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        // There is NO NEED to USE the TRY and CATCH Block
+        System.out.println("Checking Employee Bonus, with SAL = 5000.00 and Bonus = 3000.00.");
+        checkEmployeeBonus (5000.00, 3000.00);
+    }
+}
+```
+
+
+## Printing Exception details using PrintStackTrace
+* `printStackTrace()` writes exception information to STDERR System.err
+  not STDOUT System.out,
+* This exception information is the chain of methods that led to the exception.
+* Compare this to using the `System.out.println(e)`, which is same as 
+  System.out.println(e.toString()), it prints the name of the class exception message
+```
+package tinitiate.java.exceptions;
+
+public class ExceptionPrintStackTrace {
+
+    public static void main(String[] args) {
+        try { 
+            System.out.println(1/0);
+        } catch(Exception e) {
+            System.out.println("STANDARD OUT Message: " + e);
+            System.out.print("STANDARD ERROR Message: ");
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+## Printing Exception details using GetStackTrace
+* `getStackTrace()` method returns array of stack dump
+   with trace information elements.
+* Get the File Name from the Stack Trace Dump
+  * `getStackTrace().getFileName());`
+* Get the line number from the Stack Trace Dump
+  * `getStackTrace()getLineNumber());`
+* Get the method Name from the Stack Trace Dump
+  * `getStackTrace().getMethodName());`
+```
+package tinitiate.java.exceptions;
+
+public class ExceptionGetStackTrace {
+
+    public static void main(String[] args) {
+        try { 
+            System.out.println(1/0);
+        }
+        catch(Exception e) {
+
+            // Capture the Stack Dump
+            StackTraceElement[] StackDump = e.getStackTrace();
+
+            for (int i=0; i<StackDump.length; i++) {
+                System.out.println(StackDump[i].toString());
+                // Get the File Name from the Stack Trace Dump
+                System.err.println(StackDump[i].getFileName());
+                // Get the line number from the Stack Trace Dump
+                System.err.println(StackDump[i].getLineNumber());
+                // Get the method Name from the Stack Trace Dump
+                System.err.println(StackDump[i].getMethodName());
+            }
+        }
+    }    
+}
+```
