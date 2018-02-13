@@ -1,0 +1,116 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: java jUnit test suite
+// >MetaDescription: java jUnit test suite
+// >MetaKeywords: java jUnit test suite, example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: junit-test-suite
+// >---
+
+// >* **[jUnit Basics](junit.html)**
+// >* **[jUnit Ignore](junit-ignore.html)**
+// >* **[jUnit Timing](junit-timeout.html)**
+// >* **[jUnit Parameterized Tests](junit-parameterized-testing.html)**
+// >* **[jUnit Exception Testing](junit-exception-testing.html)**
+// >* **[jUnit Test Suite](junit-test-suite.html)**
+// >>
+// >***
+
+
+// ># jUnit Creating a Test Suite
+// >* A test suite is a feature to create a single launch point for many test cases 
+// >  of various classes. And can be run multiple test cases as a single unit.
+// >* The required annotations to create a suite test;
+// >  * **@RunWith** Annotations
+// >  * The class annotated with **@RunWith** runs the tests, instead of built-in 
+// >    runnner of JUnit.
+// >  * **@Suite.SuiteClasses**
+// >  * The **@Suite.SuiteClasses** annotation accepts the CLASS names as the 
+// >    parameters, which will be executed by the, class annotated by @RunWith(Suite.class).
+// >>
+
+
+// >## Multiplier a Class that needs to be tested
+// >* Consider the class Multiplier
+// >* mul() method, This returns the product of two parameters num1, num2
+// >* add() method, This returns the sum of two parameters num1, num2
+
+// >```
+// Class Adder, Adds TWO numbers and returns them
+package tinitiate.junit;
+
+public class Calc {
+
+   // METHOD MUL
+   // Member method of the class
+   public int mul(int num1, int num2) {
+      return num1*num2;
+   }
+
+   // METHOD ADD
+   // Member method of the class
+   public int add(int num1, int num2) {
+      return num1+num2;
+   }
+
+}
+// >```
+// >>
+
+
+// >## Calc Class MUL method test case
+// >* This is the test case for the mul() method
+// >* This returns the product of two parameters num1, num2
+// >* The **assertEquals** checks for an expected value with the value 
+// >  that is returned by the MUL method.
+// >>
+
+// >```
+package tinitiate.junit;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+@RunWith(JUnit4.class)
+public class TestCalcMul {
+
+   Calc Obj = new Calc();
+
+   @Test
+   public void testPrepareMyBag() {
+      assertEquals(200, Obj.mul(10,20));
+   }
+}
+// >```
+// >>
+
+
+// >## Calc Class ADD method test case
+// >* This is the test case for the add() method
+// >* This returns the sum of two parameters num1, num2
+// >* The **assertEquals** checks for an expected value with the value 
+// >  that is returned by the ADD method.
+// >>
+
+// >```
+package tinitiate.junit;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+@RunWith(JUnit4.class)
+public class TestCalcAdd {
+
+   Calc Obj = new Calc();
+
+   @Test
+   public void testPrepareMyBag() {
+      assertEquals(30, Obj.add(10,20));
+   }
+}
+// >```
+// >>

@@ -1,0 +1,130 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: jUnit Ignore
+// >MetaDescription: jUnit ignore test ignore class ignore testing a method
+// >MetaKeywords: jUnit ignore test ignore class ignore testing a method example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: junit-ignore
+// >---
+
+
+// >* **[jUnit Basics](junit.html)**
+// >* **[jUnit Ignore](junit-ignore.html)**
+// >* **[jUnit Timing](junit-timeout.html)**
+// >* **[jUnit Parameterized Tests](junit-parameterized-testing.html)**
+// >* **[jUnit Exception Testing](junit-exception-testing.html)**
+// >* **[jUnit Test Suite](junit-test-suite.html)**
+// >>
+// >***
+
+
+// ># jUnit Ignore
+// >* Some tests can be ignored after they have been successfully tested.
+// >* This is acheived by using the **@Ignore** annotation,
+// > Its very useful when we add newer test cases to our testing class and would mind
+// > ignoring the old tested test cases, or you intentionally want to ignore 
+// > some test cases.
+// >>
+
+// >## jUnit Ignore demonstration
+// >* Consider a Adder class, with TWO methods
+// >* Add2Numbers and Add3numbers
+// >* TestAdder class creates an object of the Adder class
+// >* The **CLASS FIELDS** NUM1,NUM2 and NUM3 and **CLASS METHOD** Add() and Add2Numbers()
+// >* The TestAdder uses multiple ANNOTATIONS to execute its methods in an order.
+// >>
+
+// >## TestAdder Class is the testing class for Adder Class
+// >* TestAdder class creates an object of the Adder class
+// >* The **CLASS FIELDS** NUM1 and NUM2 and **CLASS METHOD** Add()
+// >* The TestAdder uses multiple ANNOTATIONS to execute its methods in an order.
+// >```
+package tinitiate.junit;
+
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+@RunWith(JUnit4.class)
+public class TestAdder {
+
+   // This will be executed before the Test method executes, This is optional
+   @BeforeClass
+   public static void testingClassPreAction() {
+      System.out.println("Message from BeforeClass method testClassPreAction");
+   }
+
+   // This will be executed once for the @Test Method, before it executes,
+   // This is optional
+   @Before
+   public void testingMethodPreAction() {
+      System.out.println("Message from Before method testMethodPreAction");
+   }
+
+   // Create Object of the Adder Class, This is required for testing
+   // The Ignore Annotation will ignore executing this test case. 
+   @Ignore
+   @Test
+   public void testCalcAdd() {
+
+      System.out.println("Test for Add method start.");
+
+      // Adder Class Object
+      Adder obj = new Adder();
+
+      // Initialize Adder Class member variables
+      obj.num1 = 10;
+      obj.num2 = 5;
+
+      // assertEquals will check if the
+      assertEquals(15, obj.Add());
+      
+      System.out.println("Test for Add method successfully ended.");
+   }
+
+
+   @Test
+   public void testCalcAdd3Numbers() {
+
+      System.out.println("Test Add3Numbers method start.");
+
+      // Adder Class Object
+      Adder obj = new Adder();
+
+      // Initialize Adder Class member variables
+      obj.num1 = 10;
+      obj.num2 = 5;
+      obj.num3 = 1;
+      
+      // assertEquals will check if the
+      assertEquals(16, obj.Add3Numbers());
+      
+      System.out.println("Test Add3Numbers method successfully ended.");
+   }
+
+
+   // This will be executed once for the @Test Method, after it executes
+   // This is required for optional
+   @After
+   public void testMethodPostAction() {
+      System.out.println("Message from after method testMethodPostAction");
+   }
+
+   // This will be executed after the Test method executes
+   // This is required for optional
+   @AfterClass
+   public static void testClassPostAction() {
+      System.out.println("Message from AfterClass method testClassPostAction");
+   }
+}
+// >```
+
+// >
+// >![alt text](junit-ignore.png "Java jUnit Ignore")
+// >

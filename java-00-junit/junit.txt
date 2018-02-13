@@ -1,0 +1,160 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: jUnit
+// >MetaDescription: jUnit
+// >MetaKeywords: jUnit tutorials annotations, java code testing test cases example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: junit
+// >---
+
+// >* **[jUnit Basics](junit.html)**
+// >* **[jUnit Ignore](junit-ignore.html)**
+// >* **[jUnit Timing](junit-timeout.html)**
+// >* **[jUnit Parameterized Tests](junit-parameterized-testing.html)**
+// >* **[jUnit Exception Testing](junit-exception-testing.html)**
+// >* **[jUnit Test Suite](junit-test-suite.html)**
+// >>
+// >***
+
+
+// ># jUnit
+// >* JUnit is an  open source unit testing framework for Java programming language.
+// >* All the "TESTING" is based on what the methods of a class are supposed to do.
+// >* Inputs if any are supplied to a "@Test" annotation and expected outputs are 
+// >  asserted, If the Output of the test matches with the asserted (expected) output
+// >  then the test case is assumed successful.
+// >>
+
+// >## jUnit Installation
+// >* Make sure to add the following jars to your package/project
+// >  * **jUnit 4.X jar** 
+// >  * **HAMCREST jar**
+// >>
+
+// >## jUnit Annotations
+// >* jUnit provides **annotations** create and use testing methods.
+// >* Steps to use and create jUnit test case
+// >  * Create a test class for a class that needs to be tested.
+// >  * All the Test Class execution, Annotations explained
+// >    * **@BeforeClass** 
+// >      * public static void method
+// >      * Runs only once before test methods, There is only one of this annotation.
+// >    * **@Before**
+// >      * public void method 
+// >      * before any one or more @Test, There could be more than one 
+// >        of this annotation.
+// >    * **@Test**
+// >      * public void method
+// >      * executes the method, that has the method that needs to be tested.
+// >      * before any one or more @Test, There could be more than one 
+// >        of this annotation.
+// >    * **@After**
+// >      * public void method 
+// >      * Could be Run after any one or more @Test, There could be more than one 
+// >        of this annotation.
+// >    * **@AfterClass**
+// >      * public static void method
+// >      * Run only once after test methods, There is only one of this annotation.
+// >>
+
+// >## A Class that needs to be tested
+// >* Consider the class Adder
+// >* Class Member variables
+// >* Num1 and Num2, these are the variables that will be added
+// >* Add() method, This returns  the sum of Num1, Num2
+
+// >```
+// Class Adder, Adds TWO numbers and returns them
+package tinitiate.junit;
+
+public class Adder {
+
+   // Member fields of the class
+   int num1;
+   int num2;
+
+   // Member method of the class
+   public int Add() {
+      return num1+num2;
+   }
+}
+// >```
+
+// >## TestAdder Class is the testing class for Adder Class
+// >* TestAdder class creates an object of the Adder class
+// >* The **CLASS FIELDS** NUM1 and NUM2 and **CLASS METHOD** Add()
+// >* The TestAdder uses multiple ANNOTATIONS to execute its methods in an order   
+// >* Below is the demonstration of the jUnit using the ANNOTATIONS, @BeforeClass, @Before
+// >  @Test, @After, @AfterClass
+// >* TestAdder class creates an object of the Adder class
+// >* The **CLASS FIELDS** NUM1 and NUM2 and **CLASS METHOD** Add()
+// >* The TestAdder uses multiple ANNOTATIONS to execute its methods in an order.
+
+// >```
+package tinitiate.junit;
+
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+@RunWith(JUnit4.class)
+public class TestAdder {
+
+   // This will be executed before the Test method executes, This is optional
+   @BeforeClass
+   public static void testingClassPreAction() {
+      System.out.println("Message from BeforeClass method testClassPreAction");
+   }
+
+   // This will be executed once for the @Test Method, before it executes,
+   // This is optional
+   @Before
+   public void testingMethodPreAction() {
+      System.out.println("Message from Before method testMethodPreAction");
+   }
+
+   // Create Object of the Adder Class
+   // This is required for testing
+   @Test
+   public void testCalcAdd() {
+
+      System.out.println("Test for Adder class start.");
+
+      // Adder Class Object
+      Adder obj = new Adder();
+
+      // Initialize Adder Class member variables
+      obj.num1 = 10;
+      obj.num2 = 5;
+
+      // assertEquals will check if the
+      assertEquals(15, obj.Add());
+      
+      System.out.println("Test for Adder class successfully ended.");
+   }
+
+   // This will be executed once for the @Test Method, after it executes
+   // This is required for optional
+   @After
+   public void testMethodPostAction() {
+      System.out.println("Message from after method testMethodPostAction");
+   }
+
+   // This will be executed after the Test method executes
+   // This is required for optional
+   @AfterClass
+   public static void testClassPostAction() {
+      System.out.println("Message from AfterClass method testClassPostAction");
+   }
+}
+// >```
+// >>
+
+// >
+// >![alt text](junit.png "Java jUnit")
+// >>

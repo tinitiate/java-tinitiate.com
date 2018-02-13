@@ -46,7 +46,7 @@
 // >* In Java it is required to have the class name as the file name of the code.
 // >* There can be more than one CLASS in the code file.
 // >>
-// >![alt text](oop-java-class.png "Java Class structure")
+// >![Java Class structure](oop-java-class.png "Java Class structure")
 // >>
 
 
@@ -56,7 +56,7 @@
 // >* Instance is a occurrence of class where data is assigned to the class 
 // >  variables and the class methods are called upon to execute or run.
 // >>
-// >![alt text](oop-java-object.png "Java Object structure")
+// >![Java Object structure](oop-java-object.png "Java Object structure")
 // >>
 // >```
 // Class Calculator

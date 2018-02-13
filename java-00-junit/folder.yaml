@@ -1,0 +1,13 @@
+---
+YamlDesc: FOLDER-YAML
+Slug: java
+GenerateTemplateFlag: false
+GenerateFolderNavURLNamesJS: false
+ProcessFilePathList:
+    - junit.txt
+    - junit-ignore.txt
+    - junit-timing.txt
+    - ParameterizedTests.java
+    - junit-exception-testing.txt
+    - TestSuite.txt
+---

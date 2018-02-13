@@ -1,0 +1,112 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: jUnit Timeout Test
+// >MetaDescription: jUnit Timeout test testing a method
+// >MetaKeywords: jUnit Timeout test testing a method example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: junit-timeout
+// >---
+
+
+// >* **[jUnit Basics](junit.html)**
+// >* **[jUnit Ignore](junit-ignore.html)**
+// >* **[jUnit Timing](junit-timeout.html)**
+// >* **[jUnit Parameterized Tests](junit-parameterized-testing.html)**
+// >* **[jUnit Exception Testing](junit-exception-testing.html)**
+// >* **[jUnit Test Suite](junit-test-suite.html)**
+// >>
+// >***
+
+
+
+// ># jUnit timeout Test
+// >* When testing slow performing methods or methods waiting on some resource 
+// >  taking too long to complete. 
+// >* In such cases the parameter "timeout" can be used to mark a jUnit task as 
+// >  failed for a if the junit test doesnt complete after specified number 
+// >  of milliseconds.
+// >>
+
+// >## Demonstration of jUnit timeout
+// >* Consider a java class that intentionally takes 5 Secs to complete
+// >* And the jUnit test case class has a timeout of 4 Secs
+// >>
+
+// >## LongRunningClass
+// >* The runNow() method takes 5 Seconds to execute
+// >```
+package tinitiate.junit;
+
+// The java class LongRunningClass
+// runNow() method intentionally takes 5 Secs to complete
+public class LongRunningClass {
+
+   // This method takes 5 Secs to execute
+   public void RunNow() throws InterruptedException {
+      Thread.sleep(5000);
+   }
+}
+// >```
+// >>
+
+
+// >## TestLongRunningClass
+// >* The @Test method timesout in 4 Seconds, resulting in error or jUnit test fail.
+// >```
+package tinitiate.junit;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
+@RunWith(JUnit4.class)
+public class TestLongRunningClass {
+
+
+   // The "timeout" parameter here is less than the time taken by RunNow() method.
+   // This test will fail
+   @Test(timeout=4000)
+   public void testRunNowFail() {
+
+      System.out.println("Test for RunNow start.");
+
+      // Adder Class Object
+      LongRunningClass obj = new LongRunningClass();
+
+      // Execute the RunNow() 
+      try {
+         obj.RunNow();
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+
+      System.out.println("Test for RunNow end.");
+   }
+
+
+   // The "timeout" parameter here is more than the time taken by RunNow() method.
+   // This test will succeed
+   @Test(timeout=6000)
+   public void testRunNowPass() {
+
+      System.out.println("Test for RunNow start.");
+
+      // Adder Class Object
+      LongRunningClass obj = new LongRunningClass();
+
+      // Execute the RunNow() 
+      try {
+         obj.RunNow();
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+
+      System.out.println("Test for RunNow end.");
+   }
+}
+// >```
+// >>
+// >>
+// >![alt text](junit-timeout.png "Java jUnit timeout")
+// >>

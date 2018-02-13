@@ -1,0 +1,111 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: jUnit Exception Testing
+// >MetaDescription: jUnit Exception Testing
+// >MetaKeywords: jUnit Exception Testing, example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: junit-exception-testing
+// >---
+
+
+// >* **[jUnit Basics](junit.html)**
+// >* **[jUnit Ignore](junit-ignore.html)**
+// >* **[jUnit Timing](junit-timeout.html)**
+// >* **[jUnit Parameterized Tests](junit-parameterized-testing.html)**
+// >* **[jUnit Exception Testing](junit-exception-testing.html)**
+// >* **[jUnit Test Suite](junit-test-suite.html)**
+// >>
+// >***
+
+
+// >## jUnit Testing Exceptions using @Test with "expected" attribute
+// >* It is possible to trace exception handling of a Class Method using jUnit.
+// >* This program demonstrates testing using @Test with "expected" attribute
+// >* The "expected" attribute looks for the exception name.
+// >>
+
+// >```
+package tinitiate.junit;
+
+import org.junit.Test;
+
+// === Step 1 ===
+// Create a Custom Exception
+// This will be used for capturing exception in jUnit.
+// ---------------------------------------------------
+class TinitiateException extends Exception {
+
+   public TinitiateException() {
+       super("This is a cusom execption.");
+   }
+}
+
+
+public class TestExceptionWithExpected {
+   
+   // === Case 1 ===
+   // Demonstrate junit exception testing using Built-in exception
+   // ------------------------------------------------------------
+   // 1. Intentionally divide by zero, this will raise an Arithmetic exception
+   // 2. The annotation "@Test(expected = ArithmeticException.class)", 
+   //    will capture the test case as failed.
+   @Test(expected = ArithmeticException.class)
+   public void testDivideByZero() {
+      int num1 = 1/0;
+   }
+
+
+   // === Case 2 ===
+   // Demonstrate junit exception testing using custom Exception
+   // ----------------------------------------------------------
+   // 1. Intentionally raise the custom exception, "TinitiateException"
+   // 2. The annotation "@Test(expected =  TinitiateException.class)",
+   //    will capture the test case as failed.
+   @Test(expected = TinitiateException.class)
+   public void testCustomException() throws TinitiateException {
+
+      // Raise the TinitiateException()
+      throw new TinitiateException();
+   }
+}
+// >```
+
+
+// >## jUnit Testing Exceptions using @Rule with "ExpectedException" rule
+// >* It is possible to trace exception handling of a Class Method using jUnit.
+// >* This program demonstrates testing using @Rule with "ExpectedException" rule
+// >* The ExpectedException rule enables to test exception.
+// >>
+
+// >```
+package tinitiate.junit;
+
+import org.junit.*;
+import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
+
+public class TestExceptionWithRule {
+
+   // === Case 1 ===
+   // Demonstrate junit exception testing using Built-in exception
+   // ------------------------------------------------------------
+   // 1. Intentionally divide by zero, this will raise an Arithmetic exception
+   // 2. The annotation "@Rule with "ExpectedException" rule", will check for 
+   //    the "expect" method in the @Test.
+   @Rule
+   public ExpectedException ExceptionTest = ExpectedException.none();
+
+   @Test
+   public void testDivideByZero() {
+
+      // Here the "ExceptionTest.expect" looks for the exception:
+      // ArithmeticException and if this is expected then the test is marked
+      // success as this is expected in the next line that has the Divde by Zero
+      ExceptionTest.expect(ArithmeticException.class);
+      int num1 = 1/0;
+   }
+
+}
+// >```
+

@@ -47,15 +47,16 @@
 // >      information to your application.
 // >>
 
-// ># Executing Java code
+// >## Executing Java code
 // >* For java code to be run, it involves a TWO step process
 // >* **STEP 1.** Code compilation to generate CLASS file
 // >* **STEP 2.** CLASS file execution
 
-// >## Generate CLASS file
-// >* Lets assume we have a java file **myCode.java**
-// >* Using the **javac** command a **myCode.class**
-// >* The **javac** command is run at the command prompt.
+// >## Generate CLASS file or Code Compilation
+// >* The Java code is written in a text file with extension **.java**
+// >* Lets assume our java file name is **myCode.java**
+// >* Use the **javac myCode.java** command at commandline, to generate the 
+// >  CLASS file **myCode.class**.
 // >```
 javac myCode.java
 // >```
@@ -69,19 +70,3 @@ java myCode
 // >* **NOTE** when running the **java** command the **.class** 
 // > file extension is not needed.
 // >>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
