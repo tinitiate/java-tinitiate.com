@@ -1,0 +1,16 @@
+---
+YamlDesc: FOLDER-YAML
+Slug: java
+GenerateTemplateFlag: false
+GenerateFolderNavURLNamesJS: false
+ProcessFilePathList:
+    - java-strings.md
+    - java-string-class.md
+    - java-string-builder.md
+    - java-string-buffer.md
+    - java-user-input.md
+    - java-static-final.md
+    - java-pojo-java-beans.md
+    - java-enumeration.md
+    - exceptions.md
+---
