@@ -1,0 +1,23 @@
+---
+YamlDesc: FOLDER-YAML
+Slug: java
+GenerateTemplateFlag: false
+GenerateFolderNavURLNamesJS: false
+ProcessFilePathList:
+    - java-collections.md
+    - collection-framework-vector.md
+    - collection-framework-arraylist.md
+    - collection-framework-linkedlist.md
+    - collection-framework-treemap.md
+    - collection-framework-stack.md
+    - collection-framework-hashset.md
+    - collection-framework-treeset.md
+    - collection-framework-linkedhashset.md
+    - collection-framework-enumset.md
+    - collection-framework-priorityqueue.md
+    - collection-framework-arraydeque.md
+    - collection-framework-hashtable.md
+    - collection-framework-linkedhashmap.md
+    - collection-framework-enummap.md
+    - collection-framework-hashmap.md
+---
