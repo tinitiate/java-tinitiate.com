@@ -36,8 +36,9 @@
 // >* Every class in the Java system is a descendent (direct or indirect) of the Object class
 
 // >## Demonstration of Object
-// >*
-
+// >* Here we demonstrate Object Creation
+// >* Object Built-In Properties `GetClass` and `toString`
+// >* Object Comparison
 // >```
 package tinitiate.java.oop;
 
