@@ -14,7 +14,7 @@
 // >* To access the resource the **CLIENT** [the program that wants to use the resource]
 // >  issues a `request`, and the **SERVER**
 // >>
-// >![alt text](webservice.png "webservice tinitiate.com")
+// >![Java Web Services](webservice.png "webservice tinitiate.com")
 // >>
 // >* The main advantage of this concept is The resource and the caller can be
 // >  of different programming language or technology, The only commonality

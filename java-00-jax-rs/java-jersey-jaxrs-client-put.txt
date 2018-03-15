@@ -4,7 +4,7 @@
 // >MetaDescription: Java Jersey JAX RS RESTful Client Web Services
 // >MetaKeywords: Java Jersey JAX RS RESTful Client Web Services example code, tutorials
 // >Author: Venkata Bhattaram / tinitiate.com
-// >ContentName: java-jersey-jaxrs-client-put
+// >ContentName: java-jersey-jaxrs-client-get
 // >---
 
 // ># Java Jersey JAX RS RESTful Client for Web Services
@@ -209,3 +209,50 @@ public class JaxRSHTTPGetJSON extends Application {
 }
 // >```
 
+// >## STEP 4. Create a Client
+// >* Make sure to run the program in Step 3. in Eclipse or an IDE
+// >* While the program from Step 3. is running in another window, run the client program below,
+// >  This will read the URL:
+// >  `http://localhost:8080/TinitiateJerseyRS/rest/http_get_json/get_ti_json_courses`
+// >* The Client program will read the data from the webservice and prints 
+// >  it to the console.
+// >```
+package com.tinitiate.jersey.rs;
+
+import java.net.URI;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import org.glassfish.jersey.client.ClientConfig;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriBuilder;
+
+public class JaxRSHTTPClientGET {
+
+    // Base URL where to apply the GET request
+    static String GETTestURL = "http://localhost:8080/TinitiateJerseyRS/rest/http_get_json";
+
+
+    // Main Program that calls the GET URLs
+    public static void main(String[] args) {
+        
+        
+        ClientConfig config = new ClientConfig();
+        Client client = ClientBuilder.newClient(config);
+        WebTarget WSservice = client.target(getBaseURI());
+
+
+        // Call a rest GET service
+        System.out.println(WSservice.path("rest").path("get_ti_json_courses").request().accept(MediaType.TEXT_PLAIN).get(String.class));
+    }
+
+
+    // Return The URL to lookup 
+    private static URI getBaseURI() {  
+
+        // The server runs here  
+      return UriBuilder.fromUri(GETTestURL).build();  
+    }    
+}
+// >```

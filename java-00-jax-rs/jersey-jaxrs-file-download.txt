@@ -1,0 +1,182 @@
+// >---
+// >YamlDesc: CONTENT-ARTICLE
+// >Title: Java Jersey JAX RS RESTful Web Services File Download
+// >MetaDescription: Java Jersey JAX RS RESTful Web Services File Download
+// >MetaKeywords: Java, Jersey ,JAX RS RESTful, Web Services, File Download, example code, tutorials
+// >Author: Venkata Bhattaram / tinitiate.com
+// >ContentName: jersey-jaxrs-file-download
+// >---
+
+// ># Java Jersey Jaxrs File Download
+// >* File Downloads are an important feature of any Web Application, Java 
+// >  Jersey JAX, provides a mechanism to host files on server and provide 
+// >  features to enable download from  a HTML form.
+// >* Below are the steps to acheive this.
+
+// >## Example for creating a JAVA JAX RS HTML form to download data using GET
+// >* To create a Download from server page, we would need the following
+// >* `Files to download on Server Folder Location`
+// > here we demonstrate various file types such as 
+// > Images, PDF File and Text File.
+// >* These files must be placed on the server side, the Location is mentioned 
+// >  in the JaxRSFileDownload.java file.
+// >* Folder Structure for Download, Below mentioned example
+// > ![Java Jersey JAX RS Download Folder Structure](jersey-jaxrs-file-download-folder-structure.png "Java Jersey JAX RS File Download Folder Structure")
+
+// >### STEP 1. Files to download on Server Folder Location
+// >* Create 3 Files on the server an Image File a JSON file and a PDF file
+// > * c:\\Personal\\tipic.png
+// > * c:\\Personal\\tidata.json
+// > * c:\\Personal\\tidata.pdf
+
+// >### STEP 2. Java Code file for Handling the Download
+// >* The Java Code file has the URL PATH at which the java code is invoked,
+// >  it useds the @GET method to enable a file download from the server 
+// >  location. The `@Path` handles the routing for this file to be invoked 
+// >  when issued in a browser.
+// >* **FILE NAME** `JaxRSFileDownload.java`
+// >```
+package com.tinitiate.jersey.rs;
+
+import java.io.File;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+
+@Path("/")
+public class JaxRSFileDownload {
+
+    // Files with path on Server Side for Download
+    static final String image_file_path = "c:\\Personal\\tipic.png";
+    static final String text_file_path = "c:\\Personal\\tidata.json";
+    static final String pdf_file_path = "c:\\Personal\\tidata.pdf";
+
+
+    // Method to Download Image file
+    @GET
+    @Path("/download-image")
+    @Produces("image/png") // 
+    public Response DownloadImageFile() {
+
+        File file = new File(image_file_path);
+        ResponseBuilder response = Response.ok((Object) file);
+
+        response.header( "Content-Disposition"
+                        ,"attachment; filename=tipic.png");
+
+        return response.build();
+    }
+
+
+    // Method to Download Text file
+    @GET
+    @Path("/download-text")
+    @Produces("text/plain")
+    public Response DownloadTextFile() {
+
+        File file = new File(text_file_path);
+        ResponseBuilder response = Response.ok((Object) file);
+
+        response.header( "Content-Disposition"
+                        ,"attachment; filename=tidata.json");
+
+        return response.build();
+    }
+
+
+    // Method to Download PDF file
+    @GET
+    @Path("/download-pdf")
+    @Produces("application/pdf")
+    public Response DownloadPDFFile() {
+
+        File file = new File(pdf_file_path);
+        ResponseBuilder response = Response.ok((Object) file);
+
+        response.header( "Content-Disposition"
+                        ,"attachment; filename=tidata.pdf");
+
+        return response.build();
+    }
+}
+// >```
+
+
+// >### STEP 3. The HTML File to provide Download Links
+// >* This is the HTML file that is called from the URL
+// > http://localhost:8080/TinitiateJerseyRS/downloads.html
+// >* **FILE NAME** `downloads.html`
+// >```
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>tinitate jax rs download test</title>
+    </head>
+    <body>
+        <p>
+	        <a href="rest/download-image">Click to Download Image</a><br>
+	        <a href="rest/download-text">Click to Download Text</a><br>
+	        <a href="rest/download-pdf">Click to Download PDF</a>
+        </p>
+    </body>
+</html>
+// >```
+
+// >### STEP 4. The web.xml file
+// >* The Web.xml file that is used for this example
+// >* **FILE NAME** `web.xml`
+// >```
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+web.xml
+=======
+1. Servlet is a Java program that extends a web servers capability as they
+   directly talk to Java APIs, They are ideal for Java Web Development.
+2. The web.xml file is the deployment descriptor for a Servlet-based Java web 
+   application.
+3. The web.xml handles two important roles,
+  3.1 Define a name of the handler (Servlet)
+  3.2 The handler maps a Java File to a HTML file.
+4. There are more advanced features of web.xml, which have config data, accepts
+   HTML page name patterns.
+-->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" 
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+         id="WebApp_ID"
+         version="3.0">
+  <display-name>Tinitiate</display-name>
+  <context-param>
+    <param-name>JSONResource</param-name>
+    <param-value>C:/Personal/tidata.json</param-value>
+  </context-param>
+  <context-param>
+    <param-name>XMLResource</param-name>
+    <param-value>C:/Personal/tidata.xml</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Jersey RESTful Introduction</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>com.tinitiate.jersey.rs</param-value>
+    </init-param>
+	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jersey RESTful Introduction</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+</web-app>
+// >```
+
+
+// >### STEP 5. Executing and Using the Program
+// >* Assuming a server is configured , run the program in an IDE like eclipse
+// >* Once the program is running open a browser and use the URL;
+// >* `http://localhost:8080/TinitiateJerseyRS/downloads.html`
+// >* This is what should be displayed in the browser:
+// > ![Java Jersey JAX RS File Download HTML FORM](jersey-jaxrs-file-download-form-html.png "Java Jersey JAX RS File Download HTML FORM")
+// >* Click on any link to download.

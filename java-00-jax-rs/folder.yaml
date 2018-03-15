@@ -1,0 +1,24 @@
+---
+YamlDesc: FOLDER-YAML
+Slug: java
+GenerateTemplateFlag: false
+GenerateFolderNavURLNamesJS: false
+ProcessFilePathList:
+    - java-webservices.txt
+    - jersey-jaxrs-webservices.txt
+    - jersey-jaxrs-project-setup.txt
+    - jersey-jaxrs-http-methods.txt
+    - jersey-jaxrs-xml-put-http-method.txt
+    - jersey-jaxrs-xml-post-http-method.txt
+    - jersey-jaxrs-xml-get-http-method.txt
+    - jersey-jaxrs-xml-delete-http-method.txt
+    - jersey-jaxrs-json-put-http-method.txt
+    - jersey-jaxrs-json-post-http-method.txt
+    - jersey-jaxrs-json-get-http-method.txt
+    - jersey-jaxrs-json-delete-http-method.txt
+    - jersey-jaxrs-response-formats.txt
+    - jersey-jaxrs-html-forms.txt
+    - java-jersey-jaxrs-client-put.txt
+    - jersey-jaxrs-file-download.txt
+    - jersey-jaxrs-file-upload.txt
+---
