@@ -20,4 +20,6 @@ ProcessFilePathList:
     - collection-framework-linkedhashmap.md
     - collection-framework-enummap.md
     - collection-framework-hashmap.md
+    - collection-comparable-interface.md
+    - collection-comparator-interface.md
 ---
