@@ -92,9 +92,9 @@ ContentName: mapper-demo-mybatis-oracle
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="oracle.jdbc.OracleDriver"/>
-                <property name="url" value="jdbc:oracle:thin:@//172.20.196.171:1521/mscs5tst"/>
-                <property name="username" value="INT_STG"/>
-                <property name="password" value="intstg2014#tst"/>
+                <property name="url" value="jdbc:oracle:thin:@//localhost:1521/ORCL"/>
+                <property name="username" value="tinitiate"/>
+                <property name="password" value="tinitiate"/>
             </dataSource>
         </environment>
     </environments>

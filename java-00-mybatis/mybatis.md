@@ -44,6 +44,17 @@ ContentName: mybatis
   Oracle Database.
 
 
+## [MyBatis Annotations CRUD](annotation-crud-mybatis-oracle.html)
+* Here we demonstrate a MyBatis - Oracle application with a CRUD operation.
+* This application uses Annotations of MyBatis to Create, Read, Update, Delete 
+  (CRUD) Oracle DB table data.
+
+
+## [MyBatis Annotations Stored Procedures SQL](mybatis-annotations-stored-procedures.html)
+* Here we demonstrate a MyBatis - Oracle application where we execute and capture 
+  results from an Oracle Stored Procedure. Also we demonstrate IN and OUT parameters.
+
+
 ## [Non Maven MyBatis-Oracle Mapper Example](mapper-demo-mybatis-oracle.html)
 * Here we demonstrate a MyBatis - Oracle application, without using Maven.
   we create a mapper XML that has mappings to Oracle Database tables, 
@@ -51,34 +62,17 @@ ContentName: mybatis
   (tables/built-ins).
 
 
-## [MyBatis Annotations CRUD]()
+## [Non Maven MyBatis Mapper XML CRUD](mybatis-mapper-oracle-crud.html)
 *
 
 
-## [MyBatis Annotations Stored Procedures SQL]()
+## [Non Maven MyBatis Mapper XML Stored Procedures SQL](mybatis-mapper-oracle-stored-procedure.html)
 *
 
 
-## [MyBatis Annotations RefCursors]()
+## [Non Maven MyBatis Mapper XML RefCursors](mybatis-mapper-oracle-refcursor.html)
 *
 
 
-## [MyBatis Annotations Dynamic SQL]()
+## [Non Maven MyBatis Mapper XML Dynamic SQL](mybatis-mapper-oracle-dynamic-sql.html)
 *
-
-
-## [MyBatis Mapper XML CRUD]()
-*
-
-
-## [MyBatis Mapper XML Stored Procedures SQL]()
-*
-
-
-## [MyBatis Mapper XML RefCursors]()
-*
-
-
-## [MyBatis Mapper XML Dynamic SQL]()
-*
-
