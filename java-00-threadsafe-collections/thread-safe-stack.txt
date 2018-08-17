@@ -1,0 +1,99 @@
+---
+YamlDesc: CONTENT-ARTICLE
+Title: Java Collections Framework threadsafe 
+MetaDescription: Java threadsafe collections Stack, Properties, Vector, Hashtable, BlockingQueue, ConcurrentMap, ConcurrentNavigableMap
+MetaKeywords: Java threadsafe collections Stack, Properties, Vector, Hashtable, BlockingQueue, ConcurrentMap, ConcurrentNavigableMap
+Author: Venkata Bhattaram / tinitiate.com
+ContentName: threadsafe-stack
+---
+
+# Java Stack
+* Stack implements **List** Interface.
+* Java Stack data structure provides a Last In First Out (LIFO) mechanism
+* Elements are added or PUSH into the STACK at **top of the stack**,
+  and elements removal or POP is also from the top.
+* This executes the Last In First Out (LIFO).
+
+## Demonstration for ThreadSafe Stack
+* We create a COMMON data (s) in a Stack with 5 Elements
+* Using the Thread Class we spawn FIVE Threads to POP each element and print 
+  the Elements of the Stack after the POP operation, here we conclude that,
+  the order in which the elements are removed and displayed indicates that 
+  the Threads execute in an order and the operations do not conflict.
+```
+package tinitiate.java.threadsafe.collections;
+
+import java.util.Iterator;
+import java.util.Stack;
+
+public class ThreadSafeStack {
+
+    // POP Operation
+    public void pop_element(Stack<Integer> sObj) {
+        sObj.pop();
+    }
+
+    // DISPLAY Stack Elements
+    public void display_elements(Stack<Integer> sObj) {
+        Iterator itr = sObj.iterator();
+        while(itr.hasNext()) {
+            Object element = itr.next();
+            System.out.print(element + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        ThreadSafeStack x = new ThreadSafeStack();
+
+        // Stack with Common Data, this will be used by multiple Threads, 
+        // where the data will be POP'ed
+        Stack<Integer> s = new Stack<Integer>();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        s.push(4);
+        s.push(5);
+
+        // ================================================
+        // FIVE THREADS to POP and DISPLAY Elements
+        // In Each Thread POP one element from the stack s and Print 
+        // the stack elements after the POP operation.
+        new Thread( new Runnable() { public void run() {
+            try {
+                x.pop_element(s);
+                x.display_elements(s);
+                System.out.println();
+            } catch (Exception e) {} }}).start();
+
+        new Thread( new Runnable() { public void run() {
+            try {
+                x.pop_element(s);
+                x.display_elements(s);
+                System.out.println();
+            } catch (Exception e) {} }}).start();
+
+        new Thread( new Runnable() { public void run() {
+            try {
+                x.pop_element(s);
+                x.display_elements(s);
+                System.out.println();
+            } catch (Exception e) {} }}).start();
+
+        new Thread( new Runnable() { public void run() {
+            try {
+                x.pop_element(s);
+                x.display_elements(s);
+                System.out.println();
+            } catch (Exception e) {} }}).start();
+
+        new Thread( new Runnable() { public void run() {
+            try {
+                x.pop_element(s);
+                x.display_elements(s);
+                System.out.println();
+            } catch (Exception e) {} }}).start();
+
+    }
+}
+```

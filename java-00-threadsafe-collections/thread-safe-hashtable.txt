@@ -1,0 +1,13 @@
+---
+YamlDesc: CONTENT-ARTICLE
+Title: Java Collections Framework threadsafe 
+MetaDescription: Java threadsafe collections Stack, Properties, Vector, Hashtable, BlockingQueue, ConcurrentMap, ConcurrentNavigableMap
+MetaKeywords: Java threadsafe collections Stack, Properties, Vector, Hashtable, BlockingQueue, ConcurrentMap, ConcurrentNavigableMap
+Author: Venkata Bhattaram / tinitiate.com
+ContentName: threadsafe-hashtable
+---
+
+# [Java Thread Safe Hashtable](thread-safe-hashtable.html)
+* Hashtable is a key/value pair data structure. The key is hashed, and the 
+  hash code is used as the index to identify the **value**
+* Hashtable can be considered as a synchronised HashMap.
