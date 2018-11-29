@@ -29,28 +29,38 @@ ContentName: db-table-one-to-one-xml-mapping
 -- TWO tables with SAME PRIMARY KEY
 drop table department;
 drop table employee;
-drop table emp_details;
 
+-- Department Table
 create table department (
     deptid     int
    ,dept_name  varchar2(100)
    ,primary key(deptid)
 );
 
+-- Employee Table
 create table employee (
-    emp_id      int
+    empid      int
    ,deptid      int
    ,join_date   date
    ,sal         number(10,2)
    ,primary key(emp_id)
+   ,constraint fk_department foreign key (deptid) references department (deptid)
 );
 
-create table emp_details (
-    emp_id   int
-   ,phone    number
-   ,address  varchar2(500)
-   ,primary key(emp_id)
-);
+/*
+
+select * from department;
+select * from employee;
+
+begin
+    delete employee;
+    delete department;
+    commit;
+end;
+
+*/
+
+
 
 -- Data for Departments table
 insert into employee values (1,'Sales');
@@ -61,12 +71,6 @@ insert into employee values (1,1,1000);
 insert into employee values (2,1,2000);
 insert into employee values (3,2,3000);
 insert into employee values (4,2,4000);
-
--- Data for Emp_Details table
-insert into emp_details values (1,111111,'11 AAA ave New York');
-insert into emp_details values (2,222222,'22 BBB ave Chicago');
-insert into emp_details values (3,333333,'33 CCC ave Newark');
-insert into emp_details values (4,444444,'44 AAA ave Dallas');
 
 commit;
 ```
